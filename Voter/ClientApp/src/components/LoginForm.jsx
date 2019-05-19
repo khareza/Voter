@@ -11,8 +11,11 @@ export class Login extends Component {
     }
 
     handleSubmit = (event) => {
-        alert('A name was submitted: ' + this.state.login);
         event.preventDefault();
+        this.props.login({
+            userName: this.state.login,
+            password: this.state.password
+        });
     }
 
     handleLoginChange = (event) => {
