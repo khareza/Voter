@@ -2,44 +2,32 @@
 import axios from 'axios';
 import { Login } from './LoginForm';
 
-
 export class LoginWrapper extends Component {
 
-    saveToken = (token) => {
-        this.props.saveToken(token);
-    }
 
-    //login = (loginFormData) => {
-    //    fetch("http://localhost:64763/api/voter/login", {
-    //        method: 'POST',
-    //        headers: {
-    //            'Accept': 'application/json',
-    //            'Content-Type': 'application/json',
-    //        },
-    //        body: JSON.stringify({
-    //            userName: loginFormData.userName,
-    //            password: loginFormData.password,
-    //        })
-    //    }).then(res => {
-    //        //get response from api and convert it to json
-    //        return res.json();
-    //    }).then(
-    //        //get token from json object
-    //        res => {
-    //            this.saveToken(res.token);
-    //        }
-    //    ).catch(err => {
-    //        //catch doesnt work :( 
-    //        console.log(err)
-    //    });
     login = (loginFormData) => {
         axios.post("http://localhost:64763/api/voter/login", loginFormData)
             .then(res => {
-                this.saveToken(res.data.token);
+                //toast().succsess("success");
+                this.props.setToken(res.data.token);
+                this.setUser();
             }).catch(err => {
-                //catch doesnt work :( 
-                console.log(err)
+                //toast().error("Errors");
+                console.log(err);
             });
+    }
+
+    setUser = () =>
+    {
+        axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        axios.get("http://localhost:64763/api/UserProfile/GetUserProfile")
+            .then(res => {
+                this.props.setUser(res.data);
+            }).catch(err => {
+                //toast().error("Errors");
+                console.log(err);
+            });
+
     }
 
     render() {

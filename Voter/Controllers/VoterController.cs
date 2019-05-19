@@ -42,9 +42,9 @@ namespace Voter.Controllers
         [HttpPost]
         [Route("Register")]
         [Authorize(Roles ="Admin")]
-        public async Task<object> RegisterNewUser(UserFormData formData)
+        public async Task<object> RegisterNewUser(RegisterFormData formData)
         {
-            formData.Role = "User";
+            var role = "User";
 
             var newResident = new Resident
             {
@@ -57,7 +57,7 @@ namespace Voter.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(newResident, formData.Password);
-                await _userManager.AddToRoleAsync(newResident, formData.Role);
+                await _userManager.AddToRoleAsync(newResident, role);
                 return Ok(result);
             }
             catch (Exception)
@@ -82,7 +82,7 @@ namespace Voter.Controllers
 
                 var tokenDescriptor = new SecurityTokenDescriptor {
                     Subject = new ClaimsIdentity(new Claim[] {
-                        new Claim("UserID", user.Id.ToString()),
+                        new Claim("UserID", user.Id),
                         new Claim(identityOptions.ClaimsIdentity.RoleClaimType, role.FirstOrDefault())
                     }),
                     Expires = DateTime.Now.AddHours(1),
