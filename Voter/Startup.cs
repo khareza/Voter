@@ -53,6 +53,7 @@ namespace Voter
                 options.Password.RequiredLength = 4;//change it
 
             });
+
             services.AddCors();
 
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JwtKey"].ToString());
@@ -90,9 +91,9 @@ namespace Voter
                 app.UseHsts();
             }
             app.UseCors(builders =>
-            builders.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod());
+                builders.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
 
             app.UseAuthentication();
             app.UseHttpsRedirection();
