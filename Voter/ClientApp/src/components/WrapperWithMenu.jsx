@@ -23,8 +23,8 @@ export class WrapperWithMenu extends Component{
                     </ul>
 
                     <Route exact path='/' component={Home} />
-                    <Route path='/counter' component={Counter} />
-                    <Route path='/fetch-data' component={FetchData} />
+                    <Route exact path='/counter' component={Counter} />
+                    <Route exact path='/fetch-data' component={FetchData} />
                 </div>
             </Router>
         );

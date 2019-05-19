@@ -6,11 +6,15 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 
 export default class App extends Component {
     state = {
-        token: ''
+        token: '',
+        loggedIn:false
     }
 
     saveToken = (token) => {
-        this.setState({ token });
+        this.setState({
+            token,
+            loggedIn: true
+        });
         console.log(`Token has been saved ${this.state.token}`);
     }
 
@@ -18,10 +22,11 @@ export default class App extends Component {
         return (
             <Router>
                 <div>
-                    <Route exact path='/' component={Menu} />
-                    <Route path='/login' component={() => <Login saveToken={this.saveToken}/>} />
+                    <Route path='/' render={() => ( this.state.loggedIn ? <Menu /> : <Login saveToken={this.saveToken} />)}/>
                 </div>
             </Router>
         );
     }
 }
+                    //<Route exact path='/' component={Menu} />
+                    //<Route path='/login' component={() => <Login saveToken={this.saveToken}/>} />
