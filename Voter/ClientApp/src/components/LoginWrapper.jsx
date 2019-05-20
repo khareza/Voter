@@ -1,34 +1,29 @@
 ﻿import React, { Component } from 'react';
-import axios from 'axios';
 import { Login } from './LoginForm';
+import AuthMethods from '../Helpers/AuthMethods';
 
 export class LoginWrapper extends Component {
 
+    Auth = new AuthMethods();
 
     login = (loginFormData) => {
-        axios.post("http://localhost:64763/api/voter/login", loginFormData)
+        console.log(this.props);
+        this.Auth.login(loginFormData)
             .then(res => {
-                //toast().succsess("success");
-                this.props.setToken(res.data.token);
-                this.setUser();
-            }).catch(err => {
-                //toast().error("Errors");
-                console.log(err);
-            });
+                if (res === false) {
+                    return alert("Wrong login or password");
+                }
+                this.props.history.push('/menu');
+            })
+            .catch(err => {
+                alert("Wrong login or password");
+            })
     }
 
-    setUser = () =>
-    {
-        axios.defaults.headers.common = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-        axios.get("http://localhost:64763/api/UserProfile/GetUserProfile")
-            .then(res => {
-                this.props.setUser(res.data);
-            }).catch(err => {
-                //toast().error("Errors");
-                console.log(err);
-            });
-
-    }
+    //componentWillMount() {
+    //    if (this.Auth.loggedIn())
+    //        this.props.history.replace('/');
+    //}
 
     render() {
         return (

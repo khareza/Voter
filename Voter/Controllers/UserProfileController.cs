@@ -33,7 +33,6 @@ namespace Voter.Controllers
 
             string userId = User.Claims.First().Value;
             var user = await _userManager.FindByIdAsync(userId);
-
             return new
             {
                 user.FirstName,

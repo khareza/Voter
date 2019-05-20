@@ -1,47 +1,32 @@
 import React, { Component } from 'react';
 import { WrapperWithMenu } from './components/WrapperWithMenu';
 import { LoginWrapper as Login } from './components/LoginWrapper';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
+import AuthMethods from './Helpers/AuthMethods';
+import PrivateComponent from './components/PrivateComponent'
 
-export default class App extends Component {
+class App extends Component {
     state = {
-        token: localStorage.getItem("token"),
-        activeUser: JSON.parse(localStorage.getItem("user"))
+        token: localStorage.getItem("id_token"),
+        logIn:true
     }
 
-    setToken = (token) => {
-        localStorage.setItem("token", token);
-        this.setState(
-            { token: localStorage.getItem("token") }
-        );
-    }
+    Auth = new AuthMethods();
 
-    setUser = (activeUser) => {
-        console.log(activeUser);
-        localStorage.setItem("user", JSON.stringify(activeUser));
-        this.setState(
-            { activeUser: JSON.parse(localStorage.getItem("user")) }
-        );
-    }
-
-    logOut = () => {
-
-        this.setToken("");
-        this.setUser({});
+    _handleLogout = () => {
+        this.Auth.logout();
+        this.props.history.push('/about');
     }
 
     render() {
         return (
             <Router>
-                <div>
-                    <Route exac path='/'
-                        render={() => (localStorage.getItem("token") ?
-                            <WrapperWithMenu logOut={this.logOut} activeUser={this.state.activeUser}/> :
-                            <Login setToken={this.setToken} setUser={this.setUser} />)}
-                    />
-                </div>
+                <Switch>
+                    <Route exac path="/login" component={Login} />
+                    <PrivateComponent path="/" component={WrapperWithMenu} logOut={this._handleLogout} />
+                </Switch>
             </Router>
         );
     }
 }
-                    //<Route exac strict path='/' render={() => (localStorage.getItem("token") ? <Menu /> : <Login saveToken={this.saveToken} />)}/>
+export default withRouter(App);

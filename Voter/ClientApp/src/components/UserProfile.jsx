@@ -43,9 +43,9 @@ export class UserProfile extends Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{this.props.activeUser.firstName}</td>
-                            <td>{this.props.activeUser.lastName}</td>
-                            <td>{this.props.activeUser.email}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -57,3 +57,7 @@ export class UserProfile extends Component {
     }
 
 }
+
+//<td>{this.props.activeUser.firstName}</td>
+//    <td>{this.props.activeUser.lastName}</td>
+//    <td>{this.props.activeUser.email}</td>
