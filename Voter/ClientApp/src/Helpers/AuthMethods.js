@@ -9,8 +9,7 @@ export default class AuthMethods {
     login = (loginFormData) => {
         return axios.post(`${this.apiUrl}voter/login`, loginFormData)
             .then(res => {
-                this.setToken(res.token);
-                console.log(res);
+                this.setToken(res.data.token);
                 return Promise.resolve(res);
             })
     }
@@ -27,6 +26,7 @@ export default class AuthMethods {
     };
 
     isTokenExpired = token => {
+
         try {
             const decoded = decode(token);
             if (decoded.exp < Date.now() / 1000) {

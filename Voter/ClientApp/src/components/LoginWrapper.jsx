@@ -4,7 +4,13 @@ import AuthMethods from '../Helpers/AuthMethods';
 
 export class LoginWrapper extends Component {
 
-    Auth = new AuthMethods();
+    constructor(props) {
+        super(props);
+        this.Auth = new AuthMethods();
+        if (this.Auth.loggedIn())
+            this.props.history.push('/menu');
+    }
+    
 
     login = (loginFormData) => {
         console.log(this.props);
@@ -20,10 +26,6 @@ export class LoginWrapper extends Component {
             })
     }
 
-    //componentWillMount() {
-    //    if (this.Auth.loggedIn())
-    //        this.props.history.replace('/');
-    //}
 
     render() {
         return (

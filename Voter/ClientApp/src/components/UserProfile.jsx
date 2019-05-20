@@ -5,7 +5,7 @@ import axios from 'axios';
 export class UserProfile extends Component {
 
     state = {
-        userRole: JSON.parse(window.atob(localStorage.getItem("token").split(".")[1])).role
+        userRole: JSON.parse(window.atob(localStorage.getItem("id_token").split(".")[1])).role
     }
 
     register = (registerFormData) => {
