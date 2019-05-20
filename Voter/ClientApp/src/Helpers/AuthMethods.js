@@ -25,6 +25,13 @@ export default class AuthMethods {
         return !!token && !this.isTokenExpired(token);
     };
 
+    register = (registerFormData) => {
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.getToken();
+        return axios.post(`${this.apiUrl}voter/Register`, registerFormData);
+    }
+
+
     isTokenExpired = token => {
 
         try {

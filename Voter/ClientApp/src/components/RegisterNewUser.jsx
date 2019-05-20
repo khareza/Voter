@@ -31,10 +31,7 @@ export class RegisterNewUser extends Component {
     }
 
     handleInputChange = (event) => {
-        let newObj = {};
-        newObj[event.target.name] = event.target.value;
-
-        this.setState(newObj);
+        this.setState({ [event.target.name]: event.target.value});
         this.checkIfFormDataIsValid();
     }
 

@@ -4,7 +4,7 @@ export class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: '',
+            userName: '',
             password: '',
             isSubmitDisabled: true 
         };
@@ -13,23 +13,18 @@ export class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.login({
-            userName: this.state.login,
+            userName: this.state.userName,
             password: this.state.password
         });
     }
 
-    handleLoginChange = (event) => {
-        this.setState({ login: event.target.value });
-        this.checkIfFormDataIsValid();
-    }
-
-    handlePasswordChange = (event) => {
-        this.setState({ password: event.target.value });
+    handleInputChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
         this.checkIfFormDataIsValid();
     }
 
     checkIfFormDataIsValid = () => {
-        if (this.state.login.length > 0 && this.state.password.length > 0) {
+        if (this.state.userName.length > 0 && this.state.password.length > 0) {
             this.setState({ isSubmitDisabled: false });
         }
         else {
@@ -46,12 +41,12 @@ export class Login extends Component {
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
                                 <label >User name</label>
-                                <input className="form-control" type="text" name="UserName" value={this.state.value} onChange={this.handleLoginChange} required />
+                                <input className="form-control" type="text" name="userName" value={this.state.userName} onChange={this.handleInputChange} required />
                             </div>
 
                             <div className="form-group">
                                 <label>Password</label>
-                                <input className="form-control" type="password" name="Password" value={this.state.password} onChange={this.handlePasswordChange} required />
+                                <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} required />
                             </div>
 
                             <input type="submit" value="Log In" className="btn btn-large btn-block btn-success" disabled={this.state.isSubmitDisabled}/>
