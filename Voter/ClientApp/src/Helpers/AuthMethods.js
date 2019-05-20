@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default class AuthMethods {
     constructor() {
-        this.apiUrl = "http://localhost:64763/api/";
+        this.apiUrl = "http://localhost:50123/api/";
     }
 
     login = (loginFormData) => {
