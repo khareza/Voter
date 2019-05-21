@@ -29,10 +29,20 @@ export class UsersList extends Component {
             });
     }
 
+
+    editUser = (userToEdit) => {
+        this.props.editUser(userToEdit);
+    }
+
+    deleteUser = (userId) => {
+        var newUsersList = this.state.users.filter((user) => user.id !== userId);
+        this.setState({ users: newUsersList});
+    }
+
     renderUsers = () => {
-        return this.state.users.map(function (user) {
+        return this.state.users.map( (user)=> {
             return (
-                <UserDetails key={user.id} user={user}/>
+                <UserDetails key={user.id} deleteUser={this.deleteUser} editUser={this.editUser} user={user}/>
             )
         })
     }
