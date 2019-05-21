@@ -11,8 +11,6 @@ export class UserDetails extends Component {
         this.props.deleteUser(this.props.user.id);
     }
 
-
-
     render() {
 
         return (

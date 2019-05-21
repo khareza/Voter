@@ -2,7 +2,6 @@
 import { RegisterNewUser } from './RegisterNewUser';
 import { UsersList } from './UsersList';
 import { EditUserForm } from './EditUserForm';
-import axios from 'axios';
 import AuthMethods from '../Helpers/AuthMethods';
 
 export class UsersListWrapper extends Component {
@@ -22,7 +21,7 @@ export class UsersListWrapper extends Component {
             return (
                 <div>
                     <div className="text-center">
-                        <button className="btn btn-primary" onClick={this.showRegisterFormOnClick}>Display users</button>
+                        <button className="btn btn-primary mb-3" onClick={this.showRegisterFormOnClick}>Display users</button>
                     </div>
                     <div>
                         <RegisterNewUser />
@@ -33,7 +32,7 @@ export class UsersListWrapper extends Component {
             return (
                 <div>
                     <div className="text-center">
-                        <button className="btn btn-success" onClick={this.showRegisterFormOnClick}>Add new user</button>
+                        <button className="btn btn-success mb-3" onClick={this.showRegisterFormOnClick}>Add new user</button>
                     </div>
                     <div>
                         <UsersList editUser={this.editUser}/>
@@ -51,9 +50,13 @@ export class UsersListWrapper extends Component {
     }
 
     editSubmit = (editFormData) => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.Auth.getToken();
-        axios.put(`http://localhost:64763/api/Admin/EditUser`, editFormData).catch(err=>console.log(err));
+        this.Auth.editUser(editFormData)
+            .then(() => {
+                //redirect to users list
+            })
+            .catch(err => {
+                //notification
+            });
     }
 
 

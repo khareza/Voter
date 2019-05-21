@@ -99,6 +99,7 @@ namespace Voter.Controllers
                 user.FirstName = formData.FirstName;
                 user.LastName = formData.LastName;
                 user.Address = formData.Address;
+                user.PhoneNumber = formData.PhoneNumber;
                 return Ok(await _userManager.UpdateAsync(user));
             }
             else

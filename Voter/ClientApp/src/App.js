@@ -4,6 +4,7 @@ import { LoginWrapper as Login } from './components/LoginWrapper';
 import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import AuthMethods from './Helpers/AuthMethods';
 import PrivateComponent from './components/PrivateComponent'
+import { UserProfile } from './components/UserProfile';
 
 class App extends Component {
     state = {
@@ -29,7 +30,7 @@ class App extends Component {
             <Router>
                 <Switch>
                     <Route exac path="/login" component={Login}/>
-                    <PrivateComponent path="/" component={WrapperWithMenu} logOut={this.handleLogout} />
+                    <PrivateComponent path="/profile" component={UserProfile} logOut={this.handleLogout} />
                 </Switch>
             </Router>
         );

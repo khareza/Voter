@@ -1,7 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { UserDetails } from './UserDetails';
 import AuthMethods from '../Helpers/AuthMethods';
-import axios from 'axios';
 
 export class UsersList extends Component {
     Auth = new AuthMethods();
@@ -17,33 +16,23 @@ export class UsersList extends Component {
     }
 
     getUsers = () => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.Auth.getToken();
-        axios.get(`http://localhost:64763/api/Admin/GetUsers`)
+        this.Auth.getUsers()
             .then(res => {
-                return res.data;
-            })
-            .then(res => {
-                console.log(res);
-                this.setState({ users: res })
+                this.setState({ users: res.data })
             });
     }
-
 
     editUser = (userToEdit) => {
         this.props.editUser(userToEdit);
     }
 
     deleteUser = (id) => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.Auth.getToken();
-        console.log(id);
-        axios.delete("http://localhost:64763/api/Admin/DeleteUser/"+id)
+        this.Auth.deleteUser(id)
             .then(() => { this.getUsers() })
             .catch(err => { console.log(err) });
     }
 
-    renderUsers = () => {
+    renderUserComponents = () => {
         return this.state.users.map( (user)=> {
             return (
                 <UserDetails key={user.id} deleteUser={this.deleteUser} editUser={this.editUser} user={user}/>
@@ -54,7 +43,7 @@ export class UsersList extends Component {
     render() {
         return (
             <div>
-                {this.renderUsers()}
+                {this.renderUserComponents()}
             </div>
         );
     }

@@ -1,8 +1,11 @@
 ﻿import React, { Component } from 'react';
+import AuthMethods from '../Helpers/AuthMethods';
 
 export class RegisterNewUser extends Component {
     constructor(props) {
         super(props);
+
+        this.Auth = new AuthMethods();
         this.state = {
             userName: '',
             password: '',
@@ -17,7 +20,7 @@ export class RegisterNewUser extends Component {
         event.preventDefault();
         let { userName, password, firstName, lastName, email } = this.state;
 
-        this.props.register(
+        this.Auth.register(
             { userName, password, firstName, lastName, email}
         );
 

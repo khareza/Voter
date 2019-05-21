@@ -9,16 +9,17 @@ export class EditUserForm extends Component {
             lastName: this.props.userToEdit.lastName,
             address: this.props.userToEdit.address ? this.props.userToEdit.address : '',
             email: this.props.userToEdit.email,
+            phoneNumber: this.props.userToEdit.phoneNumber ? this.props.userToEdit.phoneNumber : '',
             isSubmitDisabled: true
         };
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { userName, firstName, lastName, address, email } = this.state;
+        let { userName, firstName, lastName, address, email, phoneNumber } = this.state;
 
         this.props.editSubmit(
-            {id: this.props.userToEdit.id, userName, firstName, lastName, address, email }
+            { id: this.props.userToEdit.id, userName, firstName, lastName, address, email, phoneNumber }
         );
     }
 
@@ -55,6 +56,11 @@ export class EditUserForm extends Component {
                             <div className="form-group">
                                 <label>LastName</label>
                                 <input className="form-control" type="text" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Phone Number</label>
+                                <input className="form-control" type="text" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleInputChange} />
                             </div>
 
                             <div className="form-group">
