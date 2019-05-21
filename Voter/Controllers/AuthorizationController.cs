@@ -18,14 +18,14 @@ namespace Voter.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VoterController : ControllerBase
+    public class AuthorizationController : ControllerBase
     {
         private UserManager<Resident> _userManager;
         private SignInManager<Resident> _signInManager;
         private AuthenticationContext _context;
         private ApplicationSettings _appSettings;
 
-        public VoterController(UserManager<Resident> userManager, SignInManager<Resident> signInManager, AuthenticationContext context, IOptions<ApplicationSettings> appSettings )
+        public AuthorizationController(UserManager<Resident> userManager, SignInManager<Resident> signInManager, AuthenticationContext context, IOptions<ApplicationSettings> appSettings )
         {
             _context = context;
             _userManager = userManager;
@@ -34,38 +34,6 @@ namespace Voter.Controllers
             _context.Database.EnsureCreated();
         }
 
-        [HttpGet]
-        public List<Resident> GetUsers()
-        {
-            return _context.Residents.ToList();
-        }
-
-        [HttpPost]
-        [Route("Register")]
-        [Authorize(Roles ="Admin")]
-        public async Task<object> RegisterNewUser(RegisterFormData formData)
-        {
-            var role = "User";
-
-            var newResident = new Resident
-            {
-                UserName = formData.UserName,
-                Email = formData.Email,
-                FirstName = formData.FirstName,
-                LastName = formData.LastName
-            };
-
-            try
-            {
-                var result = await _userManager.CreateAsync(newResident, formData.Password);
-                await _userManager.AddToRoleAsync(newResident, role);
-                return Ok(result);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
 
         [HttpPost]

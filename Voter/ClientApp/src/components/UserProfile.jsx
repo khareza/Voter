@@ -1,10 +1,15 @@
 ﻿import React, { Component } from 'react';
-import { RegisterNewUser } from './RegisterNewUser';
+import { UsersListWrapper } from './UsersListWrapper';
 import AuthMethods from '../Helpers/AuthMethods';
 
 export class UserProfile extends Component {
 
     Auth = new AuthMethods();
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
 
     register = (registerFormData) => {
         this.Auth.register(registerFormData)
@@ -18,7 +23,7 @@ export class UserProfile extends Component {
     renderRegisterFormIfAdmin = () => {
         if (this.Auth.isUserAdmin()) {
             return (
-                <RegisterNewUser register={this.register}/>
+                <UsersListWrapper register={this.register} />
             );
         }
     }
@@ -26,25 +31,7 @@ export class UserProfile extends Component {
     render() {
         return (
             <div>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                {
-                    this.renderRegisterFormIfAdmin()
-                }
+                {this.renderRegisterFormIfAdmin()}
             </div>
         );
     }

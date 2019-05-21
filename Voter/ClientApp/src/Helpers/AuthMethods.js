@@ -3,11 +3,13 @@ import axios from 'axios';
 
 export default class AuthMethods {
     constructor() {
-        this.apiUrl = "http://localhost:50123/api/";
+        this.apiUrl = "http://localhost:64763/api/";
+        
     }
-
+    //localhost:64763/
+    //localhost:50123/
     login = (loginFormData) => {
-        return axios.post(`${this.apiUrl}voter/login`, loginFormData)
+        return axios.post(`${this.apiUrl}authorization/login`, loginFormData)
             .then(res => {
                 this.setToken(res.data.token);
                 return Promise.resolve(res);
@@ -28,7 +30,7 @@ export default class AuthMethods {
     register = (registerFormData) => {
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.getToken();
-        return axios.post(`${this.apiUrl}voter/Register`, registerFormData);
+        return axios.post(`${this.apiUrl}authorization/Register`, registerFormData);
     }
 
     isUserAdmin = () => {
@@ -79,6 +81,6 @@ export default class AuthMethods {
 
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.getToken();
-       return axios.post(`${this.apiUrl}voter/GetUserData`, userId));
+       return axios.get(`${this.apiUrl}voter/GetUserData`, userId);
     }
 }
