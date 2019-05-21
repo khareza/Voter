@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import { WrapperWithMenu } from './components/WrapperWithMenu';
 import { LoginWrapper as Login } from './components/LoginWrapper';
-import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import AuthMethods from './Helpers/AuthMethods';
 import PrivateComponent from './components/PrivateComponent'
 
 class App extends Component {
     state = {
         token: localStorage.getItem("id_token"),
-        logIn:true
+        activeUser: {}
     }
 
     Auth = new AuthMethods();
 
-    _handleLogout = () => {
+    handleLogout = () => {
         this.Auth.logout();
-        this.props.history.push('/about');
+        this.setActiveUser({});
+        this.props.history.push('/login');
+    }
+
+    setActiveUser = (activeUser) => {
+
+        this.setState({ activeUser})
     }
 
     render() {
         return (
             <Router>
                 <Switch>
-                    <Route exac path="/login" component={Login} />
-                    <PrivateComponent path="/" component={WrapperWithMenu} logOut={this._handleLogout} />
+                    <Route exac path="/login" component={Login}/>
+                    <PrivateComponent path="/" component={WrapperWithMenu} logOut={this.handleLogout} />
                 </Switch>
             </Router>
         );

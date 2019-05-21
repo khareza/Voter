@@ -6,10 +6,6 @@ export class UserProfile extends Component {
 
     Auth = new AuthMethods();
 
-    state = {
-        userRole: JSON.parse(window.atob(this.Auth.getToken().split(".")[1])).role
-    }
-
     register = (registerFormData) => {
         this.Auth.register(registerFormData)
             .then(res => {
@@ -19,8 +15,8 @@ export class UserProfile extends Component {
             });
     }
 
-    renderRegisterButtonIfAdmin = () => {
-        if (this.state.userRole === "Admin") {
+    renderRegisterFormIfAdmin = () => {
+        if (this.Auth.isUserAdmin()) {
             return (
                 <RegisterNewUser register={this.register}/>
             );
@@ -47,7 +43,7 @@ export class UserProfile extends Component {
                     </tbody>
                 </table>
                 {
-                    this.renderRegisterButtonIfAdmin()
+                    this.renderRegisterFormIfAdmin()
                 }
             </div>
         );

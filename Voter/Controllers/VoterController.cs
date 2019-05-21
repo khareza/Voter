@@ -31,6 +31,7 @@ namespace Voter.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _context.Database.EnsureCreated();
         }
 
         [HttpGet]
@@ -85,7 +86,7 @@ namespace Voter.Controllers
                         new Claim("UserID", user.Id),
                         new Claim(identityOptions.ClaimsIdentity.RoleClaimType, role.FirstOrDefault())
                     }),
-                    Expires = DateTime.Now.AddMinutes(1),
+                    Expires = DateTime.Now.AddHours(1),
                     SigningCredentials = new SigningCredentials(
                         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JwtKey)),SecurityAlgorithms.HmacSha256Signature)
 

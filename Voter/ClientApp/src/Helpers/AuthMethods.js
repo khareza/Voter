@@ -31,6 +31,14 @@ export default class AuthMethods {
         return axios.post(`${this.apiUrl}voter/Register`, registerFormData);
     }
 
+    isUserAdmin = () => {
+       var role = JSON.parse(window.atob(this.getToken().split(".")[1])).role
+        if (role==="Admin") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     isTokenExpired = token => {
 
@@ -59,4 +67,18 @@ export default class AuthMethods {
         console.log("Recieved answer!");
         return answer;
     };
+
+
+    checkIfTokenIsValid = () => {
+
+
+    }
+
+    getActiveUser = () => {
+        var userId = JSON.parse(window.atob(this.getToken().split(".")[1])).UserID;
+
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.getToken();
+       return axios.post(`${this.apiUrl}voter/GetUserData`, userId));
+    }
 }

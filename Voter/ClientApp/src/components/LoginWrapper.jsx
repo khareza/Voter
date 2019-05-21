@@ -3,12 +3,11 @@ import { Login } from './LoginForm';
 import AuthMethods from '../Helpers/AuthMethods';
 
 export class LoginWrapper extends Component {
-
     constructor(props) {
         super(props);
         this.Auth = new AuthMethods();
         if (this.Auth.loggedIn())
-            this.props.history.push('/menu');
+            this.props.history.push('/profile');
     }
     
 
@@ -19,9 +18,8 @@ export class LoginWrapper extends Component {
                 if (res === false) {
                     return alert("Wrong login or password");
                 }
-                this.props.history.push('/menu');
-            })
-            .catch(err => {
+                this.props.history.push('/profile');
+            }).catch(err => {
                 alert("Wrong login or password");
             })
     }
