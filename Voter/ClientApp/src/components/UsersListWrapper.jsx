@@ -2,9 +2,11 @@
 import { RegisterNewUser } from './RegisterNewUser';
 import { UsersList } from './UsersList';
 import { EditUserForm } from './EditUserForm';
+import axios from 'axios';
+import AuthMethods from '../Helpers/AuthMethods';
 
 export class UsersListWrapper extends Component {
-
+    Auth = new AuthMethods();
     state = {
         showRegisterForm: false,
         editMode: false,
@@ -48,10 +50,17 @@ export class UsersListWrapper extends Component {
 
     }
 
+    editSubmit = (editFormData) => {
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.Auth.getToken();
+        axios.put(`http://localhost:64763/api/Admin/EditUser`, editFormData).catch(err=>console.log(err));
+    }
+
+
     render() {
         return (
             <div>
-                {this.state.editMode ? <EditUserForm userToEdit={this.state.userToEdit}/> : this.renderButtonWithComponent()}
+                {this.state.editMode ? <EditUserForm userToEdit={this.state.userToEdit} editSubmit={this.editSubmit}/> : this.renderButtonWithComponent()}
             </div>
         );
     }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Voter.DAL;
 using Voter.Models;
 
@@ -61,6 +62,50 @@ namespace Voter.Controllers
         public async Task<IEnumerable<Resident>> GetUsers()
         {
             return await _userManager.GetUsersInRoleAsync("User");
+        }
+
+        [HttpDelete]
+        [Route("DeleteUser/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<object> DeleteUser(string id)
+        {
+            var user = _userManager.Users.Where(u => u.Id == id).FirstOrDefault();
+            if (user != null)
+            {
+                return await _userManager.DeleteAsync(user);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
+
+        [HttpPut]
+        [Route("EditUser")]
+        [Authorize(Roles = "Admin")]
+        public async Task<object> EditUser(EditFormData formData)
+        {
+            var user = _userManager.Users.Where(u => u.Id == formData.Id).FirstOrDefault();
+
+
+            if (user != null)
+            {
+                //use object mapper here :)
+
+                user.UserName = formData.UserName;
+                user.Email = formData.Email;
+                user.FirstName = formData.FirstName;
+                user.LastName = formData.LastName;
+                user.Address = formData.Address;
+                return Ok(await _userManager.UpdateAsync(user));
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
     }
 }

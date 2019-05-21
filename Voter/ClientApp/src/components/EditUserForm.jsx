@@ -17,8 +17,8 @@ export class EditUserForm extends Component {
         event.preventDefault();
         let { userName, firstName, lastName, address, email } = this.state;
 
-        this.props.editUser(
-            { userName, firstName, lastName, address, email }
+        this.props.editSubmit(
+            {id: this.props.userToEdit.id, userName, firstName, lastName, address, email }
         );
     }
 

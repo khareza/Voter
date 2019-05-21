@@ -34,9 +34,13 @@ export class UsersList extends Component {
         this.props.editUser(userToEdit);
     }
 
-    deleteUser = (userId) => {
-        var newUsersList = this.state.users.filter((user) => user.id !== userId);
-        this.setState({ users: newUsersList});
+    deleteUser = (id) => {
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.Auth.getToken();
+        console.log(id);
+        axios.delete("http://localhost:64763/api/Admin/DeleteUser/"+id)
+            .then(() => { this.getUsers() })
+            .catch(err => { console.log(err) });
     }
 
     renderUsers = () => {
