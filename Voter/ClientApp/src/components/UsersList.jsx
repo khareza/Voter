@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { UserDetails } from './UserDetails';
 import AuthMethods from '../Helpers/AuthMethods';
 import axios from 'axios';
 
@@ -29,13 +30,9 @@ export class UsersList extends Component {
     }
 
     renderUsers = () => {
-        return this.state.users.map(function (item, index) {
+        return this.state.users.map(function (user) {
             return (
-                <tr key={item.id}>
-                    <td >{item.firstName}</td>
-                    <td >{item.lastName}</td>
-                    <td >{item.email}</td>
-                </tr>
+                <UserDetails key={user.id} user={user}/>
             )
         })
     }
@@ -43,18 +40,7 @@ export class UsersList extends Component {
     render() {
         return (
             <div>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderUsers()}
-                    </tbody>
-                </table>
+                {this.renderUsers()}
             </div>
         );
     }

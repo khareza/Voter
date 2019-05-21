@@ -9,16 +9,31 @@ export class UsersListWrapper extends Component {
     }
 
     showRegisterFormOnClick = () => {
-        this.setState({ showRegisterForm: !this.state.showRegisterForm});
+        this.setState({ showRegisterForm: !this.state.showRegisterForm });
+    }
+
+    renderButtonWithComponent = () => {
+        if (this.state.showRegisterForm) {
+            return (
+                <div>
+                    <button onClick={this.showRegisterFormOnClick}>Display users</button>
+                    <RegisterNewUser />
+                </div>)
+        }
+        else {
+            return (
+                <div>
+                    <button onClick={this.showRegisterFormOnClick}>Add new user</button>
+                    <UsersList />
+                </div>)
+        }
     }
 
     render() {
         return (
             <div>
-                <button onClick={this.showRegisterFormOnClick}>Add new user</button>
-                {this.state.showRegisterForm ? <RegisterNewUser /> : <UsersList />}
+                {this.renderButtonWithComponent()}
             </div>
-            
-            );
+        );
     }
 }
