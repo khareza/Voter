@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { RegisterNewUser } from './RegisterNewUser';
-import { UsersList } from './UsersList';
+import UsersList from './UsersList';
 import EditUserForm from './EditUserForm';
 import AuthMethods from '../Helpers/AuthMethods';
 

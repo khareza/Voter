@@ -1,8 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { UserDetails } from './UserDetails';
 import AuthMethods from '../Helpers/AuthMethods';
+import { withRouter } from 'react-router-dom';
 
-export class UsersList extends Component {
+class UsersList extends Component {
     Auth = new AuthMethods();
     constructor(props) {
         super(props);
@@ -57,14 +58,16 @@ export class UsersList extends Component {
         return (
             <div>
                 <div className="headerLogin">
-                    <h2>All users</h2>
+                    <h2>All residents</h2>
                 </div>
                 {this.renderUserComponents()}
                 <div className="text-center">
                     <button className="btn btn-success mt-3"
-                        onClick={() => { this.props.history.push('/residents/create') }}>Add new user</button>
+                        onClick={() => { this.props.history.push('/residents/create') }}>Add new resident</button>
                 </div>
             </div>
         );
     }
 }
+
+export default withRouter(UsersList);

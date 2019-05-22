@@ -81,6 +81,7 @@ export class RegisterNewUser extends Component {
                                 <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange}/>
                             </div>
                             <input type="submit" value="Add new resident" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
+                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/residents') }} className="btn btn-large btn-block btn-danger" />
                         </div>
                     </div>
                 </form>
