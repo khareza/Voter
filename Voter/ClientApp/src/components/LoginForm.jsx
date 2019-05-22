@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-
+import '../ComponentsStyles/Login.css';
 export class Login extends Component {
     constructor(props) {
         super(props);
@@ -35,9 +35,10 @@ export class Login extends Component {
     render() {
 
         return (
-            <div>
-                <form onSubmit={this.handleSubmit} autoComplete="off">
-                    <div className="form-row">
+                <form className="loginForm" onSubmit={this.handleSubmit} autoComplete="off">
+                    <div className="headerLogin">
+                        <h2 >Login</h2>
+                    </div>
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
                                 <label >User name</label>
@@ -51,9 +52,7 @@ export class Login extends Component {
 
                             <input type="submit" value="Log In" className="btn btn-large btn-block btn-success" disabled={this.state.isSubmitDisabled}/>
                         </div>
-                    </div>
                 </form>
-            </div>
         );
     }
 }

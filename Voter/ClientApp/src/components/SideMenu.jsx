@@ -1,5 +1,7 @@
 ﻿import React, { Component } from 'react';
-import './SideMenu.css';
+import { NavLink } from 'react-router-dom';
+import '../ComponentsStyles/SideMenu.css';
+import AuthMethods from '../Helpers/AuthMethods';
 
 export class SideMenu extends Component {
 
@@ -18,6 +20,16 @@ export class SideMenu extends Component {
         });
     }
 
+    Auth = new AuthMethods();
+
+    renderRegisterTabIfAdmin = () => {
+        if (this.Auth.isUserAdmin()) {
+            return (
+                <li><NavLink to="/residents">Residents</NavLink></li>
+            );
+        }
+    }
+
     render() {
         return (
             <header className="header" role="banner">
@@ -27,9 +39,9 @@ export class SideMenu extends Component {
                 <div className="nav-wrap">
                     <nav className="main-nav">
                         <ul className="unstyled list-hover-slide">
-                            <li><a href="/profile">My profile</a></li>
-                            <li><a href="/residents">Residents</a></li>
-                            <li><a href="/acts">Resolutions</a></li>
+                            <li><NavLink to="/profile">My profile</NavLink></li>
+                            {this.renderRegisterTabIfAdmin()}
+                            <li><NavLink to="/resolutions">Resolutions</NavLink></li>
                         </ul>
                     </nav>
                     

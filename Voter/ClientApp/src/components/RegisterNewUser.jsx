@@ -51,6 +51,9 @@ export class RegisterNewUser extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
+                    <div className="headerLogin">
+                        <h2 >Add new user</h2>
+                    </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
@@ -77,8 +80,6 @@ export class RegisterNewUser extends Component {
                                 <label>Email</label>
                                 <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange}/>
                             </div>
-
-
                             <input type="submit" value="Add new resident" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
                         </div>
                     </div>

@@ -1,8 +1,12 @@
 ﻿import React, { Component } from 'react';
+import AuthMethods from '../Helpers/AuthMethods';
+import { withRouter } from 'react-router-dom';
 
-export class EditUserForm extends Component {
+class EditUserForm extends Component {
     constructor(props) {
         super(props);
+        this.Auth = new AuthMethods();
+
         this.state = {
             userName: this.props.userToEdit.userName,
             firstName: this.props.userToEdit.firstName,
@@ -18,9 +22,9 @@ export class EditUserForm extends Component {
         event.preventDefault();
         let { userName, firstName, lastName, address, email, phoneNumber } = this.state;
 
-        this.props.editSubmit(
+        this.Auth.editUser(
             { id: this.props.userToEdit.id, userName, firstName, lastName, address, email, phoneNumber }
-        );
+        ).then((res) => { this.props.history.push('/residents')});
     }
 
     handleInputChange = (event) => {
@@ -41,6 +45,9 @@ export class EditUserForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
+                    <div className="headerLogin">
+                        {this.props.userToEdit.id ? <h2 >Edit user</h2> : <h2 >Select user</h2>} 
+                    </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
@@ -75,7 +82,7 @@ export class EditUserForm extends Component {
 
                             <input type="submit" value="Edit user data" className="btn btn-large btn-block btn-info" disabled={this.state.isSubmitDisabled} />
 
-                            <input type="button" value="Cancel" className="btn btn-large btn-block btn-danger" />
+                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/residents') }} className="btn btn-large btn-block btn-danger" />
                         </div>
                     </div>
                 </form>
@@ -83,3 +90,5 @@ export class EditUserForm extends Component {
         );
     }
 }
+
+export default withRouter(EditUserForm);

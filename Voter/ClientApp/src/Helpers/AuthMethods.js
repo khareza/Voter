@@ -3,13 +3,14 @@ import axios from 'axios';
 
 export default class AuthMethods {
     constructor() {
-        this.apiUrl = "http://localhost:64763/api/";
-        
-    }
+        this.authorizationApiUrl = "/api/authorization";
+        this.adminApiUrl = "/api/Admin";
     //localhost:64763/
     //localhost:50123/
+    }
+
     login = (loginFormData) => {
-        return axios.post(`${this.apiUrl}authorization/login`, loginFormData)
+        return axios.post(`${this.authorizationApiUrl}/login`, loginFormData)
             .then(res => {
                 this.setToken(res.data.token);
                 return Promise.resolve(res);
@@ -30,7 +31,7 @@ export default class AuthMethods {
     register = (registerFormData) => {
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.getToken();
-        return axios.post(`${this.apiUrl}Admin/Register`, registerFormData);
+        return axios.post(`${this.adminApiUrl}/Register`, registerFormData);
     }
 
     isUserAdmin = () => {
@@ -70,32 +71,24 @@ export default class AuthMethods {
         return answer;
     };
 
-    //getActiveUser = () => {
-    //    var userId = JSON.parse(window.atob(this.getToken().split(".")[1])).UserID;
-
-    //    axios.defaults.headers.common['Authorization'] =
-    //        'Bearer ' + this.getToken();
-    //   return axios.get(`${this.apiUrl}voter/GetUserData`, userId);
-    //}
-
 
     editUser = (editFormData) => {
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.getToken();
-        return axios.put(`${this.apiUrl}Admin/EditUser`, editFormData);
+        return axios.put(`${this.adminApiUrl}/EditUser`, editFormData);
     }
 
     deleteUser = (id) => {
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.getToken();
         console.log(id);
-        return axios.delete(`${this.apiUrl}Admin/DeleteUser/` + id);
+        return axios.delete(`${this.adminApiUrl}/DeleteUser/` + id);
     }
 
     getUsers = () => {
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.getToken();
-        return axios.get(`${this.apiUrl}Admin/GetUsers`);
+        return axios.get(`${this.adminApiUrl}/GetUsers`);
     }
 
     checkIfTokenIsValid = () => {
@@ -103,4 +96,11 @@ export default class AuthMethods {
 
     }
 
+        //getActiveUser = () => {
+    //    var userId = JSON.parse(window.atob(this.getToken().split(".")[1])).UserID;
+
+    //    axios.defaults.headers.common['Authorization'] =
+    //        'Bearer ' + this.getToken();
+    //   return axios.get(`${this.apiUrl}voter/GetUserData`, userId);
+    //}
 }

@@ -1,0 +1,15 @@
+﻿.loginWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerLogin {
+    text-align: center;
+}
+    .loginForm {
+        margin: 0;
+        width: 100%;
+    }
+
+

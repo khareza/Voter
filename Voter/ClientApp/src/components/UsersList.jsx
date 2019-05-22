@@ -22,9 +22,9 @@ export class UsersList extends Component {
             });
     }
 
-    editUser = (userToEdit) => {
-        this.props.editUser(userToEdit);
-    }
+    //editUser = (userToEdit) => {
+    //    this.props.editUser(userToEdit);
+    //}
 
     deleteUser = (id) => {
         this.Auth.deleteUser(id)
@@ -35,15 +35,35 @@ export class UsersList extends Component {
     renderUserComponents = () => {
         return this.state.users.map( (user)=> {
             return (
-                <UserDetails key={user.id} deleteUser={this.deleteUser} editUser={this.editUser} user={user}/>
+                <UserDetails key={user.id}
+                    deleteUser={this.deleteUser}
+                    editUser={
+                        (userToEdit) => {
+                            this.props.editUser(userToEdit)
+                        }}
+                    user={user} />
             )
         })
     }
 
+    //redirectToRegisterForm = () => {
+    //    this.props.history.push('/residents/create');
+
+    //}
+
+
+
     render() {
         return (
             <div>
+                <div className="headerLogin">
+                    <h2>All users</h2>
+                </div>
                 {this.renderUserComponents()}
+                <div className="text-center">
+                    <button className="btn btn-success mt-3"
+                        onClick={() => { this.props.history.push('/residents/create') }}>Add new user</button>
+                </div>
             </div>
         );
     }
