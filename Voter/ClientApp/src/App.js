@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NotificationContainer } from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import { LoginWrapper as Login } from './components/LoginWrapper';
 import PrivateComponent from './components/PrivateComponent'
@@ -18,6 +18,7 @@ class App extends Component {
     handleLogout = () => {
         this.Auth.logout();
         this.props.history.push('/login');
+        NotificationManager.success('Logout Successful', 'Correct');
     }
 
     render() {
