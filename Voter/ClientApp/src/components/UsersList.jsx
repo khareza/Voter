@@ -23,10 +23,6 @@ class UsersList extends Component {
             });
     }
 
-    //editUser = (userToEdit) => {
-    //    this.props.editUser(userToEdit);
-    //}
-
     deleteUser = (id) => {
         this.Auth.deleteUser(id)
             .then(() => { this.getUsers() })
@@ -46,13 +42,6 @@ class UsersList extends Component {
             )
         })
     }
-
-    //redirectToRegisterForm = () => {
-    //    this.props.history.push('/residents/create');
-
-    //}
-
-
 
     render() {
         return (

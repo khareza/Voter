@@ -5,10 +5,10 @@ import AuthMethods from './Helpers/AuthMethods';
 import PrivateComponent from './components/PrivateComponent'
 import { UserProfile } from './components/UserProfile';
 
+
 class App extends Component {
     state = {
         token: localStorage.getItem("id_token"),
-        activeUser: {}
     }
 
     Auth = new AuthMethods();
@@ -17,11 +17,6 @@ class App extends Component {
         this.Auth.logout();
         this.setActiveUser({});
         this.props.history.push('/login');
-    }
-
-    setActiveUser = (activeUser) => {
-
-        this.setState({ activeUser})
     }
 
     render() {

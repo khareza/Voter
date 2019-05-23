@@ -1,0 +1,66 @@
+﻿.userCard {
+    width: 70%;
+    border: 1px solid #8bc34a;
+    border-radius: 10px;
+    margin: 3% auto;
+    color: #37474f;
+    font-weight: 500;
+    font-family: Palatino;
+}
+
+.userData {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border-radius: 0 0 10px 10px;
+}
+
+.userButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.userCardHeader {
+    background-color: #fafafa;
+    border-bottom: 1px solid #D9D3CD;
+    border-radius: 10px 10px 0 0;
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+    .userCardHeader p {
+        margin: 0;
+    }
+
+.button {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0px 5px;
+    border-radius: 5px;
+    color: #f8f9fa !important;
+    width: 80px;
+}
+
+    .button:hover {
+        color: #EFEFEF !important;
+    }
+
+.buttonEdit {
+    background-color: #4aa3df;
+}
+
+    .buttonEdit:hover {
+        background-color: #3498db;
+    }
+
+.buttonDelete {
+    background-color: #ea6153;
+}
+
+    .buttonDelete:hover {
+        background-color: #e74c3c;
+    }

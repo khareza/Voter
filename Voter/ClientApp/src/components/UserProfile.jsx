@@ -16,7 +16,7 @@ export class UserProfile extends Component {
                 <div className="col-md-2">
                     <SideMenu logOut={this.props.logOut} />
                 </div>
-                <div className="col-md-10 d-inline-block mt-5 ">
+                <div className="col-md-6 d-inline-block mt-5 offset-md-2">
                     <Route path="/profile" component={ActiveUserDetails} />
                     <Route path="/residents" component={UsersListWrapper} />
                     <Route path="/resolutions" component={ResolutionsListWrapper} />
