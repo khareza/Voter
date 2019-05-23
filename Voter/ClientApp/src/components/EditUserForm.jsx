@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import AuthMethods from '../Helpers/AuthMethods';
 import { withRouter } from 'react-router-dom';
+import { NotificationManager } from 'react-notifications';
 
 class EditUserForm extends Component {
     constructor(props) {
@@ -24,7 +25,14 @@ class EditUserForm extends Component {
 
         this.Auth.editUser(
             { id: this.props.userToEdit.id, userName, firstName, lastName, address, email, phoneNumber }
-        ).then((res) => { this.props.history.push('/residents')});
+        ).then((res) => {
+            NotificationManager.success('Edit Successful', 'Correct');
+
+            this.props.history.push('/residents')
+        }).catch((err) => {
+            NotificationManager.error('Unsuccessful user edit', 'Error!', 5000, () => {
+            });
+        });
     }
 
     handleInputChange = (event) => {

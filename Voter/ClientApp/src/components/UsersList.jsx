@@ -2,6 +2,7 @@
 import { UserDetails } from './UserDetails';
 import AuthMethods from '../Helpers/AuthMethods';
 import { withRouter } from 'react-router-dom';
+import { NotificationManager } from 'react-notifications';
 
 class UsersList extends Component {
     Auth = new AuthMethods();
@@ -25,8 +26,14 @@ class UsersList extends Component {
 
     deleteUser = (id) => {
         this.Auth.deleteUser(id)
-            .then(() => { this.getUsers() })
-            .catch(err => { console.log(err) });
+            .then(() => {
+                NotificationManager.success('Delete Successful', 'Correct');
+                this.getUsers()
+            })
+            .catch(err => {
+                NotificationManager.error('Unsuccessful user delete', 'Error!', 5000, () => {
+                });
+            });
     }
 
     renderUserComponents = () => {

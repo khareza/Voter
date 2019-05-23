@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router
 import AuthMethods from './Helpers/AuthMethods';
 import PrivateComponent from './components/PrivateComponent'
 import { UserProfile } from './components/UserProfile';
+import { NotificationContainer} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 
 class App extends Component {
@@ -20,12 +22,16 @@ class App extends Component {
 
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route exac path="/login" component={Login}/>
-                    <PrivateComponent path="/" component={UserProfile} logOut={this.handleLogout} />
-                </Switch>
-            </Router>
+            <div>
+                <NotificationContainer />
+
+                <Router>
+                    <Switch>
+                        <Route exac path="/login" component={Login} />
+                        <PrivateComponent path="/" component={UserProfile} logOut={this.handleLogout} />
+                    </Switch>
+                </Router>
+            </div>
         );
     }
 }

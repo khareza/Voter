@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Login } from './LoginForm';
 import AuthMethods from '../Helpers/AuthMethods';
-
+import { NotificationManager } from 'react-notifications';
 export class LoginWrapper extends Component {
     constructor(props) {
         super(props);
@@ -18,19 +18,23 @@ export class LoginWrapper extends Component {
                 if (res === false) {
                     return alert("Wrong login or password");
                 }
+                NotificationManager.success('Login Successful', 'Correct');
                 this.props.history.push('/profile');
             }).catch(err => {
-                alert("Wrong login or password");
+                NotificationManager.error('Wrong login or password', 'Error!', 5000, () => {
+                });
             })
     }
 
 
     render() {
         return (
-            <div className="mainLoginWrapper ">
-                <div className="row loginWrapper">
+            <div>
 
-                    <Login login={this.login} />
+                <div className="mainLoginWrapper ">
+                    <div className="row loginWrapper">
+                        <Login login={this.login} />
+                    </div>
                 </div>
             </div>
         );
