@@ -15,7 +15,6 @@ class App extends Component {
 
     handleLogout = () => {
         this.Auth.logout();
-        this.setActiveUser({});
         this.props.history.push('/login');
     }
 

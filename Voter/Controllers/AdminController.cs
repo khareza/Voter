@@ -31,6 +31,7 @@ namespace Voter.Controllers
 
         [HttpPost]
         [Route("Register")]
+        [Authorize(Roles = "Admin")]
         public async Task<object> RegisterNewUser(RegisterFormData formData)
         {
             var role = "User";

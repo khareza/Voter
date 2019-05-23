@@ -9,7 +9,7 @@ export class LoginWrapper extends Component {
         if (this.Auth.loggedIn())
             this.props.history.push('/profile');
     }
-    
+
 
     login = (loginFormData) => {
         console.log(this.props);
@@ -27,11 +27,10 @@ export class LoginWrapper extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="mainLoginWrapper ">
                 <div className="row loginWrapper">
-                    <div className="col-md-10 offset-md-1">
-                        <Login login={this.login} />
-                    </div>
+
+                    <Login login={this.login} />
                 </div>
             </div>
         );
