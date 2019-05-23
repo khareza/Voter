@@ -5,8 +5,6 @@ export default class AuthMethods {
     constructor() {
         this.authorizationApiUrl = "/api/authorization";
         this.adminApiUrl = "/api/Admin";
-    //localhost:64763/
-    //localhost:50123/
     }
 
     login = (loginFormData) => {

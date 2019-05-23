@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react';
-import { UserDetails } from './UserDetails';
-import AuthMethods from '../Helpers/AuthMethods';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
+import { UserDetails } from './UserDetails';
+import AuthMethods from '../Helpers/AuthMethods';
 
 class UsersList extends Component {
     Auth = new AuthMethods();

@@ -4,12 +4,8 @@ import { SideMenu } from './SideMenu';
 import { ActiveUserDetails } from './ActiveUserDetails';
 import { UsersListWrapper } from './UsersListWrapper';
 import { ResolutionsListWrapper } from './ResolutionsListWrapper';
-import '../ComponentsStyles/UserProfile.css';
 
 export class UserProfile extends Component {
-
-
-
     render() {
         return (
             <div className="row mx-0">
@@ -24,5 +20,4 @@ export class UserProfile extends Component {
             </div>
         );
     }
-
 }

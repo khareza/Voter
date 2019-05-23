@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
+import { NotificationManager } from 'react-notifications';
 import { Login } from './LoginForm';
 import AuthMethods from '../Helpers/AuthMethods';
-import { NotificationManager } from 'react-notifications';
+
 export class LoginWrapper extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +31,6 @@ export class LoginWrapper extends Component {
     render() {
         return (
             <div>
-
                 <div className="mainLoginWrapper ">
                     <div className="row loginWrapper">
                         <Login login={this.login} />

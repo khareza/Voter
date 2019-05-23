@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { LoginWrapper as Login } from './components/LoginWrapper';
+import { NotificationContainer } from 'react-notifications';
 import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
-import AuthMethods from './Helpers/AuthMethods';
+import { LoginWrapper as Login } from './components/LoginWrapper';
 import PrivateComponent from './components/PrivateComponent'
 import { UserProfile } from './components/UserProfile';
-import { NotificationContainer} from 'react-notifications';
+import AuthMethods from './Helpers/AuthMethods';
 import 'react-notifications/lib/notifications.css';
 
 

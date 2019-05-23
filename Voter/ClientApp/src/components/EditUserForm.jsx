@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
-import AuthMethods from '../Helpers/AuthMethods';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
+import AuthMethods from '../Helpers/AuthMethods';
 
 class EditUserForm extends Component {
     constructor(props) {
