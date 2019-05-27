@@ -2,6 +2,8 @@
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import AuthMethods from '../../../Helpers/AuthMethods';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class EditResolution extends Component {
     constructor(props) {
@@ -9,88 +11,86 @@ class EditResolution extends Component {
         this.Auth = new AuthMethods();
 
         this.state = {
-            userName: this.props.userToEdit.userName,
-            firstName: this.props.userToEdit.firstName,
-            lastName: this.props.userToEdit.lastName,
-            address: this.props.userToEdit.address ? this.props.userToEdit.address : '',
-            email: this.props.userToEdit.email,
-            phoneNumber: this.props.userToEdit.phoneNumber ? this.props.userToEdit.phoneNumber : '',
-            isSubmitDisabled: true
+            title: this.props.resolutionToEdit.title,
+            resolutionNumber: this.props.resolutionToEdit.resolutionNumber,
+            description: this.props.resolutionToEdit.description,
+            expirationDate: new Date(),
+            isSubmitDisabled: false
         };
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { userName, firstName, lastName, address, email, phoneNumber } = this.state;
+        let { title, resolutionNumber, description, expirationDate } = this.state;
 
-        this.Auth.editUser(
-            { id: this.props.userToEdit.id, userName, firstName, lastName, address, email, phoneNumber }
+        this.Auth.editResolution(
+            { id: this.props.resolutionToEdit.id, title, resolutionNumber, description, expirationDate }
         ).then((res) => {
             NotificationManager.success('Edit Successful', 'Correct');
 
-            this.props.history.push('/residents')
+            this.props.history.push('/resolutions')
         }).catch((err) => {
-            NotificationManager.error('Unsuccessful user edit', 'Error!', 5000, () => {
+            NotificationManager.error('Unsuccessful resolution edit', 'Error!', 5000, () => {
             });
         });
     }
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-        this.checkIfFormDataIsValid();
+        //this.checkIfFormDataIsValid();
     }
 
-    checkIfFormDataIsValid = () => {
-        if (this.state.userName.length > 0 && this.state.firstName.length > 0) {
-            this.setState({ isSubmitDisabled: false });
-        }
-        else {
-            this.setState({ isSubmitDisabled: true });
-        }
-    }
+    //checkIfFormDataIsValid = () => {
+    //    if (this.state.userName.length > 0 && this.state.firstName.length > 0) {
+    //        this.setState({ isSubmitDisabled: false });
+    //    }
+    //    else {
+    //        this.setState({ isSubmitDisabled: true });
+    //    }
+    //}
 
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
                     <div className="headerLogin">
-                        {this.props.userToEdit.id ? <h2 >Edit user</h2> : <h2 >Select user</h2>}
+                        {this.props.resolutionToEdit.id ? <h2 >Edit resolution</h2> : <h2 >Select resolution</h2>}
                     </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
-                                <label >User Name</label>
-                                <input className="form-control" type="text" name="userName" value={this.state.userName} onChange={this.handleInputChange} required />
+                                <label >Title</label>
+                                <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange} required />
                             </div>
 
                             <div className="form-group">
-                                <label>FirstName</label>
-                                <input className="form-control" type="text" name="firstName" value={this.state.firstName} onChange={this.handleInputChange} />
+                                <label>Resolution Number</label>
+                                <input className="form-control" type="text" name="resolutionNumber" value={this.state.resolutionNumber} onChange={this.handleInputChange} required />
                             </div>
 
                             <div className="form-group">
-                                <label>LastName</label>
-                                <input className="form-control" type="text" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} />
+                                <label>Description</label>
+                                <input className="form-control" type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
                             </div>
 
                             <div className="form-group">
-                                <label>Phone Number</label>
-                                <input className="form-control" type="text" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleInputChange} />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Address</label>
-                                <input className="form-control" type="text" name="address" value={this.state.address} onChange={this.handleInputChange} />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Email</label>
-                                <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
+                                <label>Expiration Date</label>
+                                <div>
+                                    <DatePicker
+                                        selected={this.state.expirationDate}
+                                        onChange={this.handleDateChange}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        dateFormat="MMMM d, yyyy h:mm aa"
+                                        timeCaption="time"
+                                    />
+                                </div>
                             </div>
 
                             <input type="submit" value="Edit user data" className="btn btn-large btn-block btn-info" disabled={this.state.isSubmitDisabled} />
 
-                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/residents') }} className="btn btn-large btn-block btn-danger" />
+                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/resolutions') }} className="btn btn-large btn-block btn-danger" />
                         </div>
                     </div>
                 </form>

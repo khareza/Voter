@@ -22,7 +22,7 @@ export class ResolutionsListWrapper extends Component {
     render() {
         return (
             <div>
-                <Route exact path="/resolutions" render={() => (<ResolutionsList resolutionToEdit={this.resolutionToEdit} />)} />
+                <Route exact path="/resolutions" render={() => (<ResolutionsList editResolution={this.editResolution} />)} />
                 <Route exact path="/resolutions/create" component={CreateResolution} />
                 <Route exact path="/resolutions/edit" render={() => (<EditResolution resolutionToEdit={this.state.resolutionToEdit} />)} />
             </div>

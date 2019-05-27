@@ -9,7 +9,7 @@ namespace Voter.Models.FormsData
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string ActNumber { get; set; }
+        public string ResolutionNumber { get; set; }
         public string Description { get; set; }
         public DateTime ExpirationDate { get; set; }
     }

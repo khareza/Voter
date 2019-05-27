@@ -1,6 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
 import AuthMethods from '../../../Helpers/AuthMethods';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export class CreateResolution extends Component {
     constructor(props) {
@@ -8,52 +10,56 @@ export class CreateResolution extends Component {
 
         this.Auth = new AuthMethods();
         this.state = {
-            userName: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            isSubmitDisabled: true
+            title: '',
+            resolutionNumber: '',
+            description: '',
+            expirationDate: new Date(),
+            isSubmitDisabled: false
         };
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { userName, password, firstName, lastName, email } = this.state;
+        let { title, resolutionNumber, description, expirationDate } = this.state;
 
-        this.Auth.register(
-            { userName, password, firstName, lastName, email }
+        this.Auth.createResolution(
+            { title, resolutionNumber, description, expirationDate }
         ).then(() => {
-            NotificationManager.success('Register Successful', 'Correct');
-            this.props.history.push('/residents');
+            NotificationManager.success('Resultions added', 'Correct');
+            this.props.history.push('/resolutions');
         }).catch(() => {
-            NotificationManager.error('Unsuccessful user register', 'Error!', 5000, () => {
+            NotificationManager.error('Unsuccessful operation', 'Error!', 5000, () => {
             });
         });
 
         this.setState({
-            userName: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            email: '',
+            title: '',
+            resolutionNumber: '',
+            description: '',
+            expirationDate: new Date(),
             isSubmitDisabled: true
         });
     }
 
+
+
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-        this.checkIfFormDataIsValid();
+        //this.checkIfFormDataIsValid();
     }
 
-    checkIfFormDataIsValid = () => {
-        if (this.state.userName.length > 0 && this.state.password.length > 0) {
-            this.setState({ isSubmitDisabled: false });
-        }
-        else {
-            this.setState({ isSubmitDisabled: true });
-        }
+    handleDateChange = (date) => {
+        this.setState({ expirationDate: date });
     }
+
+    //checkIfFormDataIsValid = () => {
+    //    if (this.state.userName.length > 0 && this.state.password.length > 0) {
+    //        this.setState({ isSubmitDisabled: false });
+    //    }
+    //    else {
+    //        this.setState({ isSubmitDisabled: true });
+    //    }
+    //}
 
     render() {
         return (
@@ -65,31 +71,36 @@ export class CreateResolution extends Component {
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
-                                <label >User Name</label>
-                                <input className="form-control" type="text" name="userName" value={this.state.userName} onChange={this.handleInputChange} required />
+                                <label >Title</label>
+                                <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange} required />
                             </div>
 
                             <div className="form-group">
-                                <label>Password</label>
-                                <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} required />
+                                <label>Resolution Number</label>
+                                <input className="form-control" type="text" name="resolutionNumber" value={this.state.resolutionNumber} onChange={this.handleInputChange} required />
                             </div>
 
                             <div className="form-group">
-                                <label>FirstName</label>
-                                <input className="form-control" type="text" name="firstName" value={this.state.firstName} onChange={this.handleInputChange} />
+                                <label>Description</label>
+                                <input className="form-control" type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
                             </div>
 
                             <div className="form-group">
-                                <label>LastName</label>
-                                <input className="form-control" type="text" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} />
+                                <label>Expiration Date</label>
+                                <div>
+                                    <DatePicker
+                                        selected={this.state.expirationDate}
+                                        onChange={this.handleDateChange}
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        dateFormat="MMMM d, yyyy h:mm aa"
+                                        timeCaption="time"
+                                    />
+                                </div>
                             </div>
-
-                            <div className="form-group">
-                                <label>Email</label>
-                                <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
-                            </div>
-                            <input type="submit" value="Add new resident" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
-                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/residents') }} className="btn btn-large btn-block btn-danger" />
+                            <input type="submit" value="Add new resolution" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
+                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/resolutions') }} className="btn btn-large btn-block btn-danger" />
                         </div>
                     </div>
                 </form>

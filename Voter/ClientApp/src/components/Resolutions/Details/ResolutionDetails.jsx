@@ -23,7 +23,7 @@ export class ResolutionDetails extends Component {
                 </div>
                 <div className="userData">
                     <div>
-                        <p><span>{this.props.resolution.actNumber}</span> {this.props.resolution.description}</p>
+                        <p><span>{this.props.resolution.resolutionNumber}</span> {this.props.resolution.description}</p>
                     </div>
                     <div className="userButtons">
                         <a className="button buttonEdit" onClick={this.editResolution}><FontAwesomeIcon icon={faUserEdit}></FontAwesomeIcon></a>

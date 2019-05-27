@@ -38,7 +38,7 @@ namespace Voter.Controllers
             var newResolution = new Resolution
             {
                 Title = formData.Title,
-                ActNumber = formData.ActNumber,
+                ResolutionNumber = formData.ResolutionNumber,
                 Description = formData.Description,
                 ExpirationDate = formData.ExpirationDate,
                 CreationDate = DateTime.Now
@@ -79,7 +79,7 @@ namespace Voter.Controllers
                 //use object mapper here :)
 
                 resolution.Title = formData.Title;
-                resolution.ActNumber = formData.ActNumber;
+                resolution.ResolutionNumber = formData.ResolutionNumber;
                 resolution.Description = formData.Description;
                 resolution.ExpirationDate = formData.ExpirationDate;
                 _context.SaveChanges();
