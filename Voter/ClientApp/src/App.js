@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
-import { LoginWrapper as Login } from './components/LoginWrapper';
+import { LoginWrapper as Login} from './components/Login/LoginWrapper';
 import PrivateComponent from './components/PrivateComponent'
 import { UserProfile } from './components/UserProfile';
 import AuthMethods from './Helpers/AuthMethods';
 import 'react-notifications/lib/notifications.css';
-
+import './ComponentsStyles/Login.css';
+import './ComponentsStyles/UserDetails.css';
 
 class App extends Component {
     state = {

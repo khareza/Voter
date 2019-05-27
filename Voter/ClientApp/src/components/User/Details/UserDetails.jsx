@@ -1,7 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit, faUserTimes } from '@fortawesome/free-solid-svg-icons'
-import '../ComponentsStyles/UserDetails.css';
 
 export class UserDetails extends Component {
 

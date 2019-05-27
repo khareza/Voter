@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
-import AuthMethods from '../Helpers/AuthMethods';
+import AuthMethods from '../../../Helpers/AuthMethods';
 
 export class RegisterNewUser extends Component {
     constructor(props) {

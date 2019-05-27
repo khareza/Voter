@@ -2,7 +2,7 @@
 import { Route } from 'react-router-dom';
 import { SideMenu } from './SideMenu';
 import { ActiveUserDetails } from './ActiveUserDetails';
-import { UsersListWrapper } from './UsersListWrapper';
+import { UsersListWrapper } from './User/UsersListWrapper';
 import { ResolutionsListWrapper } from './Resolutions/ResolutionsListWrapper';
 
 export class UserProfile extends Component {

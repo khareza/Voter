@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { RegisterNewUser } from './RegisterNewUser';
+import { RegisterNewUser } from './ActionForms/RegisterNewUser';
 import UsersList from './UsersList';
-import EditUserForm from './EditUserForm';
-import AuthMethods from '../Helpers/AuthMethods';
+import EditUserForm from './ActionForms/EditUserForm';
+import AuthMethods from '../../Helpers/AuthMethods';
 
 export class UsersListWrapper extends Component {
     Auth = new AuthMethods();
