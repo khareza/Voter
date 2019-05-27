@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 class EditResolution extends Component {
     constructor(props) {

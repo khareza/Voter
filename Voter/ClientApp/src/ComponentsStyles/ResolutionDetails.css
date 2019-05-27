@@ -1,0 +1,77 @@
+﻿.resolutionCard {
+    width: 70%;
+    border: 1px solid #8bc34a;
+    border-radius: 10px;
+    margin: 3% auto;
+    color: #37474f;
+    font-weight: 500;
+    font-family: Palatino;
+}
+
+.resolutionData {
+    text-align: justify;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    border-radius: 0 0 10px 10px;
+}
+
+    .resolutionData span {
+        font-weight: 600;
+    }
+
+.resolutionButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.resolutionCardHeader {
+    background-color: #fafafa;
+    border-bottom: 1px solid #D9D3CD;
+    border-radius: 10px 10px 0 0;
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+    .resolutionCardHeader p {
+        margin: 0;
+    }
+
+.button {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0px 5px;
+    border-radius: 5px;
+    color: #f8f9fa !important;
+    width: 80px;
+    cursor:pointer;
+}
+
+    .button:hover {
+        color: #EFEFEF !important;
+    }
+
+.buttonAccept {
+    background-color: #00c851;
+}
+
+    .buttonAccept:hover {
+        background-color: #007e33;
+    }
+
+.buttonAgainst {
+    background-color: #ff4444;
+}
+
+    .buttonAgainst:hover {
+        background-color: #cc0000;
+    }
+
+.buttonAbstain {
+    background-color: #ffbb33;
+}
+
+    .buttonAbstain:hover {
+        background-color: #ff8800;
+    }

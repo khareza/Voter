@@ -2,7 +2,6 @@
 import { NotificationManager } from 'react-notifications';
 import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 export class CreateResolution extends Component {
     constructor(props) {
