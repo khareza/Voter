@@ -58,7 +58,10 @@ namespace Voter.Controllers
 
             if (resolution != null)
             {
-                return Ok(_context.Resolutions.Remove(resolution));
+                _context.Resolutions.Remove(resolution);
+                _context.SaveChanges();
+                    
+                return Ok(resolution);
             }
             else
             {

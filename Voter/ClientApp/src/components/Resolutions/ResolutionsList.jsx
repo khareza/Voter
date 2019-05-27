@@ -27,8 +27,8 @@ class ResolutionsList extends Component {
     deleteResolution = (id) => {
         this.Auth.deleteResolution(id)
             .then(() => {
+                this.getResolutions();
                 NotificationManager.success('Delete Successful', 'Correct');
-                this.getResolutions()
             })
             .catch(err => {
                 NotificationManager.error('Unsuccessful delete', 'Error!', 5000, () => {
