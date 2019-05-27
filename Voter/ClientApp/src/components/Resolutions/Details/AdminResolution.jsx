@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserEdit, faUserTimes } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faFolderMinus } from '@fortawesome/free-solid-svg-icons'
 
 export class AdminResolution extends Component {
 
@@ -25,8 +25,8 @@ export class AdminResolution extends Component {
                         <p><span>{this.props.resolution.resolutionNumber}</span> {this.props.resolution.description}</p>
                     </div>
                     <div className="userButtons">
-                        <a className="button buttonEdit" onClick={this.editResolution}><FontAwesomeIcon icon={faUserEdit}></FontAwesomeIcon></a>
-                        <a className="button buttonDelete" onClick={this.deleteResolution}><FontAwesomeIcon icon={faUserTimes}></FontAwesomeIcon></a>
+                        <a className="button buttonEdit" onClick={this.editResolution}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></a>
+                        <a className="button buttonDelete" onClick={this.deleteResolution}><FontAwesomeIcon icon={faFolderMinus}></FontAwesomeIcon></a>
                     </div>
                 </div>
             </div>
