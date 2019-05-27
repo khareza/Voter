@@ -4,9 +4,10 @@ import AuthMethods from './AuthMethods';
 export class ResolutionMethods {
     constructor() {
         this.auth = new AuthMethods();
+        this.resolutionApiUrl = "/api/Resolution";
+
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.auth.getToken();
-        this.resolutionApiUrl = "/api/Resolution";
     }
 
     editResolution = (resolutionFormData) => {

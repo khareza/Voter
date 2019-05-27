@@ -4,9 +4,10 @@ import AuthMethods from './AuthMethods';
 export class UserMethods {
     constructor() {
         this.auth = new AuthMethods();
+        this.adminApiUrl = "/api/AppUser";
+
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.auth.getToken();
-        this.adminApiUrl = "/api/AppUser";
     }
 
     editUser = (editFormData) => {
@@ -19,6 +20,10 @@ export class UserMethods {
 
     getUsers = () => {
         return axios.get(`${this.adminApiUrl}/GetUsers`);
+    }
+
+    register = (registerFormData) => {
+        return axios.post(`${this.adminApiUrl}/Register`, registerFormData);
     }
 
     //getActiveUser = () => {
