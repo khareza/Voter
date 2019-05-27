@@ -9,16 +9,18 @@
 }
 
 .userData {
-    display: flex;
+    text-align: justify;
     padding: 10px 20px;
-    justify-content: space-between;
     background-color: #FFFFFF;
     border-radius: 0 0 10px 10px;
 }
 
+    .userData span {
+        font-weight: 600;
+    }
+
 .userButtons {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
