@@ -1,12 +1,12 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
-import AuthMethods from '../../../Helpers/AuthMethods';
+import { UserMethods} from '../../../Helpers/UserMethods';
 
 export class RegisterNewUser extends Component {
     constructor(props) {
         super(props);
 
-        this.Auth = new AuthMethods();
+        this.UserMethods = new UserMethods();
         this.state = {
             userName: '',
             password: '',
@@ -21,7 +21,7 @@ export class RegisterNewUser extends Component {
         event.preventDefault();
         let { userName, password, firstName, lastName, email } = this.state;
 
-        this.Auth.register(
+        this.UserMethods.register(
             { userName, password, firstName, lastName, email}
         ).then(() => {
             NotificationManager.success('Register Successful', 'Correct');

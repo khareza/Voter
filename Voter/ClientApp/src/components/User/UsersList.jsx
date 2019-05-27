@@ -2,12 +2,13 @@
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { UserDetails } from './Details/UserDetails';
-import AuthMethods from '../../Helpers/AuthMethods';
+import { UserMethods } from '../../Helpers/UserMethods';
 
 class UsersList extends Component {
-    Auth = new AuthMethods();
     constructor(props) {
         super(props);
+
+        this.UserMethods = new UserMethods();
         this.state = {
             users: []
         }
@@ -18,14 +19,14 @@ class UsersList extends Component {
     }
 
     getUsers = () => {
-        this.Auth.getUsers()
+        this.UserMethods.getUsers()
             .then(res => {
                 this.setState({ users: res.data })
             });
     }
 
     deleteUser = (id) => {
-        this.Auth.deleteUser(id)
+        this.UserMethods.deleteUser(id)
             .then(() => {
                 NotificationManager.success('Delete Successful', 'Correct');
                 this.getUsers()

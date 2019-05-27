@@ -20,7 +20,6 @@ export default class AuthMethods {
         localStorage.removeItem("id_token");
     };
 
-
     loggedIn = () => {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken();
@@ -70,66 +69,4 @@ export default class AuthMethods {
         return answer;
     };
 
-
-    editUser = (editFormData) => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.getToken();
-        return axios.put(`${this.adminApiUrl}/EditUser`, editFormData);
-    }
-
-    deleteUser = (id) => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.getToken();
-        console.log(id);
-        return axios.delete(`${this.adminApiUrl}/DeleteUser/` + id);
-    }
-
-    getUsers = () => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.getToken();
-        return axios.get(`${this.adminApiUrl}/GetUsers`);
-    }
-
-    checkIfTokenIsValid = () => {
-
-
-    }
-
-        //getActiveUser = () => {
-    //    var userId = JSON.parse(window.atob(this.getToken().split(".")[1])).UserID;
-
-    //    axios.defaults.headers.common['Authorization'] =
-    //        'Bearer ' + this.getToken();
-    //   return axios.get(`${this.apiUrl}voter/GetUserData`, userId);
-    //}
-
-
-
-    //RESOLUTIONS
-
-
-    editResolution = (resolutionFormData) => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.getToken();
-        return axios.put(`${this.resolutionApiUrl}/EditResolution`, resolutionFormData);
-    }
-
-    deleteResolution = (id) => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.getToken();
-        console.log(id);
-        return axios.delete(`${this.resolutionApiUrl}/DeleteResolution/` + id);
-    }
-
-    getResolutions = () => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.getToken();
-        return axios.get(`${this.resolutionApiUrl}/GetResolutions`);
-    }
-
-    createResolution = (newResolutionFormData) => {
-        axios.defaults.headers.common['Authorization'] =
-            'Bearer ' + this.getToken();
-        return axios.post(`${this.resolutionApiUrl}/CreateResolution`, newResolutionFormData);
-    }
 }

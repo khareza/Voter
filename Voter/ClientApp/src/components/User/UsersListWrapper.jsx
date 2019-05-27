@@ -3,10 +3,9 @@ import { Route } from 'react-router-dom';
 import { RegisterNewUser } from './ActionForms/RegisterNewUser';
 import UsersList from './UsersList';
 import EditUserForm from './ActionForms/EditUserForm';
-import AuthMethods from '../../Helpers/AuthMethods';
 
 export class UsersListWrapper extends Component {
-    Auth = new AuthMethods();
+
     state = {
         userToEdit: {}
     }

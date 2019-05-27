@@ -1,14 +1,14 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import AuthMethods from '../../../Helpers/AuthMethods';
+import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 class EditResolution extends Component {
     constructor(props) {
         super(props);
-        this.Auth = new AuthMethods();
+        this.ResMethods = new ResolutionMethods();
 
         this.state = {
             title: this.props.resolutionToEdit.title,
@@ -23,7 +23,7 @@ class EditResolution extends Component {
         event.preventDefault();
         let { title, resolutionNumber, description, expirationDate } = this.state;
 
-        this.Auth.editResolution(
+        this.ResMethods.editResolution(
             { id: this.props.resolutionToEdit.id, title, resolutionNumber, description, expirationDate }
         ).then((res) => {
             NotificationManager.success('Edit Successful', 'Correct');

@@ -2,12 +2,12 @@
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { ResolutionDetails } from './Details/ResolutionDetails';
-import AuthMethods from '../../Helpers/AuthMethods';
+import { ResolutionMethods} from '../../Helpers/ResolutionMethods';
 
 class ResolutionsList extends Component {
-    Auth = new AuthMethods();
     constructor(props) {
         super(props);
+        this.ResMethods = new ResolutionMethods();
         this.state = {
             resolutions: []
         }
@@ -18,14 +18,14 @@ class ResolutionsList extends Component {
     }
 
     getResolutions = () => {
-        this.Auth.getResolutions()
+        this.ResMethods.getResolutions()
             .then(res => {
                 this.setState({ resolutions: res.data })
             });
     }
 
     deleteResolution = (id) => {
-        this.Auth.deleteResolution(id)
+        this.ResMethods.deleteResolution(id)
             .then(() => {
                 this.getResolutions();
                 NotificationManager.success('Delete Successful', 'Correct');

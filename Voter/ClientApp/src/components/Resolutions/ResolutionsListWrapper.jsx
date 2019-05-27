@@ -3,11 +3,9 @@ import { Route } from 'react-router-dom';
 import { CreateResolution } from './ActionForms/CreateResolution';
 import ResolutionsList from './ResolutionsList';
 import EditResolution from './ActionForms/EditResolution';
-import AuthMethods from '../../Helpers/AuthMethods';
 
 export class ResolutionsListWrapper extends Component {
 
-    Auth = new AuthMethods();
     state = {
         resolutionToEdit: {}
     }

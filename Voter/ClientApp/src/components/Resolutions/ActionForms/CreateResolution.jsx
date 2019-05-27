@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
-import AuthMethods from '../../../Helpers/AuthMethods';
+import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -8,7 +8,7 @@ export class CreateResolution extends Component {
     constructor(props) {
         super(props);
 
-        this.Auth = new AuthMethods();
+        this.ResMethods = new ResolutionMethods();
         this.state = {
             title: '',
             resolutionNumber: '',
@@ -22,7 +22,7 @@ export class CreateResolution extends Component {
         event.preventDefault();
         let { title, resolutionNumber, description, expirationDate } = this.state;
 
-        this.Auth.createResolution(
+        this.ResMethods.createResolution(
             { title, resolutionNumber, description, expirationDate }
         ).then(() => {
             NotificationManager.success('Resultions added', 'Correct');

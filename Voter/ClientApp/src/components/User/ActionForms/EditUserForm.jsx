@@ -1,12 +1,12 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import AuthMethods from '../../../Helpers/AuthMethods';
+import { UserMethods} from '../../../Helpers/UserMethods';
 
 class EditUserForm extends Component {
     constructor(props) {
         super(props);
-        this.Auth = new AuthMethods();
+        this.UserMethods = new UserMethods();
 
         this.state = {
             userName: this.props.userToEdit.userName,
@@ -23,7 +23,7 @@ class EditUserForm extends Component {
         event.preventDefault();
         let { userName, firstName, lastName, address, email, phoneNumber } = this.state;
 
-        this.Auth.editUser(
+        this.UserMethods.editUser(
             { id: this.props.userToEdit.id, userName, firstName, lastName, address, email, phoneNumber }
         ).then((res) => {
             NotificationManager.success('Edit Successful', 'Correct');
