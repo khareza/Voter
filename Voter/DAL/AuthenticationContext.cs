@@ -17,5 +17,6 @@ namespace Voter.DAL
         }
 
         public DbSet<Resident> Residents { get; set; }
+        public DbSet<Resolution> Resolutions { get; set; }
     }
 }

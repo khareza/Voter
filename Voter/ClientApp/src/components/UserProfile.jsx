@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { SideMenu } from './SideMenu';
 import { ActiveUserDetails } from './ActiveUserDetails';
 import { UsersListWrapper } from './UsersListWrapper';
-import { ResolutionsListWrapper } from './ResolutionsListWrapper';
+import { ResolutionsListWrapper } from './Resolutions/ResolutionsListWrapper';
 
 export class UserProfile extends Component {
     render() {

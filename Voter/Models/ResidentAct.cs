@@ -13,7 +13,7 @@ namespace Voter.Models
     {
         public int Id { get; set; }
         public Resident Voter { get; set; }
-        public Act Act { get; set; }
+        public Resolution Resolution { get; set; }
         public DateTime VoteDate { get; set; }
         public ActAnswer Answer { get; set; }
     }
