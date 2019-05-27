@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export default class AuthMethods {
     constructor() {
-        this.authorizationApiUrl = "/api/authorization";
-        this.resolutionApiUrl = "/api/resolution";
-        this.adminApiUrl = "/api/Admin";
+        this.authorizationApiUrl = "/api/Authorization";
+        this.resolutionApiUrl = "/api/Resolution";
+        this.adminApiUrl = "/api/AppUser";
     }
 
     login = (loginFormData) => {

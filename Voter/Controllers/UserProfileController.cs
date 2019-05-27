@@ -14,15 +14,11 @@ namespace Voter.Controllers
     [ApiController]
     public class UserProfileController : ControllerBase
     {
-
         private UserManager<Resident> _userManager;
-        private SignInManager<Resident> _signInManager;
 
-
-        public UserProfileController(UserManager<Resident> userManager, SignInManager<Resident> signInManager)
+        public UserProfileController(UserManager<Resident> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         [HttpGet]

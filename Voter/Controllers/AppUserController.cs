@@ -14,20 +14,16 @@ namespace Voter.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class AppUserController : ControllerBase
     {
         private UserManager<Resident> _userManager;
-        private SignInManager<Resident> _signInManager;
         private AuthenticationContext _context;
 
-        public AdminController(UserManager<Resident> userManager, SignInManager<Resident> signInManager, AuthenticationContext context)
+        public AppUserController(UserManager<Resident> userManager, AuthenticationContext context)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _context = context;
-
         }
-
 
         [HttpPost]
         [Route("Register")]
@@ -56,7 +52,6 @@ namespace Voter.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("GetUsers")]
         [Authorize(Roles = "Admin")]
@@ -81,7 +76,6 @@ namespace Voter.Controllers
             }
 
         }
-
 
         [HttpPut]
         [Route("EditUser")]

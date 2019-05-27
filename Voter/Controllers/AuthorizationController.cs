@@ -21,20 +21,18 @@ namespace Voter.Controllers
     public class AuthorizationController : ControllerBase
     {
         private UserManager<Resident> _userManager;
-        private SignInManager<Resident> _signInManager;
         private AuthenticationContext _context;
         private ApplicationSettings _appSettings;
 
-        public AuthorizationController(UserManager<Resident> userManager, SignInManager<Resident> signInManager, AuthenticationContext context, IOptions<ApplicationSettings> appSettings )
+        public AuthorizationController(UserManager<Resident> userManager, 
+            AuthenticationContext context, 
+            IOptions<ApplicationSettings> appSettings )
         {
             _context = context;
             _userManager = userManager;
-            _signInManager = signInManager;
             _appSettings = appSettings.Value;
             _context.Database.EnsureCreated();
         }
-
-
 
         [HttpPost]
         [Route("Login")]
