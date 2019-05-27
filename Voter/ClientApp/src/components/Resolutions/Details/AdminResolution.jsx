@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit, faUserTimes } from '@fortawesome/free-solid-svg-icons'
 import '../../../ComponentsStyles/UserDetails.css';
 
-export class ResolutionDetails extends Component {
+export class AdminResolution extends Component {
 
     editResolution = () => {
         this.props.editResolution(this.props.resolution);

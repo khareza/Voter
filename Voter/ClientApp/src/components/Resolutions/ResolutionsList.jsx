@@ -1,13 +1,16 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import { ResolutionDetails } from './Details/ResolutionDetails';
+import { AdminResolution } from './Details/AdminResolution';
+import { UserResolution } from './Details/UserResolution';
 import { ResolutionMethods} from '../../Helpers/ResolutionMethods';
+import AuthMethods from '../../Helpers/AuthMethods';
 
 class ResolutionsList extends Component {
     constructor(props) {
         super(props);
         this.ResMethods = new ResolutionMethods();
+        this.Auth = new AuthMethods();
         this.state = {
             resolutions: []
         }
@@ -36,15 +39,24 @@ class ResolutionsList extends Component {
             });
     }
 
-    renderResolutionComponents = () => {
+    renderAdminResolutionComponents = () => {
         return this.state.resolutions.map((resolution) => {
             return (
-                <ResolutionDetails key={resolution.id}
+                <AdminResolution key={resolution.id}
                     deleteResolution={this.deleteResolution}
                     editResolution={
                         (resolutionToEdit) => {
                             this.props.editResolution(resolutionToEdit)
                         }}
+                    resolution={resolution} />
+            )
+        })
+    }
+
+    renderUserResolutionComponents = () => {
+        return this.state.resolutions.map((resolution) => {
+            return (
+                <UserResolution key={resolution.id}
                     resolution={resolution} />
             )
         })
@@ -56,7 +68,7 @@ class ResolutionsList extends Component {
                 <div className="headerLogin">
                     <h2>All resolution</h2>
                 </div>
-                {this.renderResolutionComponents()}
+                {this.Auth.isUserAdmin() ? this.renderAdminResolutionComponents() : this.renderUserResolutionComponents() }
                 <div className="text-center">
                     <button className="btn btn-success mt-3"
                         onClick={() => { this.props.history.push('/resolutions/create') }}>Add new resolution</button>
