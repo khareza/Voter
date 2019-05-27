@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import { UserDetails } from './UserDetails';
-import AuthMethods from '../Helpers/AuthMethods';
+import { ResolutionDetails } from './Details/ResolutionDetails';
+import AuthMethods from '../../Helpers/AuthMethods';
 
 class ResolutionsList extends Component {
     Auth = new AuthMethods();
@@ -39,7 +39,7 @@ class ResolutionsList extends Component {
     renderUserComponents = () => {
         return this.state.users.map((user) => {
             return (
-                <UserDetails key={user.id}
+                <ResolutionDetails key={user.id}
                     deleteUser={this.deleteUser}
                     editUser={
                         (userToEdit) => {

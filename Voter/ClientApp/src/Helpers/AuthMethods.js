@@ -4,6 +4,7 @@ import axios from 'axios';
 export default class AuthMethods {
     constructor() {
         this.authorizationApiUrl = "/api/authorization";
+        this.resolutionApiUrl = "/api/resolution";
         this.adminApiUrl = "/api/Admin";
     }
 
@@ -101,4 +102,34 @@ export default class AuthMethods {
     //        'Bearer ' + this.getToken();
     //   return axios.get(`${this.apiUrl}voter/GetUserData`, userId);
     //}
+
+
+
+    //RESOLUTIONS
+
+
+    editResolution = (resolutionFormData) => {
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.getToken();
+        return axios.put(`${this.resolutionApiUrl}/EditResolution`, resolutionFormData);
+    }
+
+    deleteResolution = (id) => {
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.getToken();
+        console.log(id);
+        return axios.delete(`${this.resolutionApiUrl}/DeleteResolution/` + id);
+    }
+
+    getResolutions = () => {
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.getToken();
+        return axios.get(`${this.resolutionApiUrl}/GetResolutions`);
+    }
+
+    createResolution = (newResolutionFormData) => {
+        axios.defaults.headers.common['Authorization'] =
+            'Bearer ' + this.getToken();
+        return axios.post(`${this.resolutionApiUrl}/CreateResolution`, newResolutionFormData);
+    }
 }

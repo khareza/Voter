@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import AuthMethods from '../Helpers/AuthMethods';
+import AuthMethods from '../../../Helpers/AuthMethods';
 
 class EditResolution extends Component {
     constructor(props) {
