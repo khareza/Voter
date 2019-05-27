@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Voter.Models
 {
@@ -9,6 +10,7 @@ namespace Voter.Models
         public string Title { get; set; }
         public string ResolutionNumber { get; set; }
         public string Description { get; set; }
+        [Column(TypeName = "Date")]
         public DateTime CreationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public List<ResidentAct> Residents { get; set; }

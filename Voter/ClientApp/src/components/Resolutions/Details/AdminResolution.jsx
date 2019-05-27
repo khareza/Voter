@@ -16,17 +16,17 @@ export class AdminResolution extends Component {
     render() {
 
         return (
-            <div className="userCard">
-                <div className="userCardHeader">
+            <div className="resolutionCard">
+                <div className="resolutionCardHeader">
                     <p>{`${this.props.resolution.title}`}</p>
                     <p>Expiration Date: <Moment format="dddd YYYY-MM-DD HH:mm">{this.props.resolution.expirationDate}</Moment></p>
                     <p>Voting ends <Moment fromNow="dddd YYYY-MM-DD HH:mm">{this.props.resolution.expirationDate}</Moment></p>
                 </div>
-                <div className="userData">
+                <div className="resolutionData">
                     <div>
                         <p><span>Resolution No. {this.props.resolution.resolutionNumber}</span> {this.props.resolution.description}</p>
                     </div>
-                    <div className="userButtons">
+                    <div className="resolutionButtons">
                         <a className="button buttonEdit" onClick={this.editResolution}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></a>
                         <a className="button buttonDelete" onClick={this.deleteResolution}><FontAwesomeIcon icon={faFolderMinus}></FontAwesomeIcon></a>
                     </div>

@@ -39,6 +39,9 @@ class EditResolution extends Component {
         //this.checkIfFormDataIsValid();
     }
 
+    handleDateChange = (date) => {
+        this.setState({ expirationDate: date });
+    }
     //checkIfFormDataIsValid = () => {
     //    if (this.state.userName.length > 0 && this.state.firstName.length > 0) {
     //        this.setState({ isSubmitDisabled: false });
