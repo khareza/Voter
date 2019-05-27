@@ -9,43 +9,43 @@ class ResolutionsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: []
+            resolutions: []
         }
     }
 
     componentDidMount() {
-        this.getUsers();
+        this.getResolutions();
     }
 
-    getUsers = () => {
-        this.Auth.getUsers()
+    getResolutions = () => {
+        this.Auth.getResolutions()
             .then(res => {
-                this.setState({ users: res.data })
+                this.setState({ resolutions: res.data })
             });
     }
 
-    deleteUser = (id) => {
-        this.Auth.deleteUser(id)
+    deleteResolution = (id) => {
+        this.Auth.deleteResolution(id)
             .then(() => {
                 NotificationManager.success('Delete Successful', 'Correct');
-                this.getUsers()
+                this.getResolutions()
             })
             .catch(err => {
-                NotificationManager.error('Unsuccessful user delete', 'Error!', 5000, () => {
+                NotificationManager.error('Unsuccessful delete', 'Error!', 5000, () => {
                 });
             });
     }
 
-    renderUserComponents = () => {
-        return this.state.users.map((user) => {
+    renderResolutionComponents = () => {
+        return this.state.resolutions.map((resolution) => {
             return (
-                <ResolutionDetails key={user.id}
-                    deleteUser={this.deleteUser}
-                    editUser={
-                        (userToEdit) => {
-                            this.props.editUser(userToEdit)
+                <ResolutionDetails key={resolution.id}
+                    deleteResolution={this.deleteResolution}
+                    editResolution={
+                        (resolutionToEdit) => {
+                            this.props.editResolution(resolutionToEdit)
                         }}
-                    user={user} />
+                    resolution={resolution} />
             )
         })
     }
@@ -54,12 +54,12 @@ class ResolutionsList extends Component {
         return (
             <div>
                 <div className="headerLogin">
-                    <h2>All residents</h2>
+                    <h2>All resolution</h2>
                 </div>
-                {this.renderUserComponents()}
+                {this.renderResolutionComponents()}
                 <div className="text-center">
                     <button className="btn btn-success mt-3"
-                        onClick={() => { this.props.history.push('/residents/create') }}>Add new resident</button>
+                        onClick={() => { this.props.history.push('/resolutions/create') }}>Add new resolution</button>
                 </div>
             </div>
         );
