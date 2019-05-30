@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Voter.Common;
 using Voter.DAL;
 using Voter.Models;
 
@@ -14,23 +15,21 @@ namespace Voter.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = UserRole.ADMIN)]
     public class AppUserController : ControllerBase
     {
         private UserManager<Resident> _userManager;
-        private AuthenticationContext _context;
 
-        public AppUserController(UserManager<Resident> userManager, AuthenticationContext context)
+        public AppUserController(UserManager<Resident> userManager)
         {
             _userManager = userManager;
-            _context = context;
         }
 
         [HttpPost]
         [Route("Register")]
-        [Authorize(Roles = "Admin")]
         public async Task<object> RegisterNewUser(RegisterFormData formData)
         {
-            var role = "User";
+            var role = UserRole.USER;
 
             var newResident = new Resident
             {
@@ -57,15 +56,13 @@ namespace Voter.Controllers
 
         [HttpGet]
         [Route("GetUsers")]
-        [Authorize(Roles = "Admin")]
         public async Task<IEnumerable<Resident>> GetUsers()
         {
-            return await _userManager.GetUsersInRoleAsync("User");
+            return await _userManager.GetUsersInRoleAsync(UserRole.USER);
         }
 
         [HttpDelete]
         [Route("DeleteUser/{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<object> DeleteUser(string id)
         {
             var user = _userManager.Users.Where(u => u.Id == id).FirstOrDefault();
@@ -82,7 +79,6 @@ namespace Voter.Controllers
 
         [HttpPut]
         [Route("EditUser")]
-        [Authorize(Roles = "Admin")]
         public async Task<object> EditUser(EditFormData formData)
         {
             var user = _userManager.Users.Where(u => u.Id == formData.Id).FirstOrDefault();

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Voter.Common;
 using Voter.DAL;
 using Voter.Models;
 using Voter.Models.FormsData;
@@ -16,18 +17,16 @@ namespace Voter.Controllers
     [ApiController]
     public class ResolutionController : ControllerBase
     {
-        private UserManager<Resident> _userManager;
         private AuthenticationContext _context;
 
-        public ResolutionController(UserManager<Resident> userManager, AuthenticationContext context)
+        public ResolutionController(AuthenticationContext context)
         {
-            _userManager = userManager;
             _context = context;
         }
 
         [HttpPost]
         [Route("CreateResolution")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = UserRole.ADMIN)]
         public IActionResult CreateResolution(ResolutionFormData formData)
         {
             if (!ModelState.IsValid)
@@ -51,7 +50,7 @@ namespace Voter.Controllers
 
         [HttpDelete]
         [Route("DeleteResolution/{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = UserRole.ADMIN)]
         public IActionResult DeleteResolution(int id)
         {
             var resolution = _context.Resolutions.FirstOrDefault(r=>r.Id == id);
@@ -72,7 +71,7 @@ namespace Voter.Controllers
 
         [HttpPut]
         [Route("EditResolution")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = UserRole.ADMIN)]
         public IActionResult EditResolution(ResolutionFormData formData)
         {
             var resolution = _context.Resolutions.FirstOrDefault(u => u.Id == formData.Id);

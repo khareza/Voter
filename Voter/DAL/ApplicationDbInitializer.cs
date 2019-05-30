@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Voter.Common;
 using Voter.Models;
 
 namespace Voter.DAL
@@ -18,7 +19,7 @@ namespace Voter.DAL
 
                 userManager.CreateAsync(newResident, "1234").Wait();
 
-                userManager.AddToRoleAsync(newResident, "Admin").Wait();
+                userManager.AddToRoleAsync(newResident, UserRole.ADMIN).Wait();
             }
         }
     }
