@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Voter.Models
 {
@@ -7,8 +9,9 @@ namespace Voter.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime BirthDate { get; set; }
         public string Address { get; set; }
-        public List<ResidentAct> Acts { get; set; }
+        public List<ResidentResolution> Resolutions { get; set; }
     }
 }

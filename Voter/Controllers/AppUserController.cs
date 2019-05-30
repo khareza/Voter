@@ -37,7 +37,10 @@ namespace Voter.Controllers
                 UserName = formData.UserName,
                 Email = formData.Email,
                 FirstName = formData.FirstName,
-                LastName = formData.LastName
+                LastName = formData.LastName,
+                PhoneNumber = formData.Phone,
+                Address = formData.Address,
+                BirthDate = formData.BirthDate
             };
 
             try

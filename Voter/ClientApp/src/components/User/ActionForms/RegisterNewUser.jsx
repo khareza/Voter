@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
 import { UserMethods} from '../../../Helpers/UserMethods';
+import DatePicker from 'react-datepicker';
 
 export class RegisterNewUser extends Component {
     constructor(props) {
@@ -12,17 +13,20 @@ export class RegisterNewUser extends Component {
             password: '',
             firstName: '',
             lastName: '',
-            email:'',
+            email: '',
+            birthDate: new Date(),
+            phone: '',
+            address:'',
             isSubmitDisabled: true
         };
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { userName, password, firstName, lastName, email } = this.state;
+        let { userName, password, firstName, lastName, email, birthDate, phone, address } = this.state;
 
         this.UserMethods.register(
-            { userName, password, firstName, lastName, email}
+            { userName, password, firstName, lastName, email, birthDate, phone, address}
         ).then(() => {
             NotificationManager.success('Register Successful', 'Correct');
             this.props.history.push('/residents');
@@ -31,18 +35,25 @@ export class RegisterNewUser extends Component {
             });
         });
 
-        this.setState({
-            userName: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            email: '',
-            isSubmitDisabled: true});
+        //this.setState({
+        //    userName: '',
+        //    password: '',
+        //    firstName: '',
+        //    lastName: '',
+        //    email: '',
+        //    birthDate: '',
+        //    phone: '',
+        //    address: '',
+        //    isSubmitDisabled: true});
     }
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value});
         this.checkIfFormDataIsValid();
+    }
+
+    handleDateChange = (date) => {
+        this.setState({ birthDate: date });
     }
 
     checkIfFormDataIsValid = () => {
@@ -84,9 +95,31 @@ export class RegisterNewUser extends Component {
                             </div>
 
                             <div className="form-group">
+                                <label>Birth date</label>
+                                <div>
+                                    <DatePicker
+                                        selected={this.state.birthDate}
+                                        onChange={this.handleDateChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Address</label>
+                                <input className="form-control" type="text" name="address" value={this.state.address} onChange={this.handleInputChange} />
+                            </div>
+
+                            <div className="form-group">
                                 <label>Email</label>
                                 <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange}/>
                             </div>
+
+                            <div className="form-group">
+                                <label>Phone</label>
+                                <input className="form-control" type="text" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
+                            </div>
+
+
                             <input type="submit" value="Add new resident" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
                             <input type="button" value="Cancel" onClick={() => { this.props.history.push('/residents') }} className="btn btn-large btn-block btn-danger" />
                         </div>

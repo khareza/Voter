@@ -9,7 +9,7 @@ namespace Voter.Models
         Hold
     }
 
-    public class ResidentAct
+    public class ResidentResolution
     {
         public int Id { get; set; }
         public Resident Voter { get; set; }

@@ -13,7 +13,7 @@ namespace Voter.Models
         [Column(TypeName = "Date")]
         public DateTime CreationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public List<ResidentAct> Residents { get; set; }
+        public List<ResidentResolution> Residents { get; set; }
 
     }
 }

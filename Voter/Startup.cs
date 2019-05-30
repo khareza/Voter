@@ -84,7 +84,7 @@ namespace Voter
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<Resident> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -96,7 +96,7 @@ namespace Voter
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            ApplicationDbInitializer.SeedUsers(userManager);
 
 
             app.UseCors(builders =>
