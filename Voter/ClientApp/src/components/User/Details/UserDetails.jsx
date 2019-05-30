@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit, faUserTimes } from '@fortawesome/free-solid-svg-icons'
+import Moment from 'react-moment';
 
 export class UserDetails extends Component {
 
@@ -18,7 +19,7 @@ export class UserDetails extends Component {
             <div className="userCard">
                 <div className="userCardHeader">
                     <p>{`${this.props.user.firstName} ${this.props.user.lastName}`}</p>
-                    <p>Age: 18</p>
+                    <p>Age: <Moment fromNow ago>{this.props.user.birthDate}</Moment></p>
                 </div>
                 <div className="userData">
                     <div>

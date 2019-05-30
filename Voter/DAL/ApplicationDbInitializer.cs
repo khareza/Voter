@@ -19,7 +19,6 @@ namespace Voter.DAL
                 userManager.CreateAsync(newResident, "1234").Wait();
 
                 userManager.AddToRoleAsync(newResident, "Admin").Wait();
-
             }
         }
     }
