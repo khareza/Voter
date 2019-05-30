@@ -45,7 +45,7 @@
     border-radius: 5px;
     color: #f8f9fa !important;
     width: 80px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
     .button:hover {
@@ -60,6 +60,15 @@
         background-color: #007e33;
     }
 
+        .buttonAccept:hover span {
+            display: none;
+        }
+
+        .buttonAccept:hover:after {
+            font-size: 1.2rem;
+            content: 'Accept';
+        }
+
 .buttonAgainst {
     background-color: #ff4444;
 }
@@ -68,6 +77,15 @@
         background-color: #cc0000;
     }
 
+        .buttonAgainst:hover span {
+            display: none;
+        }
+
+        .buttonAgainst:hover:after {
+            font-size: 1.2rem;
+            content: 'Reject';
+        }
+
 .buttonAbstain {
     background-color: #ffbb33;
 }
@@ -75,3 +93,12 @@
     .buttonAbstain:hover {
         background-color: #ff8800;
     }
+
+        .buttonAbstain:hover span {
+            display: none;
+        }
+
+        .buttonAbstain:hover:after {
+            font-size: 1.2rem;
+            content: 'Abstain';
+        }

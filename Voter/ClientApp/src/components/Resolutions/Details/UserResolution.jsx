@@ -19,9 +19,9 @@ export class UserResolution extends Component {
                         <p><span>Resolution No. {this.props.resolution.resolutionNumber}</span> {this.props.resolution.description}</p>
                     </div>
                     <div className="resolutionButtons">
-                        <a className="button buttonAccept" ><FontAwesomeIcon icon={faCheck}></FontAwesomeIcon></a>
-                        <a className="button buttonAgainst" ><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></a>
-                        <a className="button buttonAbstain" ><FontAwesomeIcon icon={faHandPaper}></FontAwesomeIcon></a>
+                        <a className="button buttonAccept" ><span><FontAwesomeIcon icon={faCheck}></FontAwesomeIcon></span></a>
+                        <a className="button buttonAgainst" ><span><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></span></a>
+                        <a className="button buttonAbstain" ><span><FontAwesomeIcon icon={faHandPaper}></FontAwesomeIcon></span></a>
                     </div>
                 </div>
             </div>
