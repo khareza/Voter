@@ -16,9 +16,6 @@ export class LoginWrapper extends Component {
         console.log(this.props);
         this.Auth.login(loginFormData)
             .then(res => {
-                if (res === false) {
-                    return alert("Wrong login or password");
-                }
                 NotificationManager.success('Login Successful', 'Correct');
                 this.props.history.push('/profile');
             }).catch(err => {

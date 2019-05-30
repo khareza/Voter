@@ -34,17 +34,6 @@ export class RegisterNewUser extends Component {
             NotificationManager.error('Unsuccessful user register', 'Error!', 5000, () => {
             });
         });
-
-        //this.setState({
-        //    userName: '',
-        //    password: '',
-        //    firstName: '',
-        //    lastName: '',
-        //    email: '',
-        //    birthDate: '',
-        //    phone: '',
-        //    address: '',
-        //    isSubmitDisabled: true});
     }
 
     handleInputChange = (event) => {

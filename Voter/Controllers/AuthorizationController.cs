@@ -21,17 +21,13 @@ namespace Voter.Controllers
     public class AuthorizationController : ControllerBase
     {
         private UserManager<Resident> _userManager;
-        private AuthenticationContext _context;
         private ApplicationSettings _appSettings;
 
         public AuthorizationController(UserManager<Resident> userManager, 
-            AuthenticationContext context, 
             IOptions<ApplicationSettings> appSettings )
         {
-            _context = context;
             _userManager = userManager;
             _appSettings = appSettings.Value;
-            _context.Database.EnsureCreated();
         }
 
         [HttpPost]
