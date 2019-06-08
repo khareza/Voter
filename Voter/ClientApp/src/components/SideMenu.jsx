@@ -32,7 +32,7 @@ export class SideMenu extends Component {
 
     render() {
         return (
-            <header className="header" role="banner">
+            <header className="header">
                 <h1 className="logo">
                     <a href="/profile">Your <span>Voter</span></a>
                 </h1>
