@@ -11,6 +11,7 @@ namespace Voter.AppSettings.Validators
     public class EditResidentFormValidator : AbstractValidator<EditFormData>
     {
         readonly Regex usernameRegex = new Regex(@"^[a-zA-Z0-9]*$");
+
         readonly Regex nameRegex = new Regex(@"^[a-zA-Z]*$");
         readonly Regex phoneNumber = new Regex(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{3}");
         readonly Regex emailRegex =
@@ -20,6 +21,7 @@ namespace Voter.AppSettings.Validators
         {
             RuleFor(editForm => editForm.UserName)
                 .NotNull()
+                .WithMessage("Enter username")
                 .NotEmpty()
                 .WithMessage("Enter username")
                 .MinimumLength(4)
@@ -34,7 +36,6 @@ namespace Voter.AppSettings.Validators
                 .WithMessage("Enter email")
                 .Matches(emailRegex)
                 .WithMessage("Enter valid email");
-
 
             RuleFor(editForm => editForm.FirstName)
                 .NotNull()
