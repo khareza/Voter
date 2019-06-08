@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { SideMenu } from './SideMenu';
-import { ActiveUserDetails } from './ActiveUserDetails';
+import { ActiveUserDetails } from './ActiveUserProfile/ActiveUserDetails';
 import { UsersListWrapper } from './User/UsersListWrapper';
 import { ResolutionsListWrapper } from './Resolutions/ResolutionsListWrapper';
 import AuthMethods from '../Helpers/AuthMethods';
