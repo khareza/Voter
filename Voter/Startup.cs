@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Text;
+using Voter.AppSettings.Validators;
 using Voter.DAL;
 using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
@@ -34,7 +37,11 @@ namespace Voter
             services.AddTransient<IResidentService, ResidentService>();
             services.AddTransient<IResolutionService, ResolutionService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSingleton<IValidator<EditFormData>, EditResidentFormValidator>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation((fv => {
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            })); ;
 
             services.AddSwaggerGen(c =>
             {

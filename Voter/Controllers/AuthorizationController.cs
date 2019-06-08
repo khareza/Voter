@@ -34,6 +34,11 @@ namespace Voter.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login(LoginFormData formData)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var user = await _userManager.FindByNameAsync(formData.UserName);
 
             if (user != null && await _userManager.CheckPasswordAsync(user,formData.Password))

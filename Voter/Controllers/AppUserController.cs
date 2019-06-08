@@ -30,6 +30,11 @@ namespace Voter.Controllers
         [Route("Register")]
         public async Task<object> RegisterNewUser(RegisterFormData formData)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             try
             {
                 await _context.RegisterNewUser(formData);
@@ -69,6 +74,11 @@ namespace Voter.Controllers
         [Route("EditUser")]
         public async Task<object> EditUser(EditFormData formData)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var result = await _context.EditUser(formData);
 
             if (result != null)
