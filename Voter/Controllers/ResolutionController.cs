@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Voter.Common;
@@ -78,9 +79,9 @@ namespace Voter.Controllers
         [HttpGet]
         [Route("GetResolutions")]
         [Authorize]
-        public List<Resolution> GetResolutions()
+        public IEnumerable<Resolution> GetResolutions()
         {
-            return _context.GetResolutions().ToList();
+            return _context.GetResolutions();
         }
 
     }

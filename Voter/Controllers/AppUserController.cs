@@ -29,7 +29,7 @@ namespace Voter.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<object> RegisterNewUser(RegisterFormData formData)
+        public async Task<IActionResult> RegisterNewUser(RegisterFormData formData)
         {
             if (!ModelState.IsValid)
             {
@@ -51,13 +51,12 @@ namespace Voter.Controllers
         [Route("GetUsers")]
         public async Task<IEnumerable<Resident>> GetUsers()
         {
-            var userList = await _context.GetUsers();
-            return userList.ToList();
+            return await _context.GetUsers();
         }
 
         [HttpDelete]
         [Route("DeleteUser/{id}")]
-        public async Task<object> DeleteUser(string id)
+        public async Task<IActionResult> DeleteUser(string id)
         {
             var result = await _context.DeleteUser(id);
             if (result != null)
@@ -73,7 +72,7 @@ namespace Voter.Controllers
 
         [HttpPut]
         [Route("EditUser")]
-        public async Task<object> EditUser(EditFormData formData)
+        public async Task<IActionResult> EditUser(EditFormData formData)
         {
             if (!ModelState.IsValid)
             {
