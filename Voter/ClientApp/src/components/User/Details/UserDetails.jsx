@@ -6,7 +6,7 @@ import Moment from 'react-moment';
 export class UserDetails extends Component {
 
     editUser = () => {
-        this.props.editUser(this.props.user);
+        this.props.editUser(this.props.user.id);
     }
 
     deleteUser = () => {

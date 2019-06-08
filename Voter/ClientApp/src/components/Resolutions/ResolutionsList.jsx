@@ -12,31 +12,8 @@ class ResolutionsList extends Component {
         this.ResMethods = new ResolutionMethods();
         this.Auth = new AuthMethods();
         this.state = {
-            resolutions: []
+            resolutions: this.props.resolutions
         }
-    }
-
-    componentDidMount() {
-        this.getResolutions();
-    }
-
-    getResolutions = () => {
-        this.ResMethods.getResolutions()
-            .then(res => {
-                this.setState({ resolutions: res.data });
-            });
-    }
-
-    deleteResolution = (id) => {
-        this.ResMethods.deleteResolution(id)
-            .then(() => {
-                var newList = this.state.resolutions.filter((resolution) => (resolution.id !== id));
-                this.setState({ resolutions: newList });
-                NotificationManager.success('Delete Successful', 'Correct');
-            })
-            .catch(err => {
-                NotificationManager.error('Unsuccessful delete', 'Error!');
-            });
     }
 
     renderAdminResolutionComponents = () => {
@@ -45,8 +22,8 @@ class ResolutionsList extends Component {
                 <AdminResolution key={resolution.id}
                     deleteResolution={this.deleteResolution}
                     editResolution={
-                        (resolutionToEdit) => {
-                            this.props.editResolution(resolutionToEdit)
+                        (id) => {
+                            this.props.editResolution(id)
                         }}
                     resolution={resolution} />
             )

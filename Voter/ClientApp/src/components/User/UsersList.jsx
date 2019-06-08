@@ -1,6 +1,5 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { NotificationManager } from 'react-notifications';
 import { UserDetails } from './Details/UserDetails';
 import { UserMethods } from '../../Helpers/UserMethods';
 
@@ -10,42 +9,18 @@ class UsersList extends Component {
 
         this.UserMethods = new UserMethods();
         this.state = {
-            users: []
+            users: this.props.users
         }
     }
 
-    componentDidMount() {
-        this.getUsers();
-    }
-
-    getUsers = () => {
-        this.UserMethods.getUsers()
-            .then(res => {
-                console.log(res.data);
-                this.setState({ users: res.data })
-            });
-    }
-
-    deleteUser = (id) => {
-        this.UserMethods.deleteUser(id)
-            .then(() => {
-                var newList = this.state.users.filter((user) => ( user.id !== id ));
-                this.setState({ users: newList });
-                NotificationManager.success('Delete Successful', 'Correct');
-            })
-            .catch(err => {
-                NotificationManager.error('Unsuccessful user delete', 'Error!');
-            });
-    }
-
     renderUserComponents = () => {
-        return this.state.users.map( (user)=> {
+        return this.state.users.map((user) => {
             return (
                 <UserDetails key={user.id}
-                    deleteUser={this.deleteUser}
+                    deleteUser={this.props.deleteUser}
                     editUser={
-                        (userToEdit) => {
-                            this.props.editUser(userToEdit)
+                        (id) => {
+                            this.props.editUser(id)
                         }}
                     user={user} />
             )

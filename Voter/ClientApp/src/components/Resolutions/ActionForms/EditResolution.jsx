@@ -9,16 +9,37 @@ class EditResolution extends Component {
     constructor(props) {
         super(props);
         this.ResMethods = new ResolutionMethods();
-
+        this.id = this.props.match.params.resolution_id;
         this.state = {
-            title: this.props.resolutionToEdit.title,
-            resolutionNumber: this.props.resolutionToEdit.resolutionNumber,
-            description: this.props.resolutionToEdit.description,
+            title: '',
+            resolutionNumber: '',
+            description: '',
             expirationDate: new Date(),
             isSubmitDisabled: false,
             errors: {}
         };
     }
+
+    componentDidMount = () => {
+        this.getResolution();
+    }
+
+    getResolution = () => {
+        const resolution = this.props.getResolutionToEdit(this.id);
+        if (typeof resolution === 'undefined') {
+            this.props.history.push('/resolutions')
+            NotificationManager.error('Choose correct resolution', 'Error!');
+        }
+        else {
+            this.setState({
+                title: resolution.title,
+                resolutionNumber: resolution.resolutionNumber,
+                description: resolution.description,
+                isSubmitDisabled: true,
+            })
+        }
+    }
+
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -57,7 +78,7 @@ class EditResolution extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
                     <div className="headerLogin">
-                        {this.props.resolutionToEdit.id ? <h2 >Edit resolution</h2> : <h2 >Select resolution</h2>}
+                        <h2 >Edit resolution</h2>
                     </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">

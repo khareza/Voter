@@ -6,7 +6,7 @@ import { faEdit, faFolderMinus } from '@fortawesome/free-solid-svg-icons'
 export class AdminResolution extends Component {
 
     editResolution = () => {
-        this.props.editResolution(this.props.resolution);
+        this.props.editResolution(this.props.resolution.id);
     }
 
     deleteResolution = () => {
