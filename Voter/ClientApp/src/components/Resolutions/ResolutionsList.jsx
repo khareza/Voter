@@ -34,8 +34,7 @@ class ResolutionsList extends Component {
                 NotificationManager.success('Delete Successful', 'Correct');
             })
             .catch(err => {
-                NotificationManager.error('Unsuccessful delete', 'Error!', 5000, () => {
-                });
+                NotificationManager.error('Unsuccessful delete', 'Error!');
             });
     }
 

@@ -33,8 +33,7 @@ class UsersList extends Component {
                 this.getUsers()
             })
             .catch(err => {
-                NotificationManager.error('Unsuccessful user delete', 'Error!', 5000, () => {
-                });
+                NotificationManager.error('Unsuccessful user delete', 'Error!');
             });
     }
 

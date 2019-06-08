@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Voter.Common;
-using Voter.DAL;
+using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
 using Voter.Models.FormsData;
 
@@ -17,9 +13,9 @@ namespace Voter.Controllers
     [ApiController]
     public class ResolutionController : ControllerBase
     {
-        private AuthenticationContext _context;
+        private IResolutionService _context;
 
-        public ResolutionController(AuthenticationContext context)
+        public ResolutionController(IResolutionService context)
         {
             _context = context;
         }
@@ -34,18 +30,8 @@ namespace Voter.Controllers
                 return BadRequest();
             }
 
-            var newResolution = new Resolution
-            {
-                Title = formData.Title,
-                ResolutionNumber = formData.ResolutionNumber,
-                Description = formData.Description,
-                ExpirationDate = formData.ExpirationDate,
-                CreationDate = DateTime.Now
-            };
-
-            _context.Resolutions.Add(newResolution);
-            _context.SaveChanges();
-            return Ok(newResolution);
+           var result = _context.CreateResolution(formData);
+           return Ok(result);
         }
 
         [HttpDelete]
@@ -53,14 +39,11 @@ namespace Voter.Controllers
         [Authorize(Roles = UserRole.ADMIN)]
         public IActionResult DeleteResolution(int id)
         {
-            var resolution = _context.Resolutions.FirstOrDefault(r=>r.Id == id);
+            var result = _context.DeleteResolution(id);
 
-            if (resolution != null)
+            if (result != null)
             {
-                _context.Resolutions.Remove(resolution);
-                _context.SaveChanges();
-                    
-                return Ok(resolution);
+                return Ok(result);
             }
             else
             {
@@ -74,18 +57,16 @@ namespace Voter.Controllers
         [Authorize(Roles = UserRole.ADMIN)]
         public IActionResult EditResolution(ResolutionFormData formData)
         {
-            var resolution = _context.Resolutions.FirstOrDefault(u => u.Id == formData.Id);
-
-            if (resolution != null)
+            if (!ModelState.IsValid)
             {
-                //use object mapper here :)
+                return BadRequest();
+            }
 
-                resolution.Title = formData.Title;
-                resolution.ResolutionNumber = formData.ResolutionNumber;
-                resolution.Description = formData.Description;
-                resolution.ExpirationDate = formData.ExpirationDate;
-                _context.SaveChanges();
-                return Ok(resolution);
+            var result = _context.EditResolution(formData);
+
+            if (result != null)
+            {
+                return Ok(result);
             }
             else
             {
@@ -97,9 +78,9 @@ namespace Voter.Controllers
         [HttpGet]
         [Route("GetResolutions")]
         [Authorize]
-        public IEnumerable<Resolution> GetResolutions()
+        public List<Resolution> GetResolutions()
         {
-            return _context.Resolutions.ToList();
+            return _context.GetResolutions().ToList();
         }
 
     }

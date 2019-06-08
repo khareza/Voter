@@ -30,8 +30,7 @@ class EditUserForm extends Component {
 
             this.props.history.push('/residents')
         }).catch((err) => {
-            NotificationManager.error('Unsuccessful user edit', 'Error!', 5000, () => {
-            });
+            NotificationManager.error('Unsuccessful user edit', 'Error!', 5000);
         });
     }
 

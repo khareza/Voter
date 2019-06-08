@@ -13,6 +13,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Text;
 using Voter.DAL;
+using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
 
 namespace Voter
@@ -30,6 +31,8 @@ namespace Voter
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+            services.AddTransient<IResidentService, ResidentService>();
+            services.AddTransient<IResolutionService, ResolutionService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

@@ -1,0 +1,14 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Voter.Models;
+
+namespace Voter.DAL.ServiceInterfaces
+{
+    public interface IResidentService
+    {
+        Task<object> DeleteUser(string id);
+        Task<object> EditUser(EditFormData formData);
+        Task<IEnumerable<Resident>> GetUsers();
+        Task RegisterNewUser(RegisterFormData formData);
+    }
+}

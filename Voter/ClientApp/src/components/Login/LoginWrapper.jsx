@@ -13,17 +13,14 @@ export class LoginWrapper extends Component {
 
 
     login = (loginFormData) => {
-        console.log(this.props);
         this.Auth.login(loginFormData)
             .then(res => {
                 NotificationManager.success('Login Successful', 'Correct');
                 this.props.history.push('/profile');
             }).catch(err => {
-                NotificationManager.error('Wrong login or password', 'Error!', 5000, () => {
-                });
+                NotificationManager.error('Wrong login or password', 'Error!');
             })
     }
-
 
     render() {
         return (
