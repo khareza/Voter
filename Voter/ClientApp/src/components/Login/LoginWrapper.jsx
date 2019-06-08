@@ -14,7 +14,6 @@ export class LoginWrapper extends Component {
         }
     }
 
-
     render() {
         return (
             <div>

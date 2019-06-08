@@ -10,7 +10,7 @@ export class UserProfile extends Component {
         return (
             <div className="site">
                 <div className="menuWrapper">
-                    <SideMenu logOut={this.props.logOut} />
+                    <Route component={SideMenu} />
                 </div>
                 <div className="content">
                     <Route path="/profile" component={ActiveUserDetails} />

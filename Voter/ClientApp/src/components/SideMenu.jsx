@@ -1,25 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../ComponentsStyles/SideMenu.css';
+import { NotificationManager } from 'react-notifications';
 import AuthMethods from '../Helpers/AuthMethods';
 
 export class SideMenu extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.toggleNavbar = this.toggleNavbar.bind(this);
-        this.state = {
-            collapsed: true
-        };
-    }
-
-    toggleNavbar() {
-        this.setState({
-            collapsed: !this.state.collapsed
-        });
-    }
-
     Auth = new AuthMethods();
 
     renderRegisterTabIfAdmin = () => {
@@ -28,6 +12,12 @@ export class SideMenu extends Component {
                 <li><NavLink to="/residents">Residents</NavLink></li>
             );
         }
+    }
+
+    handleLogout = () => {
+        this.Auth.logout();
+        this.props.history.push('/login');
+        NotificationManager.success('Logout Successful', 'Correct');
     }
 
     render() {
@@ -45,7 +35,7 @@ export class SideMenu extends Component {
                         </ul>
                     </nav>
                 </div>
-                <button className="btn btn-danger logOutBtn" onClick={this.props.logOut}>Logout</button>
+                <button className="btn btn-danger logOutBtn" onClick={this.handleLogout}>Logout</button>
             </header>
         );
     }
