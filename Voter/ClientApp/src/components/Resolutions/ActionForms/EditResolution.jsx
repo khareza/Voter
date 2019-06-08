@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
+import { Error } from '../../Error';
 
 class EditResolution extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class EditResolution extends Component {
             resolutionNumber: this.props.resolutionToEdit.resolutionNumber,
             description: this.props.resolutionToEdit.description,
             expirationDate: new Date(),
-            isSubmitDisabled: false
+            isSubmitDisabled: false,
+            errors: {}
         };
     }
 
@@ -29,27 +31,26 @@ class EditResolution extends Component {
 
             this.props.history.push('/resolutions')
         }).catch((err) => {
-            NotificationManager.error('Unsuccessful resolution edit', 'Error!', 5000, () => {
-            });
+            NotificationManager.error('Unsuccessful resolution edit', 'Error!');
+            this.handleInputErrors(err.response.data.errors);
         });
+    }
+
+    handleInputErrors = (errors) => {
+        let errorsArray = [];
+        for (var field in errors) {
+            errorsArray[field] = errors[field];
+        }
+        this.setState({ errors: errorsArray });
     }
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-        //this.checkIfFormDataIsValid();
     }
 
     handleDateChange = (date) => {
         this.setState({ expirationDate: date });
     }
-    //checkIfFormDataIsValid = () => {
-    //    if (this.state.userName.length > 0 && this.state.firstName.length > 0) {
-    //        this.setState({ isSubmitDisabled: false });
-    //    }
-    //    else {
-    //        this.setState({ isSubmitDisabled: true });
-    //    }
-    //}
 
     render() {
         return (
@@ -62,17 +63,20 @@ class EditResolution extends Component {
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
                                 <label >Title</label>
-                                <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange} required />
+                                <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange}/>
+                                {this.state.errors['Title'] ? <Error messages={this.state.errors['Title']} /> : null}
                             </div>
 
                             <div className="form-group">
                                 <label>Resolution Number</label>
-                                <input className="form-control" type="text" name="resolutionNumber" value={this.state.resolutionNumber} onChange={this.handleInputChange} required />
+                                <input className="form-control" type="text" name="resolutionNumber" value={this.state.resolutionNumber} onChange={this.handleInputChange} />
+                                {this.state.errors['ResolutionNumber'] ? <Error messages={this.state.errors['ResolutionNumber']} /> : null}
                             </div>
 
                             <div className="form-group">
                                 <label>Description</label>
                                 <input className="form-control" type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
+                                {this.state.errors['Description'] ? <Error messages={this.state.errors['Description']} /> : null}
                             </div>
 
                             <div className="form-group">
@@ -88,6 +92,7 @@ class EditResolution extends Component {
                                         timeCaption="time"
                                     />
                                 </div>
+                                {this.state.errors['ExpirationDate'] ? <Error messages={this.state.errors['ExpirationDate']} /> : null}
                             </div>
 
                             <input type="submit" value="Edit user data" className="btn btn-large btn-block btn-info" disabled={this.state.isSubmitDisabled} />

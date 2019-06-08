@@ -9,8 +9,10 @@ import './ComponentsStyles/Login.css';
 import './ComponentsStyles/UserDetails.css';
 import './ComponentsStyles/ResolutionDetails.css';
 import './ComponentsStyles/ResolutionList.css';
+import './ComponentsStyles/Error.css';
 import 'react-notifications/lib/notifications.css';
 import 'react-datepicker/dist/react-datepicker.css';
+
 
 
 class App extends Component {

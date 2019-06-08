@@ -1,33 +1,26 @@
 ﻿import React, { Component } from 'react';
-import { NotificationManager } from 'react-notifications';
+import { Route} from 'react-router-dom';
 import { Login } from './LoginForm';
 import AuthMethods from '../../Helpers/AuthMethods';
+import { NotificationManager } from 'react-notifications';
 
 export class LoginWrapper extends Component {
     constructor(props) {
         super(props);
         this.Auth = new AuthMethods();
-        if (this.Auth.loggedIn())
+        if (this.Auth.loggedIn()) {
             this.props.history.push('/profile');
+            NotificationManager.error('Click logout to display login page', 'You are already logged in');
+        }
     }
 
-
-    login = (loginFormData) => {
-        this.Auth.login(loginFormData)
-            .then(res => {
-                NotificationManager.success('Login Successful', 'Correct');
-                this.props.history.push('/profile');
-            }).catch(err => {
-                NotificationManager.error('Wrong login or password', 'Error!');
-            })
-    }
 
     render() {
         return (
             <div>
                 <div className="mainLoginWrapper ">
                     <div className="row loginWrapper">
-                        <Login login={this.login} />
+                        <Route component={Login} />
                     </div>
                 </div>
             </div>
