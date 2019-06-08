@@ -29,8 +29,9 @@ class UsersList extends Component {
     deleteUser = (id) => {
         this.UserMethods.deleteUser(id)
             .then(() => {
+                var newList = this.state.users.filter((user) => ( user.id !== id ));
+                this.setState({ users: newList });
                 NotificationManager.success('Delete Successful', 'Correct');
-                this.getUsers()
             })
             .catch(err => {
                 NotificationManager.error('Unsuccessful user delete', 'Error!');

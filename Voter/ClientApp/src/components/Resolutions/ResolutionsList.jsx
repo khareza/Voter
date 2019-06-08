@@ -30,7 +30,8 @@ class ResolutionsList extends Component {
     deleteResolution = (id) => {
         this.ResMethods.deleteResolution(id)
             .then(() => {
-                this.getResolutions();
+                var newList = this.state.resolutions.filter((resolution) => (resolution.id !== id));
+                this.setState({ resolutions: newList });
                 NotificationManager.success('Delete Successful', 'Correct');
             })
             .catch(err => {

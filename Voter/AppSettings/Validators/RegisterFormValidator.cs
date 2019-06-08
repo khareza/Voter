@@ -91,7 +91,7 @@ namespace Voter.AppSettings.Validators
                 .WithMessage("Enter birth date")
                 .NotEmpty()
                 .WithMessage("Enter birth date")
-                .GreaterThan(DateTime.Now)
+                .LessThan(DateTime.Now)
                 .WithMessage("Enter correct birth date");
         }
     }
