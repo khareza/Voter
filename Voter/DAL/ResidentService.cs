@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Voter.Common;
 using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
+using Voter.Models.FormsData;
 
 namespace Voter.DAL
 {

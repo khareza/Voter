@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Voter.Models;
+using Voter.Models.FormsData;
 
 namespace Voter.DAL.ServiceInterfaces
 {

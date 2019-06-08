@@ -18,6 +18,7 @@ using Voter.AppSettings.Validators;
 using Voter.DAL;
 using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
+using Voter.Models.FormsData;
 
 namespace Voter
 {
@@ -38,6 +39,9 @@ namespace Voter
             services.AddTransient<IResolutionService, ResolutionService>();
 
             services.AddSingleton<IValidator<EditFormData>, EditResidentFormValidator>();
+            services.AddSingleton<IValidator<LoginFormData>, LoginFormValidator>();
+            services.AddSingleton<IValidator<RegisterFormData>, RegisterFormValidator>();
+            services.AddSingleton<IValidator<ResolutionFormData>, ResolutionFormValidator>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation((fv => {
                 fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;

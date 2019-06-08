@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Voter.Models;
+using Voter.Models.FormsData;
 
 namespace Voter.AppSettings.Validators
 {

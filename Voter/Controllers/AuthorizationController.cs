@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Voter.DAL;
 using Voter.Models;
+using Voter.Models.FormsData;
 
 namespace Voter.Controllers
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Voter.Models
+namespace Voter.Models.FormsData
 {
     public class RegisterFormData
     {
