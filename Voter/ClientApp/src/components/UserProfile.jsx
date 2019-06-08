@@ -4,8 +4,19 @@ import { SideMenu } from './SideMenu';
 import { ActiveUserDetails } from './ActiveUserDetails';
 import { UsersListWrapper } from './User/UsersListWrapper';
 import { ResolutionsListWrapper } from './Resolutions/ResolutionsListWrapper';
+import AuthMethods from '../Helpers/AuthMethods';
 
 export class UserProfile extends Component {
+    Auth = new AuthMethods();
+
+    renderResidentsRouteIfAdmin = () => {
+        if (this.Auth.isUserAdmin()) {
+            return (
+                <Route path="/residents" component={UsersListWrapper} />
+            );
+        }
+    }
+
     render() {
         return (
             <div className="site">
@@ -14,8 +25,8 @@ export class UserProfile extends Component {
                 </div>
                 <div className="content">
                     <Route path="/profile" component={ActiveUserDetails} />
-                    <Route path="/residents" component={UsersListWrapper} />
                     <Route path="/resolutions" component={ResolutionsListWrapper} />
+                    {this.renderResidentsRouteIfAdmin()}
                 </div>
             </div>
         );
