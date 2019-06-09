@@ -1,10 +1,11 @@
 ﻿import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { UserMethods} from '../../../Helpers/UserMethods';
 import DatePicker from 'react-datepicker';
 import { Error } from '../../Error';
 
-export class RegisterNewUser extends Component {
+class RegisterNewUser extends Component {
     constructor(props) {
         super(props);
 
@@ -29,8 +30,10 @@ export class RegisterNewUser extends Component {
 
         this.UserMethods.register(
             { userName, password, firstName, lastName, email, birthDate, phone, address}
-        ).then(() => {
+        ).then((res) => {
             NotificationManager.success('Register Successful', 'Correct');
+            this.props.addNewUser(res.data);
+            console.log(res.data);
             this.props.history.push('/residents');
         }).catch((err) => {
             NotificationManager.error('Unsuccessful user register', 'Error!');
@@ -67,7 +70,7 @@ export class RegisterNewUser extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit} autoComplete="off">
+                <form onSubmit={this.handleSubmit}>
                     <div className="headerLogin">
                         <h2 >Add new user</h2>
                     </div>
@@ -136,3 +139,5 @@ export class RegisterNewUser extends Component {
         );
     }
 }
+
+export default withRouter(RegisterNewUser);

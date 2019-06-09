@@ -10,6 +10,7 @@ class EditUserForm extends Component {
         this.UserMethods = new UserMethods();
         this.id = this.props.match.params.user_id;
         this.state = {
+            id:'',
             userName: '',
             firstName: '',
             lastName: '',
@@ -36,6 +37,7 @@ class EditUserForm extends Component {
         }
         else {
             this.setState({
+                id:user.id,
                 userName: user.userName,
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -49,13 +51,13 @@ class EditUserForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { userName, firstName, lastName, address, email, phoneNumber } = this.state.user;
+        let {id, userName, firstName, lastName, address, email, phoneNumber } = this.state;
 
         this.UserMethods.editUser(
-            { id: this.props.userToEdit.id, userName, firstName, lastName, address, email, phoneNumber }
+            { id, userName, firstName, lastName, address, email, phoneNumber }
         ).then((res) => {
             NotificationManager.success('Edit Successful', 'Correct');
-
+            this.props.setEditedUser(this.id, { id, userName, firstName, lastName, address, email, phoneNumber });
             this.props.history.push('/residents')
         }).catch((err) => {
             NotificationManager.error('Unsuccessful user edit', 'Error!');
@@ -90,7 +92,7 @@ class EditUserForm extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
                     <div className="headerLogin">
-                        {this.props.userToEdit.id ? <h2 >Edit user</h2> : <h2 >Select user</h2>}
+                        <h2 >Edit user</h2>
                     </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">

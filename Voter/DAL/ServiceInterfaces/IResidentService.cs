@@ -10,6 +10,6 @@ namespace Voter.DAL.ServiceInterfaces
         Task<object> DeleteUser(string id);
         Task<object> EditUser(EditFormData formData);
         Task<IEnumerable<Resident>> GetUsers();
-        Task RegisterNewUser(RegisterFormData formData);
+        Task<Resident> RegisterNewUser(RegisterFormData formData);
     }
 }

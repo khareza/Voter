@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import { RegisterNewUser } from './ActionForms/RegisterNewUser';
+import { Route} from 'react-router-dom';
+import RegisterNewUser from './ActionForms/RegisterNewUser';
 import UsersList from './UsersList';
 import EditUserForm from './ActionForms/EditUserForm';
 import { NotificationManager } from 'react-notifications';
@@ -17,22 +17,22 @@ export class UsersListWrapper extends Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.getUsers();
     }
 
     getUsers = () => {
         this.UserMethods.getUsers()
             .then(res => {
-                this.setState({ users: res.data })
+                this.setState({ users: res.data})
             });
     }
 
     deleteUser = (id) => {
         this.UserMethods.deleteUser(id)
             .then(() => {
-                var newList = this.state.users.filter((user) => (user.id !== id));
-                this.setState({ users: newList });
+        var users = this.state.users.filter((user) => (user.id !== id));
+                this.setState({users});
                 NotificationManager.success('Delete Successful', 'Correct');
             })
             .catch(err => {
@@ -40,13 +40,29 @@ export class UsersListWrapper extends Component {
             });
     }
 
+    //when clicked
     editUser = (id) => {
         var index = this.state.users.findIndex((user)=>(user.id === id))
         this.props.history.push(`/residents/edit/${index}`)
     }
 
+    //used when click and in case if somebody enter direct url
     getUserToEdit = (index) => {
         return this.state.users[index];
+    }
+
+    //used for update and rerender list intead of send get request
+    setEditedUser = (index, updatedUser) => {
+        console.log(updatedUser);
+        let users = this.state.users;
+        users[index] = updatedUser;
+        this.setState({users});
+    }
+
+    addNewUser = (newUser) => {
+        let users = this.state.users;
+        users.push(newUser);
+        this.setState({users});
     }
 
     render() {
@@ -55,8 +71,12 @@ export class UsersListWrapper extends Component {
                 {this.state.users ?
                     <div>
                         <Route exact path="/residents" render={() => (<UsersList editUser={this.editUser} users={this.state.users} deleteUser={this.deleteUser} />)} />
-                        <Route exact path="/residents/create" component={RegisterNewUser} />
-                        <Route exact path="/residents/edit/:user_id" render={() => (<EditUserForm getUserToEdit={this.getUserToEdit} userToEdit={this.state.userToEdit} />)} />
+                        <Route exact path="/residents/create" render={() => (<RegisterNewUser addNewUser={this.addNewUser} />)} />
+                        <Route exact path="/residents/edit/:user_id" render={() => (
+                            <EditUserForm
+                            getUserToEdit={this.getUserToEdit}
+                            userToEdit={this.state.userToEdit}
+                            setEditedUser={this.setEditedUser} />)} />
                     </div>
                     : null}
             </div>

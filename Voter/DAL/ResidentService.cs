@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,31 +14,26 @@ namespace Voter.DAL
     public class ResidentService : IResidentService
     {
         private UserManager<Resident> _userManager;
+        private readonly IMapper _mapper;
 
-        public ResidentService(UserManager<Resident> userManager)
+        public ResidentService(UserManager<Resident> userManager, IMapper mapper)
         {
             _userManager = userManager;
+            _mapper = mapper;
+
         }
 
-        public async Task RegisterNewUser(RegisterFormData formData)
+        public async Task<Resident> RegisterNewUser(RegisterFormData formData)
         {
             var role = UserRole.USER;
 
-            var newResident = new Resident
-            {
-                UserName = formData.UserName,
-                Email = formData.Email,
-                FirstName = formData.FirstName,
-                LastName = formData.LastName,
-                PhoneNumber = formData.Phone,
-                Address = formData.Address,
-                BirthDate = formData.BirthDate
-            };
+            var newResident = _mapper.Map<Resident>(formData);
 
             try
             {
                 var result = await _userManager.CreateAsync(newResident, formData.Password);
                 await _userManager.AddToRoleAsync(newResident, role);
+                return newResident;
             }
             catch (Exception)
             {
@@ -70,8 +66,6 @@ namespace Voter.DAL
 
             if (user != null)
             {
-                //use object mapper here :)
-
                 user.UserName = formData.UserName;
                 user.Email = formData.Email;
                 user.FirstName = formData.FirstName;

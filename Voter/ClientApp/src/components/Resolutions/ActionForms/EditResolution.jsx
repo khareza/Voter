@@ -35,7 +35,7 @@ class EditResolution extends Component {
                 title: resolution.title,
                 resolutionNumber: resolution.resolutionNumber,
                 description: resolution.description,
-                isSubmitDisabled: true,
+                isSubmitDisabled: false,
             })
         }
     }

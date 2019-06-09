@@ -1,3 +1,4 @@
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Text;
+using Voter.AppSettings.AutoMapper;
 using Voter.AppSettings.Validators;
 using Voter.DAL;
 using Voter.DAL.ServiceInterfaces;
@@ -42,6 +44,14 @@ namespace Voter
             services.AddSingleton<IValidator<LoginFormData>, LoginFormValidator>();
             services.AddSingleton<IValidator<RegisterFormData>, RegisterFormValidator>();
             services.AddSingleton<IValidator<ResolutionFormData>, ResolutionFormValidator>();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddFluentValidation((fv => {
                 fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;

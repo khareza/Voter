@@ -4,17 +4,11 @@ import { UserDetails } from './Details/UserDetails';
 import { UserMethods } from '../../Helpers/UserMethods';
 
 class UsersList extends Component {
-    constructor(props) {
-        super(props);
+    UserMethods = new UserMethods();
 
-        this.UserMethods = new UserMethods();
-        this.state = {
-            users: this.props.users
-        }
-    }
 
     renderUserComponents = () => {
-        return this.state.users.map((user) => {
+        return this.props.users.map((user) => {
             return (
                 <UserDetails key={user.id}
                     deleteUser={this.props.deleteUser}

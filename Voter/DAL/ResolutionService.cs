@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,22 +12,18 @@ namespace Voter.DAL
     public class ResolutionService : IResolutionService
     {
         private AuthenticationContext _context;
-
-        public ResolutionService(AuthenticationContext context)
+        private readonly IMapper _mapper;
+        public ResolutionService(AuthenticationContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+
         }
 
         public Resolution CreateResolution(ResolutionFormData formData)
         {
-            var newResolution = new Resolution
-            {
-                Title = formData.Title,
-                ResolutionNumber = formData.ResolutionNumber,
-                Description = formData.Description,
-                ExpirationDate = formData.ExpirationDate,
-                CreationDate = DateTime.Now
-            };
+            var newResolution = _mapper.Map<Resolution>(formData);
+            newResolution.CreationDate = DateTime.Now;
 
             _context.Resolutions.Add(newResolution);
             _context.SaveChanges();
@@ -57,8 +54,6 @@ namespace Voter.DAL
 
             if (resolution != null)
             {
-                //use object mapper here :)
-
                 resolution.Title = formData.Title;
                 resolution.ResolutionNumber = formData.ResolutionNumber;
                 resolution.Description = formData.Description;

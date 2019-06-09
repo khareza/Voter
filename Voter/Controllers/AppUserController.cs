@@ -38,8 +38,8 @@ namespace Voter.Controllers
 
             try
             {
-                await _context.RegisterNewUser(formData);
-                return Ok();
+               var createdResident = await _context.RegisterNewUser(formData);
+                return Ok(createdResident);
             }
             catch (Exception)
             {
