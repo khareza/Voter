@@ -9,7 +9,6 @@ namespace Voter.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [Column(TypeName = "date")]
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
         public List<ResidentResolution> Resolutions { get; set; }

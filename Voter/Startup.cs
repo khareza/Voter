@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Text;
+using Voter.AppSettings;
 using Voter.AppSettings.AutoMapper;
 using Voter.AppSettings.Validators;
 using Voter.DAL;
