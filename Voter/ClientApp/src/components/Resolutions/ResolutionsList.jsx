@@ -2,24 +2,20 @@
 import { withRouter } from 'react-router-dom';
 import { AdminResolution } from './Details/AdminResolution';
 import { UserResolution } from './Details/UserResolution';
-import { ResolutionMethods} from '../../Helpers/ResolutionMethods';
+import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
 
 class ResolutionsList extends Component {
-    constructor(props) {
-        super(props);
-        this.ResMethods = new ResolutionMethods();
-        this.Auth = new AuthMethods();
-        this.state = {
-            resolutions: this.props.resolutions
-        }
-    }
+
+    ResMethods = new ResolutionMethods();
+    Auth = new AuthMethods();
+
 
     renderAdminResolutionComponents = () => {
-        return this.state.resolutions.map((resolution) => {
+        return this.props.resolutions.map((resolution) => {
             return (
                 <AdminResolution key={resolution.id}
-                    deleteResolution={this.deleteResolution}
+                    deleteResolution={this.props.deleteResolution}
                     editResolution={
                         (id) => {
                             this.props.editResolution(id)
@@ -40,7 +36,7 @@ class ResolutionsList extends Component {
 
     renderButton = () => {
 
-       return ( <div className="text-center">
+        return (<div className="text-center">
             <button className="btn btn-success mt-3"
                 onClick={() => { this.props.history.push('/resolutions/create') }}>Add new resolution</button>
         </div>)

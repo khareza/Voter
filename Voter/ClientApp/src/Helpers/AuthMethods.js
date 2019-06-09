@@ -7,7 +7,6 @@ export default class AuthMethods {
     }
 
     login = (loginFormData) => {
-        console.log(loginFormData);
         return axios.post(`${this.authorizationApiUrl}/login`, loginFormData)
             .then(res => {
                 this.setToken(res.data.token);

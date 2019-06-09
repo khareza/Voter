@@ -16,7 +16,6 @@ export class Login extends Component {
     }
 
     login = (loginFormData) => {
-        console.log(loginFormData);
         this.Auth.login(loginFormData)
             .then(res => {
                 NotificationManager.success('Login Successful', 'Correct');

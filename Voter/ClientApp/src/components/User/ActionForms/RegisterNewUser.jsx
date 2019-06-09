@@ -33,7 +33,6 @@ class RegisterNewUser extends Component {
         ).then((res) => {
             NotificationManager.success('Register Successful', 'Correct');
             this.props.addNewUser(res.data);
-            console.log(res.data);
             this.props.history.push('/residents');
         }).catch((err) => {
             NotificationManager.error('Unsuccessful user register', 'Error!');

@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { CreateResolution } from './ActionForms/CreateResolution';
+import CreateResolution from './ActionForms/CreateResolution';
 import ResolutionsList from './ResolutionsList';
 import EditResolution from './ActionForms/EditResolution';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
@@ -50,18 +50,38 @@ export class ResolutionsListWrapper extends Component {
         return this.state.resolutions[index];
     }
 
+    setEditedResolution = (index, updatedResolution) => {
+        let resolutions = this.state.resolutions;
+        resolutions[index] = updatedResolution;
+        this.setState({ resolutions });
+    }
+
+    addNewResolution = (newResolution) => {
+        let resolutions = this.state.resolutions;
+        resolutions.push(newResolution);
+        this.setState({ resolutions });
+    }
+
+
     render() {
         return (
             <div>
                 {this.state.resolutions ?
                     <div>
-                        <Route exact path="/resolutions" render={() =>
-                            (<ResolutionsList
+                        <Route exact path="/resolutions" render={() => (
+                            <ResolutionsList
                                 editResolution={this.editResolution}
                                 resolutions={this.state.resolutions}
                                 deleteResolution={this.deleteResolution} />)} />
-                        <Route exact path="/resolutions/create" component={CreateResolution} />
-                        <Route exact path="/resolutions/edit/:resolution_id" render={() => (<EditResolution getResolutionToEdit={this.getResolutionToEdit} />)} />
+
+                        <Route exact path="/resolutions/create" render={() => (
+                            <CreateResolution
+                                addNewResolution={this.addNewResolution} />)} />
+
+                        <Route exact path="/resolutions/edit/:resolution_id" render={() => (
+                            <EditResolution
+                                getResolutionToEdit={this.getResolutionToEdit}
+                                setEditedResolution={this.setEditedResolution} />)} />
                     </div>
                     : null}
             </div>

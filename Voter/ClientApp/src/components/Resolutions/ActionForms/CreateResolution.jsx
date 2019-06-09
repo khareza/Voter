@@ -3,8 +3,9 @@ import { NotificationManager } from 'react-notifications';
 import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
 import { Error } from '../../Error';
+import { withRouter } from 'react-router-dom';
 
-export class CreateResolution extends Component {
+class CreateResolution extends Component {
     constructor(props) {
         super(props);
 
@@ -25,8 +26,9 @@ export class CreateResolution extends Component {
 
         this.ResMethods.createResolution(
             { title, resolutionNumber, description, expirationDate }
-        ).then(() => {
+        ).then((res) => {
             NotificationManager.success('Resultions added', 'Correct');
+            this.props.addNewResolution(res.data);
             this.props.history.push('/resolutions');
         }).catch((err) => {
             NotificationManager.error('Unsuccessful operation', 'Error!');
@@ -103,3 +105,6 @@ export class CreateResolution extends Component {
         );
     }
 }
+
+
+export default withRouter(CreateResolution);

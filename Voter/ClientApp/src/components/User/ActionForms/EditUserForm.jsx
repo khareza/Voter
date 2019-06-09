@@ -28,8 +28,6 @@ class EditUserForm extends Component {
 
     getUser = () => {
         const user = this.props.getUserToEdit(this.id);
-        console.log(user);
-
         if (typeof user === 'undefined')
         {
             this.props.history.push('/residents')

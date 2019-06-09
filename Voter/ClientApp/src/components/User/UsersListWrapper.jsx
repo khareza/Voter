@@ -75,7 +75,6 @@ export class UsersListWrapper extends Component {
                         <Route exact path="/residents/edit/:user_id" render={() => (
                             <EditUserForm
                             getUserToEdit={this.getUserToEdit}
-                            userToEdit={this.state.userToEdit}
                             setEditedUser={this.setEditedUser} />)} />
                     </div>
                     : null}

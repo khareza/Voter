@@ -11,6 +11,7 @@ class EditResolution extends Component {
         this.ResMethods = new ResolutionMethods();
         this.id = this.props.match.params.resolution_id;
         this.state = {
+            id:'',
             title: '',
             resolutionNumber: '',
             description: '',
@@ -32,6 +33,7 @@ class EditResolution extends Component {
         }
         else {
             this.setState({
+                id: resolution.id,
                 title: resolution.title,
                 resolutionNumber: resolution.resolutionNumber,
                 description: resolution.description,
@@ -43,13 +45,13 @@ class EditResolution extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { title, resolutionNumber, description, expirationDate } = this.state;
+        let {id, title, resolutionNumber, description, expirationDate } = this.state;
 
         this.ResMethods.editResolution(
-            { id: this.props.resolutionToEdit.id, title, resolutionNumber, description, expirationDate }
+            { id, title, resolutionNumber, description, expirationDate }
         ).then((res) => {
             NotificationManager.success('Edit Successful', 'Correct');
-
+            this.props.setEditedResolution(this.id, { id, title, resolutionNumber, description, expirationDate });
             this.props.history.push('/resolutions')
         }).catch((err) => {
             NotificationManager.error('Unsuccessful resolution edit', 'Error!');
