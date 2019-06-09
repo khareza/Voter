@@ -23,15 +23,15 @@ class UsersList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="usersList">
                 <div className="headerLogin">
                     <h2>All residents</h2>
                 </div>
-                {this.renderUserComponents()}
                 <div className="text-center">
                     <button className="btn btn-success mt-3"
                         onClick={() => { this.props.history.push('/residents/create') }}>Add new resident</button>
                 </div>
+                {this.renderUserComponents()}
             </div>
         );
     }

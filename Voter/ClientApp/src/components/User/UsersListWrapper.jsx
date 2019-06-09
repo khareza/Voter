@@ -67,7 +67,7 @@ export class UsersListWrapper extends Component {
 
     render() {
         return (
-            <div>
+            <div className="usersListWrapper">
                 {this.state.users ?
                     <div>
                         <Route exact path="/residents" render={() => (<UsersList editUser={this.editUser} users={this.state.users} deleteUser={this.deleteUser} />)} />

@@ -1,16 +1,27 @@
 ﻿.userCard {
-    width: 70%;
+    width: 40%;
     border: 1px solid #8bc34a;
     border-radius: 10px;
     margin: 3% auto;
     color: #37474f;
     font-weight: 500;
     font-family: Palatino;
+    display:inline-block;
+    margin:10px;
+}
+
+.usersList {
+    text-align:center;
+    padding:2% 10%;
+}
+
+.usersListWrapper {
+    width: 100%;
 }
 
 .userData {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     text-align: justify;
     padding: 10px 20px;
     background-color: #FFFFFF;
@@ -69,3 +80,16 @@
     .buttonDelete:hover {
         background-color: #e74c3c;
     }
+
+
+@media (max-width: 1200px) {
+    .usersList {
+        padding: 2% 0%;
+    }
+
+    .userCard {
+        width: 70%;
+        display:normal;
+        margin: 10px;
+    }
+}
