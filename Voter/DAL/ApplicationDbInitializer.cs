@@ -8,7 +8,7 @@ namespace Voter.DAL
     {
         public static void SeedUsers(UserManager<Resident> userManager)
         {
-            if (userManager.FindByNameAsync("Admin").Result == null)
+            if (userManager.GetUsersInRoleAsync("Admin").Result.Count==0)
             {
 
                 var newResident = new Resident
