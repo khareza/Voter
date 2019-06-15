@@ -41,3 +41,37 @@
     position: relative;
     background-color: #81c784;
 }
+
+@media (max-width: 1400px) {
+    .loginWrapper {
+        width: 40%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 1000px) {
+    .loginWrapper {
+        width: 60%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .loginWrapper {
+        width: 60%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .loginWrapper {
+        width: 80%;
+        padding: 0;
+    }
+}
+
+@media (max-height: 400px) {
+    .loginWrapper {
+        height:80%;
+    }
+}

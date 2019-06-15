@@ -37,7 +37,7 @@ class ResolutionsList extends Component {
     renderButton = () => {
 
         return (<div className="text-center">
-            <button className="btn btn-success mt-3"
+            <button className="btn btn-success"
                 onClick={() => { this.props.history.push('/resolutions/create') }}>Add new resolution</button>
         </div>)
     }
@@ -48,8 +48,8 @@ class ResolutionsList extends Component {
                 <div className="headerLogin">
                     <h2>Resolutions</h2>
                 </div>
-                {this.Auth.isUserAdmin() ? this.renderAdminResolutionComponents() : this.renderUserResolutionComponents()}
                 {this.Auth.isUserAdmin() ? this.renderButton() : null}
+                {this.Auth.isUserAdmin() ? this.renderAdminResolutionComponents() : this.renderUserResolutionComponents()}
             </div>
         );
     }
