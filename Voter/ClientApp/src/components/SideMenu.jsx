@@ -2,6 +2,7 @@
 import { NavLink } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import AuthMethods from '../Helpers/AuthMethods';
+import DrawerToggleButton from './SideDrawer/DrawerToggleButton';
 
 export class SideMenu extends Component {
     Auth = new AuthMethods();
@@ -23,17 +24,22 @@ export class SideMenu extends Component {
     render() {
         return (
             <header className="header">
-                <h1 className="logo">
-                    <a href="/profile">Your <span>Voter</span></a>
-                </h1>
-                <div className="nav-wrap">
-                    <nav className="main-nav">
-                        <ul className="unstyled list-hover-slide">
-                            <li><NavLink to="/profile">My profile</NavLink></li>
-                            {this.renderRegisterTabIfAdmin()}
-                            <li><NavLink to="/resolutions">Resolutions</NavLink></li>
-                        </ul>
-                    </nav>
+                <div className="headerFlex">
+                    <h1 className="logo">
+                        <a href="/profile">Your <span>Voter</span></a>
+                    </h1>
+                    <div>
+                        <DrawerToggleButton click={this.props.drawerClickHandler} />
+                    </div>
+                    <div className="nav-wrap">
+                        <nav className="main-nav">
+                            <ul className="unstyled list-hover-slide">
+                                <li><NavLink to="/profile">My profile</NavLink></li>
+                                {this.renderRegisterTabIfAdmin()}
+                                <li><NavLink to="/resolutions">Resolutions</NavLink></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <button className="btn btn-danger logOutBtn" onClick={this.handleLogout}>Logout</button>
             </header>

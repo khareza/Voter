@@ -21,6 +21,8 @@
     background: #35302D;
 }
 
+
+
 .logo {
     text-transform: lowercase;
     font: 300 2em "Source Sans Pro", Helvetica, Arial, sans-serif;
@@ -49,6 +51,10 @@
         font-weight: 700;
         transition: .15s linear color;
     }
+
+.nav-wrap {
+    align-self: center;
+}
 
 .main-nav ul {
     border-top: solid 1px #3C3735;
@@ -105,6 +111,7 @@
 }
 
 .content {
+    margin-left: 18em;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -120,7 +127,16 @@
     width: 100%;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
+
+    .headerFlex {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 10px;
+    }
+
     .main-nav {
         width: 100%;
     }
@@ -191,5 +207,25 @@
             text-decoration: none;
             transition: .15s linear color;
         }
+
+}
+@media (max-width: 600px) {
+
+
+
+    .logOutBtn {
+        display:none;
+    }
+    .nav-wrap {
+        display: none;
+    }
+
+    .headerFlex {
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
 
 }
