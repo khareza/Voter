@@ -66,7 +66,7 @@
 
         .buttonAccept:hover:after {
             font-size: 1.2rem;
-            content: 'Accept';
+            content: 'For';
         }
 
 .buttonAgainst {
@@ -83,7 +83,7 @@
 
         .buttonAgainst:hover:after {
             font-size: 1.2rem;
-            content: 'Reject';
+            content: 'Against';
         }
 
 .buttonAbstain {
@@ -100,7 +100,7 @@
 
         .buttonAbstain:hover:after {
             font-size: 1.2rem;
-            content: 'Abstain';
+            content: 'Hold';
         }
 @media (max-width: 600px) {
     .resolutionCard {

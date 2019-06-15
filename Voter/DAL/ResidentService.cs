@@ -13,11 +13,13 @@ namespace Voter.DAL
 {
     public class ResidentService : IResidentService
     {
+        private AuthenticationContext _context;
         private UserManager<Resident> _userManager;
         private readonly IMapper _mapper;
 
-        public ResidentService(UserManager<Resident> userManager, IMapper mapper)
+        public ResidentService(AuthenticationContext context,UserManager<Resident> userManager, IMapper mapper)
         {
+            _context = context;
             _userManager = userManager;
             _mapper = mapper;
 
@@ -79,6 +81,14 @@ namespace Voter.DAL
                 return null;
             }
 
+        }
+
+        public void Vote(UserVoteFormData formData)
+        {
+            var newVote = _mapper.Map<ResidentResolution>(formData);
+            newVote.VoteDate = DateTime.Now;
+            _context.ResidentResolution.Add(newVote);
+            _context.SaveChanges();
         }
 
     }

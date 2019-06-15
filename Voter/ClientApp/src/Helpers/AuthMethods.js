@@ -53,4 +53,9 @@ export default class AuthMethods {
         return localStorage.getItem("id_token");
     };
 
+    getUserId = () => {
+        const decoded = decode(this.getToken());
+        return decoded.UserID;
+    }
+
 }

@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter  } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import AuthMethods from '../Helpers/AuthMethods';
 import DrawerToggleButton from './SideDrawer/DrawerToggleButton';
 
-export class SideMenu extends Component {
+class SideMenu extends Component {
     Auth = new AuthMethods();
 
     renderRegisterTabIfAdmin = () => {
@@ -46,3 +46,5 @@ export class SideMenu extends Component {
         );
     }
 }
+
+export default withRouter(SideMenu);

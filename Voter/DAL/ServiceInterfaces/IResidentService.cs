@@ -11,5 +11,6 @@ namespace Voter.DAL.ServiceInterfaces
         Task<object> EditUser(EditFormData formData);
         Task<IEnumerable<Resident>> GetUsers();
         Task<Resident> RegisterNewUser(RegisterFormData formData);
+        void Vote(UserVoteFormData formData);
     }
 }

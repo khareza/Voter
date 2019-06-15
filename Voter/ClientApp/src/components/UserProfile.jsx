@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import { SideMenu } from './SideMenu';
-import { SideDrawer } from './SideDrawer/SideDrawer';
+import SideMenu from './SideMenu';
+import SideDrawer from './SideDrawer/SideDrawer';
 import Backdrop from './SideDrawer/Backdrop';
 import { ActiveUserDetails } from './ActiveUserProfile/ActiveUserDetails';
 import { UsersListWrapper } from './User/UsersListWrapper';
@@ -37,9 +37,9 @@ export class UserProfile extends Component {
     render() {
         return (
             <div className="site">
-                <Route render={() => <SideMenu drawerClickHandler={this.drawerToggleClickHandler} />} />
                 {this.state.sideDrawerOpen ? <Backdrop click={this.backdropClickHandler} /> : null}
-                <Route render={() => <SideDrawer show={this.state.sideDrawerOpen} />} />
+                <SideMenu drawerClickHandler={this.drawerToggleClickHandler} />}
+                <SideDrawer show={this.state.sideDrawerOpen}/>
                 <div className="content">
                     <Route path="/profile" component={ActiveUserDetails} />
                     <Route path="/resolutions" component={ResolutionsListWrapper} />

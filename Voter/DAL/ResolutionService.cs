@@ -72,5 +72,24 @@ namespace Voter.DAL
         {
             return _context.Resolutions.ToList();
         }
+
+        public IEnumerable<Resolution> GetActiveResolutions()
+        {
+            return _context.Resolutions.Where(r=>r.ExpirationDate > DateTime.Now).ToList();
+        }
+
+        public IEnumerable<Resolution> GetExpiredResolutions()
+        {
+            return _context.Resolutions.Where(r => r.ExpirationDate <= DateTime.Now).ToList();
+
+        }
+
+        public IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId)
+        {
+            return _context.Resolutions
+                .Where(r => !r.Residents.Any(x=>x.Voter.Id == userId) && r.ExpirationDate > DateTime.Now )
+                .ToList();
+        }
+
     }
 }

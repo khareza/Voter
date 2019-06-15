@@ -10,5 +10,8 @@ namespace Voter.DAL.ServiceInterfaces
         Resolution DeleteResolution(int id);
         Resolution EditResolution(ResolutionFormData formData);
         IEnumerable<Resolution> GetResolutions();
+        IEnumerable<Resolution> GetActiveResolutions();
+        IEnumerable<Resolution> GetExpiredResolutions();
+        IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId);
     }
 }

@@ -18,11 +18,11 @@ namespace Voter.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = UserRole.ADMIN)]
-    public class AppUserController : ControllerBase
+    public class AdminController : ControllerBase
     {
         private IResidentService _context;
 
-        public AppUserController(IResidentService context)
+        public AdminController(IResidentService context)
         {
             _context = context;
         }
@@ -91,5 +91,8 @@ namespace Voter.Controllers
             }
 
         }
+
+
+
     }
 }

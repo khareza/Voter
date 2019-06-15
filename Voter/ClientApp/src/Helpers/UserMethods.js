@@ -4,7 +4,8 @@ import AuthMethods from './AuthMethods';
 export class UserMethods {
     constructor() {
         this.auth = new AuthMethods();
-        this.adminApiUrl = "/api/AppUser";
+        this.adminApiUrl = "/api/Admin";
+        this.residentApiUrl = "/api/Resident";
 
         axios.defaults.headers.common['Authorization'] =
             'Bearer ' + this.auth.getToken();
@@ -20,6 +21,10 @@ export class UserMethods {
 
     getUsers = () => {
         return axios.get(`${this.adminApiUrl}/GetUsers`);
+    }
+
+    sendVote = (voteFormData) => {
+        return axios.post(`${this.residentApiUrl}/Vote`, voteFormData);
     }
 
     register = (registerFormData) => {

@@ -84,5 +84,30 @@ namespace Voter.Controllers
             return _context.GetResolutions();
         }
 
+        [HttpGet]
+        [Route("GetActiveResolutions")]
+        [Authorize]
+        public IEnumerable<Resolution> GetActiveResolutions()
+        {
+            return _context.GetActiveResolutions();
+        }
+
+        [HttpGet]
+        [Route("GetExpiredResolutions")]
+        [Authorize]
+        public IEnumerable<Resolution> GetExpiredResolutions()
+        {
+            return _context.GetExpiredResolutions();
+        }
+
+        [HttpGet]
+        [Route("GetResolutionsWithoutUserVote/{userId}")]
+        [Authorize]
+        public IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId)
+        {
+            return _context.GetResolutionsWithoutUserVote(userId);
+        }
+
+
     }
 }

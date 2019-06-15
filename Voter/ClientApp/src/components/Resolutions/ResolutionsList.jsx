@@ -26,10 +26,11 @@ class ResolutionsList extends Component {
     }
 
     renderUserResolutionComponents = () => {
-        return this.state.resolutions.map((resolution) => {
+        return this.props.resolutions.map((resolution) => {
             return (
                 <UserResolution key={resolution.id}
-                    resolution={resolution} />
+                    resolution={resolution}
+                    deleteResolutionFromList={this.props.deleteResolutionFromList}/>
             )
         })
     }

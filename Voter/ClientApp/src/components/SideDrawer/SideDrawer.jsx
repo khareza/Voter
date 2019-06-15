@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import AuthMethods from '../../Helpers/AuthMethods';
 
-export class SideDrawer extends Component {
+class SideDrawer extends Component {
     Auth = new AuthMethods();
 
     renderRegisterTabIfAdmin = () => {
@@ -44,3 +44,5 @@ export class SideDrawer extends Component {
         );
     }
 }
+
+export default withRouter(SideDrawer);

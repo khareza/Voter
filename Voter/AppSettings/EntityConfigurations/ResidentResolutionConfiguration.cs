@@ -12,6 +12,22 @@ namespace Voter.AppSettings.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<ResidentResolution> builder)
         {
+            builder
+                .HasKey(rr => rr.Id);
+
+            builder
+                .HasOne(rr => rr.Voter)
+                .WithMany(v => v.Resolutions)
+                .HasForeignKey(rr => rr.VoterId);
+
+            builder
+                .HasOne(rr => rr.Resolution)
+                .WithMany(v => v.Residents)
+                .HasForeignKey(rr => rr.ResolutionId);
+
+            builder
+                .Property(r => r.VoteDate)
+                .HasColumnType("Datetime");
         }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voter.DAL;
 
 namespace Voter.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20190615151854_UpdatedManyToManyRelationBetweenResolutionAndResidentsTables")]
+    partial class UpdatedManyToManyRelationBetweenResolutionAndResidentsTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,24 +193,19 @@ namespace Voter.Migrations
 
             modelBuilder.Entity("Voter.Models.ResidentResolution", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Answer");
+                    b.Property<string>("VoterId");
 
                     b.Property<int>("ResolutionId");
 
-                    b.Property<DateTime>("VoteDate")
-                        .HasColumnType("Datetime");
+                    b.Property<int>("Answer");
 
-                    b.Property<string>("VoterId");
+                    b.Property<int>("Id");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("VoteDate");
+
+                    b.HasKey("VoterId", "ResolutionId");
 
                     b.HasIndex("ResolutionId");
-
-                    b.HasIndex("VoterId");
 
                     b.ToTable("ResidentResolution");
                 });
@@ -306,7 +303,8 @@ namespace Voter.Migrations
 
                     b.HasOne("Voter.Models.Resident", "Voter")
                         .WithMany("Resolutions")
-                        .HasForeignKey("VoterId");
+                        .HasForeignKey("VoterId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

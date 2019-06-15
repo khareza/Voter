@@ -14,7 +14,7 @@ export class ResolutionsListWrapper extends Component {
         this.ResMethods = new ResolutionMethods();
         this.Auth = new AuthMethods();
         this.state = {
-            resolutions: ''
+            resolutions: []
         }
     }
 
@@ -23,10 +23,19 @@ export class ResolutionsListWrapper extends Component {
     }
 
     getResolutions = () => {
-        this.ResMethods.getResolutions()
-            .then(res => {
-                this.setState({ resolutions: res.data });
-            });
+        if (this.Auth.isUserAdmin()) {
+            this.ResMethods.getActiveResolutions()
+                .then(res => {
+                    this.setState({ resolutions: res.data });
+                });
+        }
+        else {
+            this.ResMethods.getResolutionsWithoutUserVote()
+                .then(res => {
+                    console.log(res.data);
+                    this.setState({ resolutions: res.data });
+                });
+        }
     }
 
     deleteResolution = (id) => {
@@ -40,6 +49,12 @@ export class ResolutionsListWrapper extends Component {
                 NotificationManager.error('Unsuccessful delete', 'Error!');
             });
     }
+
+    deleteResolutionFromList = (id) => {
+        var newList = this.state.resolutions.filter((resolution) => (resolution.id !== id));
+        this.setState({ resolutions: newList });
+    }
+
 
     editResolution = (id) => {
         var index = this.state.resolutions.findIndex((resolution) => (resolution.id === id))
@@ -65,14 +80,16 @@ export class ResolutionsListWrapper extends Component {
 
     render() {
         return (
-            <div>
+            <div className="listBody">
                 {this.state.resolutions ?
                     <div>
                         <Route exact path="/resolutions" render={() => (
                             <ResolutionsList
                                 editResolution={this.editResolution}
                                 resolutions={this.state.resolutions}
-                                deleteResolution={this.deleteResolution} />)} />
+                                deleteResolution={this.deleteResolution}
+                                deleteResolutionFromList={this.deleteResolutionFromList}
+                            />)} />
 
                         <Route exact path="/resolutions/create" render={() => (
                             <CreateResolution

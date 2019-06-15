@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Voter.DAL;
 
 namespace Voter.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20190615153318_UpdatedManyToManyRelation")]
+    partial class UpdatedManyToManyRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,8 +201,7 @@ namespace Voter.Migrations
 
                     b.Property<int>("ResolutionId");
 
-                    b.Property<DateTime>("VoteDate")
-                        .HasColumnType("Datetime");
+                    b.Property<DateTime>("VoteDate");
 
                     b.Property<string>("VoterId");
 

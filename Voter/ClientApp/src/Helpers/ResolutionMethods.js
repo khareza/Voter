@@ -22,6 +22,19 @@ export class ResolutionMethods {
         return axios.get(`${this.resolutionApiUrl}/GetResolutions`);
     }
 
+    getActiveResolutions = () => {
+        return axios.get(`${this.resolutionApiUrl}/GetActiveResolutions`);
+    }
+
+    getExpiredResolutions = () => {
+        return axios.get(`${this.resolutionApiUrl}/GetExpiredResolutions`);
+    }
+
+    getResolutionsWithoutUserVote = () => {
+        const userId = this.auth.getUserId();
+        return axios.get(`${this.resolutionApiUrl}/GetResolutionsWithoutUserVote/${userId}`);
+    }
+
     createResolution = (newResolutionFormData) => {
         return axios.post(`${this.resolutionApiUrl}/CreateResolution`, newResolutionFormData);
     }
