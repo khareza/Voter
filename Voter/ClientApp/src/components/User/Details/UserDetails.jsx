@@ -4,18 +4,18 @@ import { faUserEdit, faUserTimes } from '@fortawesome/free-solid-svg-icons'
 import Moment from 'react-moment';
 
 export class UserDetails extends Component {
-
     editUser = () => {
         this.props.editUser(this.props.user.id);
     }
 
     deleteUser = () => {
-        this.props.deleteUser(this.props.user.id);
+        this.props.handleErrorDialogOpen(this.props.user.id);
     }
 
     render() {
 
         return (
+
             <div className="userCard">
                 <div className="userCardHeader">
                     <p>{`${this.props.user.firstName} ${this.props.user.lastName}`}</p>

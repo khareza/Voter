@@ -19,6 +19,7 @@ import './ComponentsStyles/Login.css';
 import './ComponentsStyles/Site.css';
 import './ComponentsStyles/UserList.css';
 import './ComponentsStyles/ActiveUserDetails.css';
+import './ComponentsStyles/Dialogs.css';
 
 
 class App extends Component {

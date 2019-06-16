@@ -13,7 +13,8 @@ export class UsersListWrapper extends Component {
 
         this.UserMethods = new UserMethods();
         this.state = {
-            users: ''
+            users: '',
+            dialogErrorOpen: false
         }
     }
 
@@ -29,6 +30,7 @@ export class UsersListWrapper extends Component {
     }
 
     deleteUser = (id) => {
+        console.log(id);
         this.UserMethods.deleteUser(id)
             .then(() => {
         var users = this.state.users.filter((user) => (user.id !== id));

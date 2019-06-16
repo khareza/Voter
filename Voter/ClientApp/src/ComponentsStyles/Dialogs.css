@@ -1,0 +1,85 @@
+﻿body {
+}
+
+.dialogContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius:.5em;
+    position: fixed;
+    z-index: 100;
+    margin-top:10px;
+    left:40%;
+    width: 30%;
+    height: 20%;
+    background-color: white;
+    transform: translateY(-300%);
+    transition: transform 0.4s ease;
+}
+
+
+.dialogBackdrop {
+    left:0;
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 50;
+}
+
+
+.dialogContainer.open {
+    transform: translateY(0);
+}
+
+.buttonDialogClose {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+}
+
+    .buttonDialogClose * {
+        color: #8f9cb5;
+    }
+.buttonDialogAccept {
+    width: 100%;
+    background-color: #fc7169;
+    border-radius: 0 0 0 .5em;
+}
+
+    .buttonDialogAccept:hover {
+        width: 100%;
+        background-color: #fc8982;
+    }
+
+.buttonDialogRefuse {
+    width: 100%;
+    background-color: #b6bece;
+    border-radius: 0 0 .5em 0;
+}
+
+    .buttonDialogRefuse:hover {
+        width: 100%;
+        background-color: #c5ccd8;
+    }
+
+.dialogButtons {
+    border-radius: 10px;
+    display: flex;
+    bottom: 0;
+    width: 100%;
+}
+    .dialogButtons a {
+        cursor: pointer;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 10px;
+        color: #fff !important;
+    }
+
+.dialogMessage {
+    text-align: center;
+    color: #8f9cb5;
+}

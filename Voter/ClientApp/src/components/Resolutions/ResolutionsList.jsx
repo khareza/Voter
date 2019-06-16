@@ -4,18 +4,27 @@ import { AdminResolution } from './Details/AdminResolution';
 import { UserResolution } from './Details/UserResolution';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
+import DeleteDialog from '../DialogBoxes/DeleteDialog';
+import DialogBackdrop from '../DialogBoxes/DialogBackdrop';
 
 class ResolutionsList extends Component {
 
     ResMethods = new ResolutionMethods();
     Auth = new AuthMethods();
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            dialogErrorOpen: false,
+            deleteResolutionId: ''
+        }
+    }
 
     renderAdminResolutionComponents = () => {
         return this.props.resolutions.map((resolution) => {
             return (
                 <AdminResolution key={resolution.id}
-                    deleteResolution={this.props.deleteResolution}
+                    deleteResolution={this.handleErrorDialogOpen}
                     editResolution={
                         (id) => {
                             this.props.editResolution(id)
@@ -43,10 +52,47 @@ class ResolutionsList extends Component {
                 onClick={() => { this.props.history.push('/resolutions/create') }}>Add new resolution</button>
         </div>)
     }
+
+    handleErrorDialogOpen = (id) => {
+        this.setState({
+            dialogErrorOpen: true,
+            deleteResolutionId: id
+        });
+    }
+
+    handleAccept = () => {
+        this.props.deleteResolution(this.state.deleteResolutionId)
+        this.setState({
+            dialogErrorOpen: false,
+            deleteResolutionId: ''
+        });
+    }
+
+    handleRefuse = () => {
+        this.setState({
+            dialogErrorOpen: false,
+            deleteResolutionId: ''
+        });
+    }
+
+    handleCloseDialog = () => {
+        this.setState({
+            dialogErrorOpen: false,
+            deleteResolutionId: ''
+        });
+    }
+
     //change it to check only once
     render() {
         return (
             <div>
+                {this.state.dialogErrorOpen ? <DialogBackdrop /> : null}
+                <DeleteDialog dialogErrorOpen={this.state.dialogErrorOpen}
+                    closeDialog={this.handleCloseDialog}
+                    refuse={this.handleRefuse}
+                    agree={this.handleAccept}
+                    message="Are you sure you want to delete this resolution?"
+                />
                 <div className="listHeader">
                     <h2>Resolutions</h2>
                 </div>
