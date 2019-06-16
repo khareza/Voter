@@ -20,7 +20,8 @@ class ResolutionsList extends Component {
                         (id) => {
                             this.props.editResolution(id)
                         }}
-                    resolution={resolution} />
+                    resolution={resolution}
+                    showResolutionResults={this.props.showResolutionResults}/>
             )
         })
     }

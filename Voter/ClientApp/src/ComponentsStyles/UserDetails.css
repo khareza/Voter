@@ -73,6 +73,14 @@
         background-color: #3498db;
     }
 
+.buttonShowResults {
+    background-color: #ffbb33;
+}
+
+    .buttonShowResults:hover {
+        background-color: #ff8800;
+    }
+
 .buttonDelete {
     background-color: #ea6153;
 }

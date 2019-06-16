@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import CreateResolution from './ActionForms/CreateResolution';
 import ResolutionsList from './ResolutionsList';
 import EditResolution from './ActionForms/EditResolution';
+import ResolutionResults from './ResolutionResults';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
 import { NotificationManager } from 'react-notifications';
@@ -26,13 +27,13 @@ export class ResolutionsListWrapper extends Component {
         if (this.Auth.isUserAdmin()) {
             this.ResMethods.getActiveResolutions()
                 .then(res => {
+                    console.log(res.data);
                     this.setState({ resolutions: res.data });
                 });
         }
         else {
             this.ResMethods.getResolutionsWithoutUserVote()
                 .then(res => {
-                    console.log(res.data);
                     this.setState({ resolutions: res.data });
                 });
         }
@@ -55,6 +56,9 @@ export class ResolutionsListWrapper extends Component {
         this.setState({ resolutions: newList });
     }
 
+    showResolutionResults = (id) => {
+        this.props.history.push(`/Resolutions/${id}`)
+    }
 
     editResolution = (id) => {
         var index = this.state.resolutions.findIndex((resolution) => (resolution.id === id))
@@ -89,8 +93,8 @@ export class ResolutionsListWrapper extends Component {
                                 resolutions={this.state.resolutions}
                                 deleteResolution={this.deleteResolution}
                                 deleteResolutionFromList={this.deleteResolutionFromList}
-                            />)} />
-
+                                showResolutionResults={this.showResolutionResults}/>)} />
+                        <Route exact path="/resolutions/:resolution_id" component={ResolutionResults}/>
                         <Route exact path="/resolutions/create" render={() => (
                             <CreateResolution
                                 addNewResolution={this.addNewResolution} />)} />

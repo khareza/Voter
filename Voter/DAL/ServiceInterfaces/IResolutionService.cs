@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Voter.Models;
+using Voter.Models.DTOs;
 using Voter.Models.FormsData;
 
 namespace Voter.DAL.ServiceInterfaces
@@ -13,5 +14,6 @@ namespace Voter.DAL.ServiceInterfaces
         IEnumerable<Resolution> GetActiveResolutions();
         IEnumerable<Resolution> GetExpiredResolutions();
         IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId);
+        VotingResultsDTO GetResolutionWithResults(int resolutionId);
     }
 }

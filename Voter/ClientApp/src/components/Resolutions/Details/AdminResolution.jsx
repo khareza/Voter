@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faFolderMinus } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faFolderMinus,faPoll } from '@fortawesome/free-solid-svg-icons'
 
 export class AdminResolution extends Component {
 
@@ -11,6 +11,10 @@ export class AdminResolution extends Component {
 
     deleteResolution = () => {
         this.props.deleteResolution(this.props.resolution.id);
+    }
+
+    showResolutionResults = () => {
+        this.props.showResolutionResults(this.props.resolution.id);
     }
 
     render() {
@@ -28,6 +32,7 @@ export class AdminResolution extends Component {
                     </div>
                     <div className="resolutionButtons">
                         <a className="button buttonEdit" onClick={this.editResolution}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></a>
+                        <a className="button buttonShowResults" onClick={this.showResolutionResults}><FontAwesomeIcon icon={faPoll}></FontAwesomeIcon></a>
                         <a className="button buttonDelete" onClick={this.deleteResolution}><FontAwesomeIcon icon={faFolderMinus}></FontAwesomeIcon></a>
                     </div>
                 </div>

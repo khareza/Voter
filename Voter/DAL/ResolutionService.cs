@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Voter.Common;
 using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
+using Voter.Models.DTOs;
 using Voter.Models.FormsData;
 
 namespace Voter.DAL
@@ -13,10 +17,13 @@ namespace Voter.DAL
     {
         private AuthenticationContext _context;
         private readonly IMapper _mapper;
-        public ResolutionService(AuthenticationContext context, IMapper mapper)
+        private UserManager<Resident> _userManager;
+
+        public ResolutionService(AuthenticationContext context, IMapper mapper, UserManager<Resident> userManager)
         {
             _context = context;
             _mapper = mapper;
+            _userManager = userManager;
 
         }
 
@@ -89,6 +96,25 @@ namespace Voter.DAL
             return _context.Resolutions
                 .Where(r => !r.Residents.Any(x=>x.Voter.Id == userId) && r.ExpirationDate > DateTime.Now )
                 .ToList();
+        }
+        public VotingResultsDTO GetResolutionWithResults(int resolutionId)
+        {
+            var votes = _context.ResidentResolution.Where(rr => rr.ResolutionId == resolutionId);
+            var resolution = _context.Resolutions.FirstOrDefault(r => r.Id == resolutionId);
+
+            if (resolution == null)
+            {
+                return null;
+            }
+
+            var votingResults = new VotingResultsDTO();
+            votingResults.Resolution =_mapper.Map<ResolutionDTO>(resolution);
+            votingResults.ForVotes = votes.Where(v => v.Answer == ActAnswer.For).Count();
+            votingResults.AgainstVotes = votes.Where(v => v.Answer == ActAnswer.Against).Count();
+            votingResults.HoldVotes = votes.Where(v => v.Answer == ActAnswer.Hold).Count();
+            votingResults.UnsignedVotes = _userManager.GetUsersInRoleAsync(UserRole.USER).Result.Count - votes.Count();
+
+            return votingResults;
         }
 
     }

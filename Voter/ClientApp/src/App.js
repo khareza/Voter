@@ -14,6 +14,7 @@ import './ComponentsStyles/SideDrawer.css';
 import './ComponentsStyles/Site.css';
 import './ComponentsStyles/Backdrop.css';
 import './ComponentsStyles/DrawerToggleButton.css';
+import './ComponentsStyles/ResolutionResults.css';
 import 'react-notifications/lib/notifications.css';
 import 'react-datepicker/dist/react-datepicker.css';
 

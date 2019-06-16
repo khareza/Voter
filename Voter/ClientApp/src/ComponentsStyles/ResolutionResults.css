@@ -1,0 +1,81 @@
+﻿.resolutionResultsContainer {
+    margin:0 auto;
+    padding: 2rem 0;
+    width:60%;
+}
+
+.dates {
+    display: flex;
+    justify-content: space-around;
+}
+
+.title {
+    font-size:2rem;
+    text-transform:capitalize;
+}
+.voteTitle {
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+.number {
+}
+
+.description {
+    font-size:1.1rem;
+    text-align: justify;
+}
+
+    .description span {
+        font-weight:bold;
+    }
+
+    .votes {
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+.voteBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+
+.forVotes {
+    background-color: rgba(0,200,81,0.3);
+}
+
+    .forVotes div {
+        color: rgba(0,200,81,1);
+    }
+
+.againsVotes {
+    background-color: rgba(255,68,68,0.3);
+}
+
+    .againsVotes div {
+        color: rgba(255,68,68,1);
+    }
+
+.holdVotes {
+    background-color: rgba(255,187,51,0.3);
+}
+
+    .holdVotes div {
+        color: rgba(255,187,51,1);
+    }
+
+.unsigneVotes {
+    background-color: rgba(105,101,94,0.3);
+}
+
+    .unsigneVotes div {
+        color: rgba(105,101,94,1);
+    }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Voter.Models;
+using Voter.Models.DTOs;
 using Voter.Models.FormsData;
 
 namespace Voter.AppSettings.AutoMapper
@@ -18,6 +19,10 @@ namespace Voter.AppSettings.AutoMapper
 
             CreateMap<RegisterFormData, Resident>();
             CreateMap<EditFormData, Resident>();
+
+            CreateMap<Resolution, ResolutionDTO>();
+            CreateMap<Resident, ResidentDTO>();
+            CreateMap<ResidentResolution, ResidentResolutionDTO>();
 
         }
     }

@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Voter.Common;
 using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
+using Voter.Models.DTOs;
 using Voter.Models.FormsData;
 
 namespace Voter.Controllers
@@ -19,6 +21,7 @@ namespace Voter.Controllers
         public ResolutionController(IResolutionService context)
         {
             _context = context;
+
         }
 
         [HttpPost]
@@ -106,6 +109,20 @@ namespace Voter.Controllers
         public IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId)
         {
             return _context.GetResolutionsWithoutUserVote(userId);
+        }
+
+        [HttpGet]
+        [Route("GetResolutionWithResults/{resolutionId}")]
+        [Authorize]
+        public IActionResult GetResolutionWithResults(int resolutionId)
+        {
+            var result = _context.GetResolutionWithResults(resolutionId);
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
         }
 
 
