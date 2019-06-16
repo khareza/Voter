@@ -47,7 +47,7 @@ class ResolutionsList extends Component {
     render() {
         return (
             <div>
-                <div className="headerLogin">
+                <div className="listHeader">
                     <h2>Resolutions</h2>
                 </div>
                 {this.Auth.isUserAdmin() ? this.renderButton() : null}

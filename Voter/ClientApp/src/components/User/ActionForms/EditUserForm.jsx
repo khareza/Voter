@@ -89,7 +89,7 @@ class EditUserForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
-                    <div className="headerLogin">
+                    <div className="formHeader">
                         <h2 >Edit user</h2>
                     </div>
                     <div className="form-row">

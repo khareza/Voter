@@ -24,7 +24,7 @@ class UsersList extends Component {
     render() {
         return (
             <div className="usersList">
-                <div className="headerLogin">
+                <div className="listHeader">
                     <h2>All residents</h2>
                 </div>
                 <div className="text-center">

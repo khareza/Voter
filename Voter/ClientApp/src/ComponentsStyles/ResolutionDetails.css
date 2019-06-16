@@ -102,6 +102,14 @@
             font-size: 1.2rem;
             content: 'Hold';
         }
+
+.buttonShowResults {
+    background-color: #ffbb33;
+}
+
+    .buttonShowResults:hover {
+        background-color: #ff8800;
+    }
 @media (max-width: 600px) {
     .resolutionCard {
         width: 90%;

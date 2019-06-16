@@ -79,8 +79,8 @@ class EditResolution extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
-                    <div className="headerLogin">
-                        <h2 >Edit resolution</h2>
+                    <div className="formHeader">
+                        <h2>Edit resolution</h2>
                     </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">
@@ -120,7 +120,7 @@ class EditResolution extends Component {
 
                             <input type="submit" value="Edit user data" className="btn btn-large btn-block btn-info" disabled={this.state.isSubmitDisabled} />
 
-                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/resolutions') }} className="btn btn-large btn-block btn-danger" />
+                            <input type="button" value="Cancel" className="btn btn-large btn-block btn-danger" onClick={() => { this.props.history.push('/resolutions') }} />
                         </div>
                     </div>
                 </form>

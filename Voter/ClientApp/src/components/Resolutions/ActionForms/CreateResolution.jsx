@@ -57,7 +57,7 @@ class CreateResolution extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
-                    <div className="headerLogin">
+                    <div className="formHeader">
                         <h2 >Add new resolution</h2>
                     </div>
                     <div className="form-row">
@@ -97,7 +97,7 @@ class CreateResolution extends Component {
                             </div>
 
                             <input type="submit" value="Add new resolution" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
-                            <input type="button" value="Cancel" onClick={() => { this.props.history.push('/resolutions') }} className="btn btn-large btn-block btn-danger" />
+                            <input type="button" value="Cancel" className="btn btn-large btn-block btn-danger" onClick={() => { this.props.history.push('/resolutions') }}  />
                         </div>
                     </div>
                 </form>

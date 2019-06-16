@@ -61,7 +61,7 @@ export class Login extends Component {
         return (
             <div className="loginForm">
                 <div className="headerLogin">
-                    <h2 >LOGIN</h2>
+                    <h2>LOGIN</h2>
                 </div>
                 <form onSubmit={this.handleSubmit} autoComplete="off">
                     <div className="form-gorup col-md-8 offset-md-2">

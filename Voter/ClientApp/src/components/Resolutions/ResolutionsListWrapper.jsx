@@ -27,7 +27,6 @@ export class ResolutionsListWrapper extends Component {
         if (this.Auth.isUserAdmin()) {
             this.ResMethods.getActiveResolutions()
                 .then(res => {
-                    console.log(res.data);
                     this.setState({ resolutions: res.data });
                 });
         }

@@ -70,7 +70,7 @@ class RegisterNewUser extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <div className="headerLogin">
+                    <div className="formHeader">
                         <h2 >Add new user</h2>
                     </div>
                     <div className="form-row">

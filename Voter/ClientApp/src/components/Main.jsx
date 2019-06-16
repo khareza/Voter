@@ -8,7 +8,7 @@ import { UsersListWrapper } from './User/UsersListWrapper';
 import { ResolutionsListWrapper } from './Resolutions/ResolutionsListWrapper';
 import AuthMethods from '../Helpers/AuthMethods';
 
-export class UserProfile extends Component {
+export class Main extends Component {
 
     state = {
         sideDrawerOpen: false
@@ -38,7 +38,7 @@ export class UserProfile extends Component {
         return (
             <div className="site">
                 {this.state.sideDrawerOpen ? <Backdrop click={this.backdropClickHandler} /> : null}
-                <SideMenu drawerClickHandler={this.drawerToggleClickHandler} />}
+                <SideMenu drawerClickHandler={this.drawerToggleClickHandler} />
                 <SideDrawer show={this.state.sideDrawerOpen}/>
                 <div className="content">
                     <Route path="/profile" component={ActiveUserDetails} />

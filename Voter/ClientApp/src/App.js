@@ -3,20 +3,22 @@ import { NotificationContainer} from 'react-notifications';
 import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import { LoginWrapper as Login} from './components/Login/LoginWrapper';
 import PrivateComponent from './components/PrivateComponent';
-import { UserProfile } from './components/UserProfile';
-import './ComponentsStyles/Login.css';
-import './ComponentsStyles/UserDetails.css';
-import './ComponentsStyles/ResolutionDetails.css';
-import './ComponentsStyles/ResolutionList.css';
-import './ComponentsStyles/Error.css';
-import './ComponentsStyles/SideMenu.css';
-import './ComponentsStyles/SideDrawer.css';
-import './ComponentsStyles/Site.css';
-import './ComponentsStyles/Backdrop.css';
-import './ComponentsStyles/DrawerToggleButton.css';
-import './ComponentsStyles/ResolutionResults.css';
+import { Main } from './components/Main';
 import 'react-notifications/lib/notifications.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import './ComponentsStyles/DrawerToggleButton.css';
+import './ComponentsStyles/ResolutionResults.css';
+import './ComponentsStyles/ResolutionDetails.css';
+import './ComponentsStyles/ResolutionList.css';
+import './ComponentsStyles/UserDetails.css';
+import './ComponentsStyles/SideDrawer.css';
+import './ComponentsStyles/SideMenu.css';
+import './ComponentsStyles/Backdrop.css';
+import './ComponentsStyles/Error.css';
+import './ComponentsStyles/Login.css';
+import './ComponentsStyles/Site.css';
+import './ComponentsStyles/UserList.css';
+import './ComponentsStyles/ActiveUserDetails.css';
 
 
 class App extends Component {
@@ -31,7 +33,7 @@ class App extends Component {
                 <Router>
                     <Switch>
                         <Route exac path="/login" component={Login} />
-                        <PrivateComponent path="/" component={UserProfile}/>
+                        <PrivateComponent path="/" component={Main}/>
                     </Switch>
                 </Router>
             </div>

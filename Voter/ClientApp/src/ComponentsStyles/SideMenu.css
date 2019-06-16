@@ -110,17 +110,6 @@
     width: 18em;
 }
 
-.content {
-    margin-left: 18em;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.site {
-    display: flex;
-}
-
 .logOutBtn {
     position: absolute;
     bottom: 0;
@@ -175,19 +164,9 @@
             padding: 30px;
         }
 
-    .content {
-        margin-left: 0;
-    }
-
     .menuWrapper {
         width: auto;
     }
-
-    .site {
-        display: flex;
-        flex-direction: column;
-    }
-
     .logOutBtn {
         position: unset;
         width: auto;

@@ -37,7 +37,6 @@ export default class ResolutionResults extends Component {
                     unsignedVotes: res.data.unsignedVotes
 
                 })
-                console.log(this.state);
             }).catch(() => {
                 NotificationManager.error('Select correct resolution', 'Error!');
                 this.props.history.push(`/Resolutions/`);
@@ -68,25 +67,32 @@ export default class ResolutionResults extends Component {
 
                 <div className="title">{this.state.resolution.title}</div>
                 <div className="description"><span>Resolution No. {this.state.resolution.resolutionNumber}</span> {this.state.resolution.description}</div>
-                <hr/>
+                <hr />
                 <div><p className="voteTitle">Votes</p></div>
-                    <div className="votes">
+                <div className="votes">
+                    <div className="votesPart">
                         <div className="forVotes voteBox">
                             <div>For</div>
                             <div>{this.state.forVotes}</div>
                         </div>
                         <div className="againsVotes voteBox">
                             <div>Against</div>
-                            <div>{this.state.againstVotes}</div></div>
+                            <div>{this.state.againstVotes}</div>
+                        </div>
+                    </div>
+                    <div className="votesPart">
                         <div className="holdVotes voteBox">
                             <div>Hold</div>
-                            <div>{this.state.holdVotes}</div></div>
+                            <div>{this.state.holdVotes}</div>
+                        </div>
                         <div className="unsigneVotes voteBox">
                             <div>Unsigned</div>
-                            <div>{this.state.unsignedVotes}</div></div>
+                            <div>{this.state.unsignedVotes}</div>
+                        </div>
                     </div>
+                </div>
 
             </div>
-                    );
-                }
+        );
+    }
 }

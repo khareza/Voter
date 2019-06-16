@@ -15,10 +15,6 @@
     padding:2% 10%;
 }
 
-.usersListWrapper {
-    width: 100%;
-}
-
 .userData {
     display: flex;
     justify-content: space-between;
@@ -73,13 +69,6 @@
         background-color: #3498db;
     }
 
-.buttonShowResults {
-    background-color: #ffbb33;
-}
-
-    .buttonShowResults:hover {
-        background-color: #ff8800;
-    }
 
 .buttonDelete {
     background-color: #ea6153;
@@ -99,5 +88,11 @@
         width: 70%;
         display:normal;
         margin: 10px;
+    }
+}
+
+@media (max-width: 700px) {
+    .userCard {
+        width: 90%;
     }
 }
