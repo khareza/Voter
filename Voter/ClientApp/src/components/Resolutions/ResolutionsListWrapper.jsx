@@ -57,7 +57,7 @@ export class ResolutionsListWrapper extends Component {
     }
 
     showResolutionResults = (id) => {
-        this.props.history.push(`/Resolutions/${id}`)
+        this.props.history.push(`/Resolutions/results/${id}`)
     }
 
     editResolution = (id) => {
@@ -94,7 +94,7 @@ export class ResolutionsListWrapper extends Component {
                                 deleteResolution={this.deleteResolution}
                                 deleteResolutionFromList={this.deleteResolutionFromList}
                                 showResolutionResults={this.showResolutionResults}/>)} />
-                        <Route exact path="/resolutions/:resolution_id" component={ResolutionResults}/>
+                        <Route exact path="/resolutions/results/:resolution_id" component={ResolutionResults}/>
                         <Route exact path="/resolutions/create" render={() => (
                             <CreateResolution
                                 addNewResolution={this.addNewResolution} />)} />
