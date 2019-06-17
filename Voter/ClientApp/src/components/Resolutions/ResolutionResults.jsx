@@ -2,6 +2,7 @@
 import Moment from 'react-moment';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
+import VotingResultsChart from '../Charts/VotingResultsChart';
 import { NotificationManager } from 'react-notifications';
 
 export default class ResolutionResults extends Component {
@@ -17,7 +18,8 @@ export default class ResolutionResults extends Component {
             forVotes: 0,
             holdVotes: 0,
             againstVotes: 0,
-            unsignedVotes: 0
+            unsignedVotes: 0,
+            resultsReady:false
         }
 
     }
@@ -27,6 +29,7 @@ export default class ResolutionResults extends Component {
     }
 
     getResults = () => {
+        this.setState({ resultsReady: false});
         this.resolutionRequest.getResolutionWithResults(this.id)
             .then((res) => {
                 this.setState({
@@ -34,9 +37,10 @@ export default class ResolutionResults extends Component {
                     forVotes: res.data.forVotes,
                     holdVotes: res.data.holdVotes,
                     againstVotes: res.data.againstVotes,
-                    unsignedVotes: res.data.unsignedVotes
-
+                    unsignedVotes: res.data.unsignedVotes,
+                    resultsReady: true
                 })
+                
             }).catch(() => {
                 NotificationManager.error('Select correct resolution', 'Error!');
                 this.props.history.push(`/Resolutions/`);
@@ -69,29 +73,13 @@ export default class ResolutionResults extends Component {
                 <div className="description"><span>Resolution No. {this.state.resolution.resolutionNumber}</span> {this.state.resolution.description}</div>
                 <hr />
                 <div><p className="voteTitle">Votes</p></div>
-                <div className="votes">
-                    <div className="votesPart">
-                        <div className="forVotes voteBox">
-                            <div>For</div>
-                            <div>{this.state.forVotes}</div>
-                        </div>
-                        <div className="againsVotes voteBox">
-                            <div>Against</div>
-                            <div>{this.state.againstVotes}</div>
-                        </div>
-                    </div>
-                    <div className="votesPart">
-                        <div className="holdVotes voteBox">
-                            <div>Hold</div>
-                            <div>{this.state.holdVotes}</div>
-                        </div>
-                        <div className="unsigneVotes voteBox">
-                            <div>Unsigned</div>
-                            <div>{this.state.unsignedVotes}</div>
-                        </div>
-                    </div>
-                </div>
-
+                {this.state.resultsReady ? (
+                    <VotingResultsChart votes={{
+                    forVotes: this.state.forVotes,
+                    holdVotes: this.state.holdVotes,
+                    againstVotes: this.state.againstVotes,
+                    unsignedVotes: this.state.unsignedVotes
+                    }} />) : null}
             </div>
         );
     }

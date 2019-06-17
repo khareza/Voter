@@ -20,6 +20,7 @@ import './ComponentsStyles/Site.css';
 import './ComponentsStyles/UserList.css';
 import './ComponentsStyles/ActiveUserDetails.css';
 import './ComponentsStyles/Dialogs.css';
+import './ComponentsStyles/Charts.css';
 
 
 class App extends Component {
