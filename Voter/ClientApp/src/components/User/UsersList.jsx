@@ -2,7 +2,7 @@
 import { withRouter } from 'react-router-dom';
 import { UserDetails } from './Details/UserDetails';
 import { UserMethods } from '../../Helpers/UserMethods';
-import DeleteDialog from '../DialogBoxes/DeleteDialog';
+import Dialog from '../DialogBoxes/DialogBox';
 import DialogBackdrop from '../DialogBoxes/DialogBackdrop';
 
 class UsersList extends Component {
@@ -11,7 +11,7 @@ class UsersList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteUserId: ''
         }
     }
@@ -20,7 +20,7 @@ class UsersList extends Component {
         return this.props.users.map((user) => {
             return (
                 <UserDetails key={user.id}
-                    handleErrorDialogOpen={this.handleErrorDialogOpen}
+                    handleDialogOpen={this.handleDialogOpen}
                     editUser={
                         (id) => {
                             this.props.editUser(id)
@@ -30,9 +30,9 @@ class UsersList extends Component {
         })
     }
 
-    handleErrorDialogOpen = (id) => {
+    handleDialogOpen = (id) => {
         this.setState({
-            dialogErrorOpen: true,
+            dialogOpen: true,
             deleteUserId: id
         });
     }
@@ -40,21 +40,21 @@ class UsersList extends Component {
     handleAccept = () => {
         this.props.deleteUser(this.state.deleteUserId)
         this.setState({
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteUserId: ''
         });
     }
 
     handleRefuse = () => {
         this.setState({
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteUserId: ''
         });
     }
 
     handleCloseDialog = () => {
         this.setState({
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteUserId: ''
         });
     }
@@ -62,8 +62,8 @@ class UsersList extends Component {
     render() {
         return (
             <div>
-                {this.state.dialogErrorOpen ? <DialogBackdrop /> : null}
-                <DeleteDialog dialogErrorOpen={this.state.dialogErrorOpen}
+                {this.state.dialogOpen ? <DialogBackdrop /> : null}
+                <Dialog dialogOpen={this.state.dialogOpen}
                     closeDialog={this.handleCloseDialog}
                     refuse={this.handleRefuse}
                     agree={this.handleAccept}

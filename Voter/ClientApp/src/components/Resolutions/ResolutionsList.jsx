@@ -4,7 +4,7 @@ import { AdminResolution } from './Details/AdminResolution';
 import { UserResolution } from './Details/UserResolution';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
-import DeleteDialog from '../DialogBoxes/DeleteDialog';
+import Dialog from '../DialogBoxes/DialogBox';
 import DialogBackdrop from '../DialogBoxes/DialogBackdrop';
 
 class ResolutionsList extends Component {
@@ -15,7 +15,7 @@ class ResolutionsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteResolutionId: ''
         }
     }
@@ -24,11 +24,8 @@ class ResolutionsList extends Component {
         return this.props.resolutions.map((resolution) => {
             return (
                 <AdminResolution key={resolution.id}
-                    deleteResolution={this.handleErrorDialogOpen}
-                    editResolution={
-                        (id) => {
-                            this.props.editResolution(id)
-                        }}
+                    deleteResolution={this.handleDialogOpen}
+                    editResolution={this.props.editResolution}
                     resolution={resolution}
                     showResolutionResults={this.props.showResolutionResults}/>
             )
@@ -53,9 +50,9 @@ class ResolutionsList extends Component {
         </div>)
     }
 
-    handleErrorDialogOpen = (id) => {
+    handleDialogOpen = (id) => {
         this.setState({
-            dialogErrorOpen: true,
+            dialogOpen: true,
             deleteResolutionId: id
         });
     }
@@ -63,21 +60,21 @@ class ResolutionsList extends Component {
     handleAccept = () => {
         this.props.deleteResolution(this.state.deleteResolutionId)
         this.setState({
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteResolutionId: ''
         });
     }
 
     handleRefuse = () => {
         this.setState({
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteResolutionId: ''
         });
     }
 
     handleCloseDialog = () => {
         this.setState({
-            dialogErrorOpen: false,
+            dialogOpen: false,
             deleteResolutionId: ''
         });
     }
@@ -86,8 +83,8 @@ class ResolutionsList extends Component {
     render() {
         return (
             <div>
-                {this.state.dialogErrorOpen ? <DialogBackdrop /> : null}
-                <DeleteDialog dialogErrorOpen={this.state.dialogErrorOpen}
+                {this.state.dialogOpen ? <DialogBackdrop /> : null}
+                <Dialog dialogOpen={this.state.dialogOpen}
                     closeDialog={this.handleCloseDialog}
                     refuse={this.handleRefuse}
                     agree={this.handleAccept}

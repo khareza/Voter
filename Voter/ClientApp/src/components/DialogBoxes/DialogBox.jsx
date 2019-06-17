@@ -2,12 +2,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
-export default class DeleteDialog extends Component {
+export default class DialogBox extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isDialogOpen: this.props.dialogErrorOpen
+            isDialogOpen: this.props.dialogOpen
         }
     }
 
@@ -35,7 +35,7 @@ export default class DeleteDialog extends Component {
 
     render() {
         let dialogClass = 'dialogContainer';
-        if (this.props.dialogErrorOpen) {
+        if (this.props.dialogOpen) {
             dialogClass = 'dialogContainer open'
         }
 

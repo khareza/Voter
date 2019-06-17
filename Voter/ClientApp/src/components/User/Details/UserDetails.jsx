@@ -9,7 +9,7 @@ export class UserDetails extends Component {
     }
 
     deleteUser = () => {
-        this.props.handleErrorDialogOpen(this.props.user.id);
+        this.props.handleDialogOpen(this.props.user.id);
     }
 
     render() {

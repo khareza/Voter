@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
 import { UserMethods } from '../../../Helpers/UserMethods';
 import { Error } from '../../Error';
+import Dialog from '../../DialogBoxes/DialogBox';
+import DialogBackdrop from '../../DialogBoxes/DialogBackdrop';
 
 class EditUserForm extends Component {
     constructor(props) {
@@ -18,7 +20,8 @@ class EditUserForm extends Component {
             email: '',
             phoneNumber: '',
             isSubmitDisabled: true,
-            errors: {}
+            errors: {},
+            dialogOpen: false
         };
     }
 
@@ -47,8 +50,7 @@ class EditUserForm extends Component {
         }
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = () => {
         let {id, userName, firstName, lastName, address, email, phoneNumber } = this.state;
 
         this.UserMethods.editUser(
@@ -85,10 +87,44 @@ class EditUserForm extends Component {
         }
     }
 
+    handleDialogOpen = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            dialogOpen: true,
+        });
+    }
+
+    handleAccept = () => {
+        this.handleSubmit();
+        this.setState({
+            dialogOpen: false
+        });
+    }
+
+    handleRefuse = () => {
+        this.setState({
+            dialogOpen: false
+        });
+    }
+
+    handleCloseDialog = () => {
+        this.setState({
+            dialogOpen: false
+        });
+    }
+
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit} autoComplete="off">
+                {this.state.dialogOpen ? <DialogBackdrop /> : null}
+                <Dialog dialogOpen={this.state.dialogOpen}
+                    closeDialog={this.handleCloseDialog}
+                    refuse={this.handleRefuse}
+                    agree={this.handleAccept}
+                    message="Are you sure you want to edit this resident?"
+                />
+                <form onSubmit={this.handleDialogOpen} autoComplete="off">
                     <div className="formHeader">
                         <h2 >Edit user</h2>
                     </div>
