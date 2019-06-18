@@ -10,6 +10,7 @@ namespace Voter.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
+        public DateTime RegisterDate { get; set; }
         public string Address { get; set; }
         public List<ResidentResolution> Resolutions { get; set; }
     }

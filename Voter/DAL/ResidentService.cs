@@ -30,7 +30,7 @@ namespace Voter.DAL
             var role = UserRole.USER;
 
             var newResident = _mapper.Map<Resident>(formData);
-
+            newResident.RegisterDate = DateTime.Now;
             try
             {
                 var result = await _userManager.CreateAsync(newResident, formData.Password);
