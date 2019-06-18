@@ -14,6 +14,7 @@ namespace Voter.DAL.ServiceInterfaces
         IEnumerable<Resolution> GetActiveResolutions();
         IEnumerable<Resolution> GetExpiredResolutions();
         IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId);
+        IEnumerable<ResidentsVotesDTO> GetResidentsWithVotes(int resolutionId);
         VotingResultsDTO GetResolutionWithResults(int resolutionId);
     }
 }

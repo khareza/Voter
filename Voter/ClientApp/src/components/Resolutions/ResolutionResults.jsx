@@ -21,7 +21,6 @@ export default class ResolutionResults extends Component {
             unsignedVotes: 0,
             resultsReady:false
         }
-
     }
 
     componentDidMount = () => {
@@ -45,6 +44,10 @@ export default class ResolutionResults extends Component {
                 NotificationManager.error('Select correct resolution', 'Error!');
                 this.props.history.push(`/Resolutions/`);
             })
+    }
+
+    handleShowVoters = () => {
+        this.props.history.push(`/resolutions/results/${this.id}/votes`);
     }
 
     render() {
@@ -80,6 +83,7 @@ export default class ResolutionResults extends Component {
                     againstVotes: this.state.againstVotes,
                     unsignedVotes: this.state.unsignedVotes
                     }} />) : null}
+                <button className="btn btn-primary" onClick={this.handleShowVoters}>Show voters</button>
             </div>
         );
     }

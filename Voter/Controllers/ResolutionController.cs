@@ -125,6 +125,13 @@ namespace Voter.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("GetResidentsWithVotes/{resolutionId}")]
+        [Authorize]
+        public IEnumerable<ResidentsVotesDTO> GetResidentsWithVotes(int resolutionId)
+        {
+            return _context.GetResidentsWithVotes(resolutionId);
+        }
 
     }
 }

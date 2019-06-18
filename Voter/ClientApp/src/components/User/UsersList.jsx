@@ -69,15 +69,16 @@ class UsersList extends Component {
                     agree={this.handleAccept}
                     message="Are you sure you want to delete this resident?"
                 />
+                <div className="listHeader">
+                    <h2>All residents</h2>
+                
+                <div className="text-center">
+                    <button className="btn btn-success mt-3"
+                        onClick={() => { this.props.history.push('/residents/create') }}>Add new resident</button>
+                </div>
                 <div className="usersList">
-                    <div className="listHeader">
-                        <h2>All residents</h2>
-                    </div>
-                    <div className="text-center">
-                        <button className="btn btn-success mt-3"
-                            onClick={() => { this.props.history.push('/residents/create') }}>Add new resident</button>
-                    </div>
                     {this.renderUserComponents()}
+                    </div>
                 </div>
             </div>
         );

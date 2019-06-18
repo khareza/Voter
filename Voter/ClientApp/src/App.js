@@ -21,6 +21,7 @@ import './ComponentsStyles/UserList.css';
 import './ComponentsStyles/ActiveUserDetails.css';
 import './ComponentsStyles/Dialogs.css';
 import './ComponentsStyles/Charts.css';
+import './ComponentsStyles/ResidentsWithVotes.css';
 
 
 class App extends Component {

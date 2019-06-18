@@ -39,6 +39,10 @@ export class ResolutionMethods {
         return axios.get(`${this.resolutionApiUrl}/GetResolutionWithResults/${resolutionId}`);
     }
 
+    getResidentsWithVotes = (resolutionId) => {
+        return axios.get(`${this.resolutionApiUrl}/GetResidentsWithVotes/${resolutionId}`);
+    }
+
     createResolution = (newResolutionFormData) => {
         return axios.post(`${this.resolutionApiUrl}/CreateResolution`, newResolutionFormData);
     }

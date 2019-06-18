@@ -117,5 +117,34 @@ namespace Voter.DAL
             return votingResults;
         }
 
+        public IEnumerable<ResidentsVotesDTO> GetResidentsWithVotes(int resolutionId)
+        {
+            List<ResidentsVotesDTO> resultList = new List<ResidentsVotesDTO>();
+
+            var votes = _context.ResidentResolution.Include(rr=>rr.Voter).Where(rr => rr.ResolutionId == resolutionId);
+            var allResidents = _userManager.GetUsersInRoleAsync(UserRole.USER).Result;
+
+            foreach (var resident in allResidents)
+            {
+                ResidentsVotesDTO residentWithVote = new ResidentsVotesDTO();
+                residentWithVote.Resident = _mapper.Map<ResidentDTO>(resident);
+                residentWithVote.Vote = "Unsigned";
+                resultList.Add(residentWithVote);
+            }
+
+            foreach (var resident in votes)
+            {
+                ResidentsVotesDTO residentWithVote = new ResidentsVotesDTO();
+                residentWithVote.Resident = _mapper.Map<ResidentDTO>(resident.Voter);
+                residentWithVote.Vote = resident.Answer.ToString();
+
+                var index = resultList.FindIndex(x=>x.Resident.Id == residentWithVote.Resident.Id);
+                resultList[index] = residentWithVote;
+            }
+
+            return resultList;
+
+        }
+
     }
 }

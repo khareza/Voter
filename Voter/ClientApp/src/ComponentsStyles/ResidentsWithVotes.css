@@ -1,0 +1,65 @@
+﻿.residentsWithVotesList {
+    width:60%;
+    margin:0 auto;
+    text-align:left;
+}
+.votingCard {
+    width: 40%;
+    border: 2px solid;
+    margin: 4rem 2rem;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 20px;
+    position: relative;
+}
+.votingResidentData {
+    padding: 10px;
+    text-align: center;
+}
+
+.votingResidentData p:first-child {
+    font-weight: bold;
+}
+
+    .voteIcon {
+        font-size: 4rem;
+        position: absolute;
+        left: 95%;
+        top: -50%;
+    }
+
+.voteFor {
+    background-color: rgba(255,68,68,0.2);
+    border-color: rgba(0,200,81,1);
+}
+
+.voteAgainst {
+    background-color: rgba(255,68,68,0.2);
+    border-color: rgba(255,68,68,1);
+}
+
+.voteHold {
+    background-color: rgba(255,187,51,0.2);
+    border-color: rgba(255,187,51,1);
+}
+
+.voteUnsigned {
+    background-color: rgba(105,101,94,0.2);
+    border-color: rgba(105,101,94,1);
+}
+
+.voteIconFor {
+    color: rgba(0,200,81,1);
+}
+
+.voteIconAgainst {
+    color: rgba(255,68,68,1);
+}
+
+.voteIconHold {
+    color: rgba(255,187,51,1);
+}
+
+.voteIconUnsigned {
+    color: rgba(105,101,94,1);
+}
