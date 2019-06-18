@@ -50,6 +50,10 @@ export default class ResolutionResults extends Component {
         this.props.history.push(`/resolutions/results/${this.id}/votes`);
     }
 
+    handleBackPage = () => {
+        this.props.history.push(`/resolutions/`);
+    }
+
     render() {
         return (
             <div className="resolutionResultsContainer">
@@ -84,6 +88,7 @@ export default class ResolutionResults extends Component {
                     unsignedVotes: this.state.unsignedVotes
                     }} />) : null}
                 <button className="btn btn-primary" onClick={this.handleShowVoters}>Show voters</button>
+                <button className="btn btn-warning" onClick={this.handleBackPage}>Come back to resolutions</button>
             </div>
         );
     }
