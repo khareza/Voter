@@ -4,6 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Voter.Models
 {
+    public enum ResolutionStatus {
+        Accepted,
+        Rejected,
+        Unresolved,
+    }
+
     public class Resolution
     {
         public int Id { get; set; }
@@ -13,6 +19,8 @@ namespace Voter.Models
         public DateTime CreationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public List<ResidentResolution> Residents { get; set; }
+
+        public ResolutionStatus ResolutionStatus { get; set; }
 
     }
 }

@@ -101,30 +101,3 @@ class ResolutionsList extends Component {
 }
 
 export default withRouter(ResolutionsList);
-
-
-
-    //renderAdminResolutionComponents = (resolutionsByDates) => {
-    //    console.log(resolutionsByDates);
-    //    for (var key in resolutionsByDates) {
-    //        console.log(resolutionsByDates[key]);
-    //        var result = <div key={resolutions.id} className="listBody">
-    //            {resolutionsByDates[key].map((resolutions) => {
-    //                return (
-    //                    <p>Resolutions of <Moment format="YYYY-MM-DD">{resolutions.creationDate}</Moment></p>
-    //                    <UserResolution key={resolutions.id}
-    //                        resolution={resolutions} />
-    //            )
-    //            })}</div>
-    //    }
-    //    return result;
-    //}
-
-    //filterResults = () => {
-    //    var resolutionsByDates = this.state.resolutions.reduce((catsSoFar, resolution) => {
-    //        if (!catsSoFar[resolution.creationDate]) catsSoFar[resolution.creationDate] = [];
-    //        catsSoFar[resolution.creationDate].push(resolution);
-    //        return catsSoFar;
-    //    }, {});
-    //    this.setState({ resolutionsByDates });
-    //}
