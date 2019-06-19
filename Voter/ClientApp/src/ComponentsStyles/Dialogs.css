@@ -84,3 +84,38 @@
     text-align: center;
     color: #8f9cb5;
 }
+
+
+@media (max-width: 1500px) {
+    .dialogContainer {
+        width: 50%;
+        left: 25%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .dialogContainer {
+        width: 70%;
+        left: 15%;
+    }
+}
+
+@media (max-width: 650px) {
+    .dialogContainer {
+        width: 70%;
+        left: 15%;
+    }
+}
+
+@media (max-width: 450px) {
+    .dialogContainer {
+        width: 90%;
+        left: 5%;
+    }
+}
+
+@media (max-height: 700px) {
+    .dialogContainer {
+        height: 30%;
+    }
+}
