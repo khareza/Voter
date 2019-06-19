@@ -4,8 +4,8 @@ import SideMenu from './SideMenu';
 import SideDrawer from './SideDrawer/SideDrawer';
 import Backdrop from './SideDrawer/Backdrop';
 import { ActiveUserDetails } from './ActiveUserProfile/ActiveUserDetails';
-import { UsersListWrapper } from './User/UsersListWrapper';
-import { ResolutionsListWrapper } from './Resolutions/ResolutionsListWrapper';
+import { UsersContentWrapper } from './User/UsersContentWrapper';
+import { ResolutionsContentWrapper } from './Resolutions/ResolutionsContentWrapper';
 import AuthMethods from '../Helpers/AuthMethods';
 
 export class Main extends Component {
@@ -19,7 +19,7 @@ export class Main extends Component {
     renderResidentsRouteIfAdmin = () => {
         if (this.Auth.isUserAdmin()) {
             return (
-                <Route path="/residents" component={UsersListWrapper} />
+                <Route path="/residents" component={UsersContentWrapper} />
             );
         }
     }
@@ -42,7 +42,7 @@ export class Main extends Component {
                 <SideDrawer show={this.state.sideDrawerOpen}/>
                 <div className="content">
                     <Route path="/profile" component={ActiveUserDetails} />
-                    <Route path="/resolutions" component={ResolutionsListWrapper} />
+                    <Route path="/resolutions" component={ResolutionsContentWrapper} />
                     {this.renderResidentsRouteIfAdmin()}
                 </div>
             </div>

@@ -2,7 +2,7 @@
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faBan, faHandPaper, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-export class ResidentWithVote extends Component {
+export class UserVoteCard extends Component {
 
 
     render() {

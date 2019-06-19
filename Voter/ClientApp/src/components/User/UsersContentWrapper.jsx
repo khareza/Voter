@@ -6,7 +6,7 @@ import EditUserForm from './ActionForms/EditUserForm';
 import { NotificationManager } from 'react-notifications';
 import { UserMethods } from '../../Helpers/UserMethods';
 
-export class UsersListWrapper extends Component {
+export class UsersContentWrapper extends Component {
 
     constructor(props) {
         super(props);

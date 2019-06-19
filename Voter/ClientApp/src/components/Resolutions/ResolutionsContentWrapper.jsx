@@ -7,9 +7,9 @@ import ResolutionResults from './ResolutionResults';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
 import { NotificationManager } from 'react-notifications';
-import ResidentsWithVotes from './ResidentsWithVotes';
+import UserVotesList from './UserVotesList';
 
-export class ResolutionsListWrapper extends Component {
+export class ResolutionsContentWrapper extends Component {
 
     constructor(props) {
         super(props);
@@ -95,7 +95,7 @@ export class ResolutionsListWrapper extends Component {
                                 deleteResolutionFromList={this.deleteResolutionFromList}
                                 showResolutionResults={this.showResolutionResults}/>)} />
                         <Route exact path="/resolutions/results/:resolution_id" component={ResolutionResults} />
-                        <Route exact path="/resolutions/results/:resolution_id/votes" component={ResidentsWithVotes} />
+                        <Route exact path="/resolutions/results/:resolution_id/votes" component={UserVotesList} />
                         <Route exact path="/resolutions/create" render={() => (
                             <CreateResolution
                                 addNewResolution={this.addNewResolution} />)} />

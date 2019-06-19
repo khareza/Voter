@@ -1,11 +1,11 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
-import { ResidentWithVote } from './Details/ResidentWithVote';
+import { UserVoteCard } from './Details/UserVoteCard';
 import { NotificationManager } from 'react-notifications';
 
 
-class ResidentsWithVotes extends Component {
+class UserVotesList extends Component {
 
 
     constructor(props) {
@@ -38,7 +38,7 @@ class ResidentsWithVotes extends Component {
     renderComponents = () => {
         return this.state.residentsAndVotes.map((residentAndVote,index) => {
             return (
-                <ResidentWithVote key={index} resident={residentAndVote.resident} vote={residentAndVote.vote}/>
+                <UserVoteCard key={index} resident={residentAndVote.resident} vote={residentAndVote.vote}/>
             )
         })
     }
@@ -62,4 +62,4 @@ class ResidentsWithVotes extends Component {
     }
 }
 
-export default withRouter(ResidentsWithVotes);
+export default withRouter(UserVotesList);
