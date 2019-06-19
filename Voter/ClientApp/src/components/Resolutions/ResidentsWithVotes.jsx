@@ -52,7 +52,7 @@ class ResidentsWithVotes extends Component {
             <div>
                 <div className="listHeader">
                     <h2>List of residents and their votes</h2>
-                    <button className="btn btn-primary" onClick={this.handleBackPage}>Come back to resolution details</button>
+                    <button className="btn btn-primary" onClick={this.handleBackPage}>Come back to resolution</button>
                     <div className="residentsWithVotesList">
                         {this.renderComponents()}
                     </div>

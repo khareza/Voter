@@ -83,7 +83,16 @@ justify-content:space-around;
     .unsigneVotes div {
         color: rgba(105,101,94,1);
     }
+.resolutionResultButtons {
+    display:flex;
+    margin:0 auto;
+    flex-direction:column;
+    width:300px;
+}
 
+.resolutionResultButtons button{
+    margin-bottom:10px;
+}
 
 @media (max-width: 1400px) {
     .resolutionResultsContainer {
@@ -103,7 +112,7 @@ justify-content:space-around;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items:center;
+        align-items: center;
     }
 
     .voteBox {
@@ -111,4 +120,11 @@ justify-content:space-around;
         width: 9rem;
         height: 9rem;
     }
+}
+
+@media (max-width: 500px) {
+    .resolutionResultButtons {
+        width: 70%;
+    }
+
 }

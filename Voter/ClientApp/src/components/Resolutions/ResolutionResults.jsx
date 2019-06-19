@@ -87,8 +87,10 @@ export default class ResolutionResults extends Component {
                     againstVotes: this.state.againstVotes,
                     unsignedVotes: this.state.unsignedVotes
                     }} />) : null}
-                <button className="btn btn-primary" onClick={this.handleShowVoters}>Show voters</button>
-                <button className="btn btn-warning" onClick={this.handleBackPage}>Come back to resolutions</button>
+                <div className="resolutionResultButtons">
+                    <button className="btn btn-primary" onClick={this.handleShowVoters}>Show voters</button>
+                    <button className="btn btn-warning" onClick={this.handleBackPage}>Come back to resolutions</button>
+                </div>
             </div>
         );
     }

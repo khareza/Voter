@@ -24,12 +24,12 @@
     .voteIcon {
         font-size: 4rem;
         position: absolute;
-        left: 95%;
+        left: 94%;
         top: -50%;
     }
 
 .voteFor {
-    background-color: rgba(255,68,68,0.2);
+    background-color: rgba(0,200,81,0.2);
     border-color: rgba(0,200,81,1);
 }
 
