@@ -1,6 +1,5 @@
 ﻿.resolutionResultsContainer {
     margin:0 auto;
-    padding: 2rem 0;
     width:60%;
 }
 .votesPart {
@@ -10,7 +9,10 @@ justify-content:space-around;
 }
 .dates {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: rgba(255,68,68,1);
 }
 
 .title {

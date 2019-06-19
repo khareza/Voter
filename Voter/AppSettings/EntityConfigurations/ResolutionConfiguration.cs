@@ -14,11 +14,11 @@ namespace Voter.AppSettings.EntityConfigurations
         {
             builder
                 .Property(r => r.CreationDate)
-                .HasColumnType("date");
+                .HasColumnType("datetime");
 
             builder
               .Property(r => r.ExpirationDate)
-              .HasColumnType("date");
+              .HasColumnType("datetime");
         }
     }
 }

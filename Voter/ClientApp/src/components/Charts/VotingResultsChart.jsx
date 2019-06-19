@@ -21,7 +21,7 @@ export default class VotingResultsChart extends Component {
             },
             chart: {
                 type: 'donut',
-                width: '60%'
+                width: '50%'
             },
             series: [this.props.votes.unsignedVotes, this.props.votes.forVotes, this.props.votes.holdVotes, this.props.votes.againstVotes],
             labels: ["Unsigned", "For", "Hold", "Against"],
