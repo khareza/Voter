@@ -18,12 +18,14 @@ namespace Voter.AppSettings.EntityConfigurations
             builder
                 .HasOne(rr => rr.Voter)
                 .WithMany(v => v.Resolutions)
-                .HasForeignKey(rr => rr.VoterId);
+                .HasForeignKey(rr => rr.VoterId)
+                .OnDelete(DeleteBehavior.Cascade); ;
 
             builder
                 .HasOne(rr => rr.Resolution)
                 .WithMany(v => v.Residents)
-                .HasForeignKey(rr => rr.ResolutionId);
+                .HasForeignKey(rr => rr.ResolutionId)
+                .OnDelete(DeleteBehavior.Cascade); ;
 
             builder
                 .Property(r => r.VoteDate)
