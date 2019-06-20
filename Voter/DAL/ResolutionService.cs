@@ -113,7 +113,7 @@ namespace Voter.DAL
             votingResults.AgainstVotes = votes.Where(v => v.Answer == ActAnswer.Against).Count();
             votingResults.HoldVotes = votes.Where(v => v.Answer == ActAnswer.Hold).Count();
             votingResults.UnsignedVotes = _userManager.GetUsersInRoleAsync(UserRole.USER).Result.Count - votes.Count();
-
+            votingResults.NumberOfUsers = _userManager.GetUsersInRoleAsync(UserRole.USER).Result.Count;
             return votingResults;
         }
 

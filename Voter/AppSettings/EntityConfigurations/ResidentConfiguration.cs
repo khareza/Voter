@@ -17,7 +17,7 @@ namespace Voter.AppSettings.EntityConfigurations
                 .HasColumnType("date");
 
             builder.Property(r => r.RegisterDate)
-                  .HasColumnType("date");
+                  .HasColumnType("datetime");
         }
     }
 }

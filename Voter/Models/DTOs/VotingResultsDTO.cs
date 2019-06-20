@@ -8,6 +8,7 @@ namespace Voter.Models.DTOs
     public class VotingResultsDTO
     {
         public ResolutionDTO Resolution { get; set; }
+        public int NumberOfUsers { get; set; }
         public int ForVotes { get; set; }
         public int AgainstVotes { get; set; }
         public int HoldVotes { get; set; }
