@@ -4,7 +4,6 @@ import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
 import VotingResultsChart from '../Charts/VotingResultsChart';
 import { NotificationManager } from 'react-notifications';
-import { config } from '@fortawesome/fontawesome-svg-core';
 
 export default class ResolutionResults extends Component {
 

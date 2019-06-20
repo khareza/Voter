@@ -1,8 +1,7 @@
-﻿#chart {
-    width: 80%;
-    margin: 0 auto;
-}
+﻿.chartContainer {
+    position: relative;
+    height:50vh;
+    margin:0 auto 20px auto;
+    text-align:center;
 
-    #chart * {
-        margin: 0 auto;
-    }
+}
