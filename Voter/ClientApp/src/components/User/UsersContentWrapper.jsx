@@ -14,7 +14,8 @@ export class UsersContentWrapper extends Component {
         this.UserMethods = new UserMethods();
         this.state = {
             users: '',
-            dialogErrorOpen: false
+            dialogErrorOpen: false,
+            isContentLoaded: false
         }
     }
 
@@ -23,9 +24,12 @@ export class UsersContentWrapper extends Component {
     }
 
     getUsers = () => {
+        this.setState({ isContentLoaded: false });
         this.UserMethods.getUsers()
             .then(res => {
-                this.setState({ users: res.data})
+                this.setState({
+                    users: res.data,
+                    isContentLoaded: true})
             });
     }
 
@@ -72,7 +76,7 @@ export class UsersContentWrapper extends Component {
             <div className="usersListWrapper">
                 {this.state.users ?
                     <div>
-                        <Route exact path="/residents" render={() => (<UsersList editUser={this.editUser} users={this.state.users} deleteUser={this.deleteUser} />)} />
+                        <Route exact path="/residents" render={() => (<UsersList isContentLoaded={this.state.isContentLoaded} editUser={this.editUser} users={this.state.users} deleteUser={this.deleteUser} />)} />
                         <Route exact path="/residents/create" render={() => (<RegisterNewUser addNewUser={this.addNewUser} />)} />
                         <Route exact path="/residents/edit/:user_id" render={() => (
                             <EditUserForm

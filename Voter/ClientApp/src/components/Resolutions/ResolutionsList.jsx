@@ -79,7 +79,7 @@ class ResolutionsList extends Component {
         });
     }
 
-    //change it to check only once
+    //change it to check if admin only once
     render() {
         return (
             <div>
@@ -94,7 +94,13 @@ class ResolutionsList extends Component {
                     <h2>Resolutions</h2>
                 </div>
                 {this.Auth.isUserAdmin() ? this.renderButton() : null}
-                {this.Auth.isUserAdmin() ? this.renderAdminResolutionComponents() : this.renderUserResolutionComponents()}
+                {this.props.isContentLoaded ? 
+                    <div>
+                        {this.Auth.isUserAdmin()
+                            ? this.renderAdminResolutionComponents()
+                            : this.renderUserResolutionComponents()}
+                    </div>
+                    : <div className="spinner"></div>}
             </div>
         );
     }

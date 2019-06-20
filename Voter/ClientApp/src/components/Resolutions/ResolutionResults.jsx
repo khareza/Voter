@@ -19,7 +19,7 @@ export default class ResolutionResults extends Component {
             holdVotes: 0,
             againstVotes: 0,
             unsignedVotes: 0,
-            resultsReady: false
+            isContentLoaded: false
         }
     }
 
@@ -28,7 +28,7 @@ export default class ResolutionResults extends Component {
     }
 
     getResults = () => {
-        this.setState({ resultsReady: false });
+        this.setState({ isContentLoaded: false });
         this.resolutionRequest.getResolutionWithResults(this.id)
             .then((res) => {
                 this.setState({
@@ -37,7 +37,7 @@ export default class ResolutionResults extends Component {
                     holdVotes: res.data.holdVotes,
                     againstVotes: res.data.againstVotes,
                     unsignedVotes: res.data.unsignedVotes,
-                    resultsReady: true
+                    isContentLoaded: true
                 })
 
             }).catch(() => {
@@ -69,13 +69,14 @@ export default class ResolutionResults extends Component {
                 <div className="description"><span>Resolution No. {this.state.resolution.resolutionNumber}</span> {this.state.resolution.description}</div>
                 <hr />
                 <div><p className="voteTitle">Votes</p></div>
-                {this.state.resultsReady ? (
-                    <VotingResultsChart votes={{
+                {this.state.isContentLoaded 
+                    ? (<VotingResultsChart votes={{
                         forVotes: this.state.forVotes,
                         holdVotes: this.state.holdVotes,
                         againstVotes: this.state.againstVotes,
                         unsignedVotes: this.state.unsignedVotes
-                    }} />) : null}
+                    }} />)
+                    : <div className="spinner"></div>}
                 <div className="resolutionResultButtons">
                     <button className="btn btn-primary" onClick={this.handleShowVoters}>Show voters</button>
                     <button className="btn btn-warning" onClick={this.handleBackPage}>Come back to resolutions</button>

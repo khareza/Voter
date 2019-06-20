@@ -22,6 +22,7 @@ import './ComponentsStyles/ActiveUserDetails.css';
 import './ComponentsStyles/Dialogs.css';
 import './ComponentsStyles/Charts.css';
 import './ComponentsStyles/ResidentsWithVotes.css';
+import './ComponentsStyles/LoadingSpinner.css';
 
 
 class App extends Component {

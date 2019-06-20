@@ -9,6 +9,7 @@ import AuthMethods from '../../Helpers/AuthMethods';
 import { NotificationManager } from 'react-notifications';
 import UserVotesList from './UserVotesList';
 
+
 export class ResolutionsContentWrapper extends Component {
 
     constructor(props) {
@@ -16,7 +17,8 @@ export class ResolutionsContentWrapper extends Component {
         this.ResMethods = new ResolutionMethods();
         this.Auth = new AuthMethods();
         this.state = {
-            resolutions: []
+            resolutions: [],
+            isContentLoaded: false
         }
     }
 
@@ -25,16 +27,24 @@ export class ResolutionsContentWrapper extends Component {
     }
 
     getResolutions = () => {
+        this.setState({isContentLoaded:false});
         if (this.Auth.isUserAdmin()) {
             this.ResMethods.getActiveResolutions()
                 .then(res => {
-                    this.setState({ resolutions: res.data });
+                    this.setState({
+                        resolutions: res.data,
+                        isContentLoaded: true
+                    });
+
                 });
         }
         else {
             this.ResMethods.getResolutionsWithoutUserVote()
                 .then(res => {
-                    this.setState({ resolutions: res.data });
+                    this.setState({
+                        resolutions: res.data,
+                        isContentLoaded: true
+                    });
                 });
         }
     }
@@ -85,10 +95,12 @@ export class ResolutionsContentWrapper extends Component {
     render() {
         return (
             <div className="listBody">
+                
                 {this.state.resolutions ?
                     <div>
                         <Route exact path="/resolutions" render={() => (
                             <ResolutionsList
+                                isContentLoaded={this.state.isContentLoaded}
                                 editResolution={this.editResolution}
                                 resolutions={this.state.resolutions}
                                 deleteResolution={this.deleteResolution}

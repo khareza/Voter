@@ -13,7 +13,8 @@ class UserVotesList extends Component {
         this.id = this.props.match.params.resolution_id;
         this.resolutionRequest = new ResolutionMethods();
         this.state = {
-            residentsAndVotes:[]
+            residentsAndVotes: [],
+            isContentLoaded: false
         }
     }
 
@@ -22,13 +23,13 @@ class UserVotesList extends Component {
     }
 
     getResults = () => {
-        this.setState({ resultsReady: false });
+        this.setState({ isContentLoaded: false });
         this.resolutionRequest.getResidentsWithVotes(this.id)
             .then((res) => {
                 this.setState({
-                    residentsAndVotes: res.data
+                    residentsAndVotes: res.data,
+                    isContentLoaded: true
                 })
-                console.log(res.data);
             }).catch(() => {
                 NotificationManager.error('Server internal error', 'Error!');
                 this.props.history.push(`/Resolutions/${this.id}`);
@@ -54,7 +55,10 @@ class UserVotesList extends Component {
                     <h2>List of residents and their votes</h2>
                     <button className="btn btn-primary" onClick={this.handleBackPage}>Come back to resolution</button>
                     <div className="residentsWithVotesList">
-                        {this.renderComponents()}
+                        
+                        {this.state.isContentLoaded
+                            ? this.renderComponents()
+                            : <div className="spinner"></div>}
                     </div>
                 </div>
             </div>
