@@ -16,11 +16,11 @@ namespace Voter.AppSettings.Validators
                 .WithMessage("Enter title")
                 .NotEmpty()
                 .WithMessage("Enter title");
-            RuleFor(formData=>formData.ResolutionNumber)
-                .NotNull()
-                .WithMessage("Enter resolution number")
-                .NotEmpty()
-                .WithMessage("Enter resolution number");
+            //RuleFor(formData=>formData.ResolutionNumber)
+            //    .NotNull()
+            //    .WithMessage("Enter resolution number")
+            //    .NotEmpty()
+            //    .WithMessage("Enter resolution number");
             RuleFor(formData=>formData.Description)
                 .NotNull()
                 .WithMessage("Enter description")

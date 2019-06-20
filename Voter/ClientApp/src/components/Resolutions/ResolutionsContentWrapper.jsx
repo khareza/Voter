@@ -91,7 +91,6 @@ export class ResolutionsContentWrapper extends Component {
         this.setState({ resolutions });
     }
 
-
     render() {
         return (
             <div className="listBody">

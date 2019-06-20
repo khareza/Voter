@@ -11,6 +11,7 @@ export class ResolutionMethods {
     }
 
     editResolution = (resolutionFormData) => {
+        console.log(resolutionFormData);
         return axios.put(`${this.resolutionApiUrl}/EditResolution`, resolutionFormData);
     }
 

@@ -31,11 +31,31 @@ namespace Voter.DAL
         {
             var newResolution = _mapper.Map<Resolution>(formData);
             newResolution.CreationDate = DateTime.Now;
+            newResolution.ResolutionNumber = generateResolutionNumber();
 
             _context.Resolutions.Add(newResolution);
             _context.SaveChanges();
             return newResolution;
         }
+        private string generateResolutionNumber()
+        {
+            var resolutionNumber = "";
+            var todayDate = DateTime.Now;
+            var todayResolutions = _context.Resolutions
+                .Where(r => r.CreationDate.Date == todayDate.Date)
+                .ToList();
+            var todayResolutionsCount = todayResolutions.Count;
+            resolutionNumber = (todayResolutionsCount + 1) + "/" + todayDate.Month + "/" + todayDate.Year;
+            //If we have 2 resolutions and delete first we need to set different number for the last one
+            while (todayResolutions.Any(r=>r.ResolutionNumber == resolutionNumber))
+            {
+                todayResolutionsCount++;
+                resolutionNumber = (todayResolutionsCount + 1) + "/" + todayDate.Month + "/" + todayDate.Year;
+            }
+
+            return resolutionNumber;
+        }
+
 
         public Resolution DeleteResolution(int id)
         {
@@ -62,7 +82,6 @@ namespace Voter.DAL
             if (resolution != null)
             {
                 resolution.Title = formData.Title;
-                resolution.ResolutionNumber = formData.ResolutionNumber;
                 resolution.Description = formData.Description;
                 resolution.ExpirationDate = formData.ExpirationDate;
                 _context.SaveChanges();

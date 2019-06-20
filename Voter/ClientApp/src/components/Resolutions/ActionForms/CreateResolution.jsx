@@ -12,7 +12,6 @@ class CreateResolution extends Component {
         this.ResMethods = new ResolutionMethods();
         this.state = {
             title: '',
-            resolutionNumber: '',
             description: '',
             expirationDate: new Date(),
             isSubmitDisabled: false,
@@ -22,10 +21,10 @@ class CreateResolution extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { title, resolutionNumber, description, expirationDate } = this.state;
+        let { title, description, expirationDate } = this.state;
 
         this.ResMethods.createResolution(
-            { title, resolutionNumber, description, expirationDate }
+            { title,  description, expirationDate }
         ).then((res) => {
             NotificationManager.success('Resultions added', 'Correct');
             this.props.addNewResolution(res.data);
@@ -66,12 +65,6 @@ class CreateResolution extends Component {
                                 <label >Title</label>
                                 <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange}/>
                                 {this.state.errors['Title'] ? <Error messages={this.state.errors['Title']} /> : null}
-                            </div>
-
-                            <div className="form-group">
-                                <label>Resolution Number</label>
-                                <input className="form-control" type="text" name="resolutionNumber" value={this.state.resolutionNumber} onChange={this.handleInputChange}/>
-                                {this.state.errors['ResolutionNumber'] ? <Error messages={this.state.errors['ResolutionNumber']} /> : null}
                             </div>
 
                             <div className="form-group">

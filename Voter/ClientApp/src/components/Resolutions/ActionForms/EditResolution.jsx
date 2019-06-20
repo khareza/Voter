@@ -15,7 +15,6 @@ class EditResolution extends Component {
         this.state = {
             id:'',
             title: '',
-            resolutionNumber: '',
             description: '',
             expirationDate: new Date(),
             isSubmitDisabled: false,
@@ -38,7 +37,6 @@ class EditResolution extends Component {
             this.setState({
                 id: resolution.id,
                 title: resolution.title,
-                resolutionNumber: resolution.resolutionNumber,
                 description: resolution.description,
                 isSubmitDisabled: false,
             })
@@ -46,13 +44,13 @@ class EditResolution extends Component {
     }
 
     handleSubmit = () => {
-        let {id, title, resolutionNumber, description, expirationDate } = this.state;
+        let {id, title, description, expirationDate } = this.state;
 
         this.ResMethods.editResolution(
-            { id, title, resolutionNumber, description, expirationDate }
+            { id, title, description, expirationDate }
         ).then((res) => {
             NotificationManager.success('Edit Successful', 'Correct');
-            this.props.setEditedResolution(this.id, { id, title, resolutionNumber, description, expirationDate });
+            this.props.setEditedResolution(this.id, { id, title, description, expirationDate });
             this.props.history.push('/resolutions')
         }).catch((err) => {
             NotificationManager.error('Unsuccessful resolution edit', 'Error!');
@@ -123,12 +121,6 @@ class EditResolution extends Component {
                                 <label >Title</label>
                                 <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange}/>
                                 {this.state.errors['Title'] ? <Error messages={this.state.errors['Title']} /> : null}
-                            </div>
-
-                            <div className="form-group">
-                                <label>Resolution Number</label>
-                                <input className="form-control" type="text" name="resolutionNumber" value={this.state.resolutionNumber} onChange={this.handleInputChange} />
-                                {this.state.errors['ResolutionNumber'] ? <Error messages={this.state.errors['ResolutionNumber']} /> : null}
                             </div>
 
                             <div className="form-group">
