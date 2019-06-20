@@ -32,7 +32,6 @@ export default class ResolutionResults extends Component {
         this.setState({ isContentLoaded: false });
         this.resolutionRequest.getResolutionWithResults(this.id)
             .then((res) => {
-                console.log(res.data);
                 this.setState({
                     resolution: res.data.resolution,
                     forVotes: res.data.forVotes,

@@ -11,9 +11,8 @@ export default class VotingResultsChart extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props);
         var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'doughnut',
             data: {
                 labels: ['For', 'Against', 'Hold', 'Unsigned'],
