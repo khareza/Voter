@@ -17,7 +17,7 @@ namespace Voter.DAL
         private UserManager<Resident> _userManager;
         private readonly IMapper _mapper;
 
-        public ResidentService(AuthenticationContext context,UserManager<Resident> userManager, IMapper mapper)
+        public ResidentService(AuthenticationContext context, UserManager<Resident> userManager, IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
@@ -84,10 +84,15 @@ namespace Voter.DAL
 
         public void Vote(UserVoteFormData formData)
         {
-            var newVote = _mapper.Map<ResidentResolution>(formData);
-            newVote.VoteDate = DateTime.Now;
-            _context.ResidentResolution.Add(newVote);
-            _context.SaveChanges();
+            var resolution = _context.Resolutions.FirstOrDefault(x => x.Id == formData.ResolutionId);
+            if (resolution.ExpirationDate > DateTime.Now)
+            {
+                var newVote = _mapper.Map<ResidentResolution>(formData);
+                newVote.VoteDate = DateTime.Now;
+                _context.ResidentResolution.Add(newVote);
+                _context.SaveChanges();
+            }
+
         }
 
     }
