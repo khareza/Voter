@@ -72,7 +72,7 @@ namespace Voter.Controllers
 
         [HttpPut]
         [Route("EditUser")]
-        public async Task<IActionResult> EditUser(EditFormData formData)
+        public async Task<IActionResult> EditUser(EditUserFormData formData)
         {
             if (!ModelState.IsValid)
             {

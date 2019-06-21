@@ -18,7 +18,7 @@ namespace Voter.AppSettings.AutoMapper
                 .ForMember(dest => dest.Answer, opt => opt.MapFrom(src =>Enum.Parse(typeof(ActAnswer), src.Vote) ));
 
             CreateMap<RegisterFormData, Resident>();
-            CreateMap<EditFormData, Resident>();
+            CreateMap<EditUserFormData, Resident>();
 
             CreateMap<Resolution, ResolutionDTO>();
             CreateMap<Resident, ResidentDTO>();

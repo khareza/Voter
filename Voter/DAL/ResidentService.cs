@@ -62,7 +62,7 @@ namespace Voter.DAL
 
         }
 
-        public async Task<object> EditUser(EditFormData formData)
+        public async Task<object> EditUser(EditUserFormData formData)
         {
             var user = _userManager.Users.Where(u => u.Id == formData.Id).FirstOrDefault();
 

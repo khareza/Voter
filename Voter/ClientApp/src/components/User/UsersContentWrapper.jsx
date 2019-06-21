@@ -59,7 +59,6 @@ export class UsersContentWrapper extends Component {
 
     //used for update and rerender list intead of send get request
     setEditedUser = (index, updatedUser) => {
-        console.log(updatedUser);
         let users = this.state.users;
         users[index] = updatedUser;
         this.setState({users});

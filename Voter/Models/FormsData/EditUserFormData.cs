@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Voter.Models.FormsData
 {
-    public class EditFormData
+    public class EditUserFormData
     {
         public string Id { get; set; }
         public string Email { get; set; }

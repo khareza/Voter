@@ -8,7 +8,7 @@ namespace Voter.DAL.ServiceInterfaces
     public interface IResidentService
     {
         Task<object> DeleteUser(string id);
-        Task<object> EditUser(EditFormData formData);
+        Task<object> EditUser(EditUserFormData formData);
         Task<IEnumerable<Resident>> GetUsers();
         Task<Resident> RegisterNewUser(RegisterFormData formData);
         void Vote(UserVoteFormData formData);

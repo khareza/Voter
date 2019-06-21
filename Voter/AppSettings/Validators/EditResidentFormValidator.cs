@@ -9,7 +9,7 @@ using Voter.Models.FormsData;
 
 namespace Voter.AppSettings.Validators
 {
-    public class EditResidentFormValidator : AbstractValidator<EditFormData>
+    public class EditResidentFormValidator : AbstractValidator<EditUserFormData>
     {
         readonly Regex usernameRegex = new Regex(@"^[a-zA-Z0-9]*$");
         readonly Regex digit = new Regex(@"(?=.*\d)");
