@@ -94,7 +94,14 @@ namespace Voter.AppSettings.Validators
                 .NotEmpty()
                 .WithMessage("Enter birth date")
                 .LessThan(DateTime.Now)
-                .WithMessage("Enter correct birth date");
+                .WithMessage("Enter correct birth date")
+                .Must(x=> {
+                    int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                    int dob = int.Parse(x.ToString("yyyyMMdd"));
+                    int age = (now - dob) / 10000;
+                    return age >= 18;
+                })
+                .WithMessage("User must be of legal age to vote.");
         }
     }
 }
