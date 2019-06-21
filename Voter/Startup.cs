@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Voter.ApiServices;
 using Voter.AppSettings;
 using Voter.AppSettings.AutoMapper;
 using Voter.AppSettings.Validators;
@@ -48,6 +49,7 @@ namespace Voter
             services.AddSingleton<IValidator<RegisterFormData>, RegisterFormValidator>();
             services.AddSingleton<IValidator<ResolutionFormData>, ResolutionFormValidator>();
 
+            services.AddHostedService<TimedHostedService>();
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());

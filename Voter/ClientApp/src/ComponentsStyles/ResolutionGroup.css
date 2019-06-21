@@ -19,6 +19,7 @@
     position: absolute;
     top: -25px;
     padding: 10px;
+    font-weight:bold;
 }
 
 .resolutionGroupText p{
