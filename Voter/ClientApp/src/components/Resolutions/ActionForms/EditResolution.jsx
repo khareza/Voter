@@ -4,8 +4,6 @@ import { NotificationManager } from 'react-notifications';
 import { ResolutionMethods } from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
 import { Error } from '../../Error';
-import Dialog from '../../DialogBoxes/DialogBox';
-import DialogBackdrop from '../../DialogBoxes/DialogBackdrop';
 
 class EditResolution extends Component {
     constructor(props) {
@@ -34,6 +32,7 @@ class EditResolution extends Component {
                     id: res.data.id,
                     title: res.data.title,
                     description: res.data.description,
+                    expirationDate: new Date(res.data.expirationDate),
                     isSubmitDisabled: false,
                 })
             })
