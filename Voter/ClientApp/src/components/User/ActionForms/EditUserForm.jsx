@@ -151,7 +151,7 @@ class EditUserForm extends Component {
                             <div className="form-group">
                                 <label>Phone Number</label>
                                 <input className="form-control" type="text" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleInputChange} />
-                                {this.state.errors['Phone'] ? <Error messages={this.state.errors['Phone']} /> : null}
+                                {this.state.errors['PhoneNumber'] ? <Error messages={this.state.errors['PhoneNumber']} /> : null}
                             </div>
 
                             <div className="form-group">

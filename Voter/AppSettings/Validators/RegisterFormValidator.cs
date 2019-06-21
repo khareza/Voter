@@ -72,7 +72,7 @@ namespace Voter.AppSettings.Validators
                 .Matches(nameRegex)
                 .WithMessage("Last name cant contain special characters or digits");
 
-            RuleFor(registerForm => registerForm.Phone)
+            RuleFor(registerForm => registerForm.PhoneNumber)
                 .NotNull()
                 .WithMessage("Enter number")
                 .NotEmpty()

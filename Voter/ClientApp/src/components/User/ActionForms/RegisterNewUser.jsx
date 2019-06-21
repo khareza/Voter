@@ -17,7 +17,7 @@ class RegisterNewUser extends Component {
             lastName: '',
             email: '',
             birthDate: new Date(),
-            phone: '',
+            phoneNumber: '',
             address:'',
             isSubmitDisabled: true,
             errors: {}
@@ -26,10 +26,10 @@ class RegisterNewUser extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { userName, password, firstName, lastName, email, birthDate, phone, address } = this.state;
+        let { userName, password, firstName, lastName, email, birthDate, phoneNumber, address } = this.state;
 
         this.UserMethods.register(
-            { userName, password, firstName, lastName, email, birthDate, phone, address}
+            { userName, password, firstName, lastName, email, birthDate, phoneNumber, address}
         ).then((res) => {
             NotificationManager.success('Register Successful', 'Correct');
             this.props.addNewUser(res.data);
@@ -100,6 +100,12 @@ class RegisterNewUser extends Component {
                             </div>
 
                             <div className="form-group">
+                                <label>Phone Number</label>
+                                <input className="form-control" type="text" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleInputChange} />
+                                {this.state.errors['PhoneNumber'] ? <Error messages={this.state.errors['PhoneNumber']} /> : null}
+                            </div>
+
+                            <div className="form-group">
                                 <label>Birth date</label>
                                 <div>
                                     <DatePicker
@@ -121,13 +127,6 @@ class RegisterNewUser extends Component {
                                 <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange}/>
                                 {this.state.errors['Email'] ? <Error messages={this.state.errors['Email']} /> : null}
                             </div>
-
-                            <div className="form-group">
-                                <label>Phone</label>
-                                <input className="form-control" type="text" name="phone" value={this.state.phone} onChange={this.handleInputChange} />
-                                {this.state.errors['Phone'] ? <Error messages={this.state.errors['Phone']} /> : null}
-                            </div>
-
 
                             <input type="submit" value="Add new resident" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
                             <input type="button" value="Cancel" onClick={() => { this.props.history.push('/residents') }} className="btn btn-large btn-block btn-danger" />
