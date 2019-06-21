@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
+import { ResolutionMethods } from '../../../Helpers/ResolutionMethods';
 import DatePicker from 'react-datepicker';
 import { Error } from '../../Error';
 import Dialog from '../../DialogBoxes/DialogBox';
@@ -13,13 +13,13 @@ class EditResolution extends Component {
         this.ResMethods = new ResolutionMethods();
         this.id = this.props.match.params.resolution_id;
         this.state = {
-            id:'',
+            id: '',
             title: '',
             description: '',
             expirationDate: new Date(),
             isSubmitDisabled: false,
             errors: {},
-            dialogOpen:false
+            dialogOpen: false
         };
     }
 
@@ -28,23 +28,24 @@ class EditResolution extends Component {
     }
 
     getResolution = () => {
-        const resolution = this.props.getResolutionToEdit(this.id);
-        if (typeof resolution === 'undefined') {
-            this.props.history.push('/resolutions')
-            NotificationManager.error('Choose correct resolution', 'Error!');
-        }
-        else {
-            this.setState({
-                id: resolution.id,
-                title: resolution.title,
-                description: resolution.description,
-                isSubmitDisabled: false,
+        this.ResMethods.getResolutionById(this.id)
+            .then((res) => {
+                this.setState({
+                    id: res.data.id,
+                    title: res.data.title,
+                    description: res.data.description,
+                    isSubmitDisabled: false,
+                })
             })
-        }
     }
 
+    getResolutionByIdFromDb = (id) => {
+        return
+    }
+
+
     handleSubmit = () => {
-        let {id, title, description, expirationDate } = this.state;
+        let { id, title, description, expirationDate } = this.state;
 
         this.ResMethods.editResolution(
             { id, title, description, expirationDate }
@@ -74,44 +75,15 @@ class EditResolution extends Component {
         this.setState({ expirationDate: date });
     }
 
-    handleDialogOpen = (event) => {
-        event.preventDefault();
-
-        this.setState({
-            dialogOpen: true,
-        });
-    }
-
-    handleAccept = () => {
-        this.handleSubmit();
-        this.setState({
-            dialogOpen: false
-        });
-    }
-
-    handleRefuse = () => {
-        this.setState({
-            dialogOpen: false
-        });
-    }
-
-    handleCloseDialog = () => {
-        this.setState({
-            dialogOpen: false
-        });
-    }
-
     render() {
         return (
             <div>
-                {this.state.dialogOpen ? <DialogBackdrop /> : null}
-                <Dialog dialogOpen={this.state.dialogOpen}
-                    closeDialog={this.handleCloseDialog}
-                    refuse={this.handleRefuse}
-                    agree={this.handleAccept}
-                    message="Are you sure you want to edit this resolution?"
-                />
-                <form onSubmit={this.handleDialogOpen} autoComplete="off">
+                <form onSubmit={(event) => {
+                    event.preventDefault();
+                    this.props.setDialogConfig({
+                        acceptedAction: () => { this.handleSubmit() }, message: "Edit"
+                    })
+                }} autoComplete="off">
                     <div className="formHeader">
                         <h2>Edit resolution</h2>
                     </div>
@@ -119,7 +91,7 @@ class EditResolution extends Component {
                         <div className="form-gorup col-md-8 offset-md-2">
                             <div className="form-group">
                                 <label >Title</label>
-                                <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange}/>
+                                <input className="form-control" type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
                                 {this.state.errors['Title'] ? <Error messages={this.state.errors['Title']} /> : null}
                             </div>
 

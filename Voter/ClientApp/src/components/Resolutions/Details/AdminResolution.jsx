@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faFolderMinus,faPoll } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faFolderMinus, faPoll } from '@fortawesome/free-solid-svg-icons'
 
 export class AdminResolution extends Component {
 
@@ -10,7 +10,9 @@ export class AdminResolution extends Component {
     }
 
     deleteResolution = () => {
-        this.props.deleteResolution(this.props.resolution.id);
+        this.props.setDialogConfig({
+            acceptedAction: () => { this.props.deleteResolution(this.props.resolution.id) }, message: "Delete"
+        })
     }
 
     showResolutionResults = () => {

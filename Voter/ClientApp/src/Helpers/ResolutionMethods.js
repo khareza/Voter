@@ -11,14 +11,18 @@ export class ResolutionMethods {
     }
 
     editResolution = (resolutionFormData) => {
-        console.log(resolutionFormData);
         return axios.put(`${this.resolutionApiUrl}/EditResolution`, resolutionFormData);
     }
 
     deleteResolution = (id) => {
         return axios.delete(`${this.resolutionApiUrl}/DeleteResolution/` + id);
     }
+    getResolutionById = (id) => {
+        return axios.get(`${this.resolutionApiUrl}/GetResolutionById/${id}`);
+    }
 
+    //GETTERS WITHOUT GROUPING
+    ///
     getResolutions = () => {
         return axios.get(`${this.resolutionApiUrl}/GetResolutions`);
     }
@@ -35,6 +39,26 @@ export class ResolutionMethods {
         const userId = this.auth.getUserId();
         return axios.get(`${this.resolutionApiUrl}/GetResolutionsWithoutUserVote/${userId}`);
     }
+    ////
+
+    //GETTERS WITH GROUPING
+    ////
+    getGroupedResolutions = () => {
+        return axios.get(`${this.resolutionApiUrl}/GetGroupedResolutions`);
+    }
+    getGroupedActiveResolutions = () => {
+        return axios.get(`${this.resolutionApiUrl}/GetGroupedActiveResolutions`);
+    }
+
+    getGroupedExpiredResolutions = () => {
+        return axios.get(`${this.resolutionApiUrl}/GetGroupedExpiredResolutions`);
+    }
+
+    getGroupedResolutionsWithoutUserVote = () => {
+        const userId = this.auth.getUserId();
+        return axios.get(`${this.resolutionApiUrl}/GetGroupedResolutionsWithoutUserVote/${userId}`);
+    }
+    ////
 
     getResolutionWithResults = (resolutionId) => {
         return axios.get(`${this.resolutionApiUrl}/GetResolutionWithResults/${resolutionId}`);

@@ -93,29 +93,68 @@ namespace Voter.DAL
             }
 
         }
-
+        #region Resolutions getters without grouping
         public IEnumerable<Resolution> GetResolutions()
         {
-            return _context.Resolutions.ToList();
+            return _context.Resolutions
+                .ToList();
         }
-
         public IEnumerable<Resolution> GetActiveResolutions()
         {
-            return _context.Resolutions.Where(r=>r.ExpirationDate > DateTime.Now).ToList();
+            return _context.Resolutions
+                .Where(r => r.ExpirationDate > DateTime.Now)
+                .ToList();
         }
-
         public IEnumerable<Resolution> GetExpiredResolutions()
         {
-            return _context.Resolutions.Where(r => r.ExpirationDate <= DateTime.Now).ToList();
-
+            return _context.Resolutions
+                .Where(r => r.ExpirationDate <= DateTime.Now)
+                .ToList();
         }
-
         public IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId)
         {
             return _context.Resolutions
-                .Where(r => !r.Residents.Any(x=>x.Voter.Id == userId) && r.ExpirationDate > DateTime.Now )
+                .Where(r => !r.Residents.Any(x => x.Voter.Id == userId) && r.ExpirationDate > DateTime.Now)
                 .ToList();
         }
+        #endregion
+        public Resolution GetResolutionById(int id)
+        {
+            return _context.Resolutions.FirstOrDefault(r=>r.Id == id);
+        }
+
+
+        public IEnumerable<IGrouping<DateTime,Resolution>> GetResolutionsGroupedByCreationDate()
+        {
+            return _context.Resolutions
+                .GroupBy(x=>x.CreationDate.Date)
+                .ToList();
+        }
+
+        public IEnumerable<IGrouping<DateTime, Resolution>> GetActiveResolutionsGroupedByCreationDate()
+        {
+            return _context.Resolutions
+                .Where(r => r.ExpirationDate > DateTime.Now)
+                .GroupBy(x => x.CreationDate.Date)
+                .ToList();
+        }
+
+        public IEnumerable<IGrouping<DateTime, Resolution>> GetExpiredResolutionsGroupedByCreationDate()
+        {
+            return _context.Resolutions
+                .Where(r => r.ExpirationDate <= DateTime.Now)
+                .GroupBy(x => x.CreationDate.Date)
+                .ToList();
+        }
+
+        public IEnumerable<IGrouping<DateTime, Resolution>> GetResolutionsWithoutUserVoteGroupedByCreationDate(string userId)
+        {
+            return _context.Resolutions
+                .Where(r => !r.Residents.Any(x => x.Voter.Id == userId) && r.ExpirationDate > DateTime.Now)
+                .GroupBy(x => x.CreationDate.Date)
+                .ToList();
+        }
+
         public VotingResultsDTO GetResolutionWithResults(int resolutionId)
         {
             var votes = _context.ResidentResolution.Where(rr => rr.ResolutionId == resolutionId);

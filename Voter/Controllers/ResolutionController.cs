@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -79,7 +80,7 @@ namespace Voter.Controllers
             }
 
         }
-
+        #region getters without grouping
         [HttpGet]
         [Route("GetResolutions")]
         [Authorize]
@@ -87,6 +88,7 @@ namespace Voter.Controllers
         {
             return _context.GetResolutions();
         }
+
 
         [HttpGet]
         [Route("GetActiveResolutions")]
@@ -110,6 +112,47 @@ namespace Voter.Controllers
         public IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId)
         {
             return _context.GetResolutionsWithoutUserVote(userId);
+        }
+        #endregion
+
+
+        [HttpGet]
+        [Route("GetResolutionById/{id}")]
+        [Authorize]
+        public Resolution GetResolutionById(int id)
+        {
+            return _context.GetResolutionById(id);
+        }
+
+        [HttpGet]
+        [Route("GetGroupedResolutions")]
+        [Authorize]
+        public IEnumerable<IGrouping<DateTime, Resolution>> GetGroupedResolutions()
+        {
+            return _context.GetResolutionsGroupedByCreationDate();
+        }
+        [HttpGet]
+        [Route("GetGroupedActiveResolutions")]
+        [Authorize]
+        public IEnumerable<IGrouping<DateTime, Resolution>> GetGroupedActiveResolutions()
+        {
+            return _context.GetActiveResolutionsGroupedByCreationDate();
+        }
+
+        [HttpGet]
+        [Route("GetGroupedExpiredResolutions")]
+        [Authorize]
+        public IEnumerable<IGrouping<DateTime, Resolution>> GetGroupedExpiredResolutions()
+        {
+            return _context.GetExpiredResolutionsGroupedByCreationDate();
+        }
+
+        [HttpGet]
+        [Route("GetGroupedResolutionsWithoutUserVote/{userId}")]
+        [Authorize]
+        public IEnumerable<IGrouping<DateTime, Resolution>> GetGroupedResolutionsWithoutUserVote(string userId)
+        {
+            return _context.GetResolutionsWithoutUserVoteGroupedByCreationDate(userId);
         }
 
         [HttpGet]

@@ -23,6 +23,7 @@ import './ComponentsStyles/Dialogs.css';
 import './ComponentsStyles/Charts.css';
 import './ComponentsStyles/ResidentsWithVotes.css';
 import './ComponentsStyles/LoadingSpinner.css';
+import './ComponentsStyles/ResolutionGroup.css';
 
 
 class App extends Component {
