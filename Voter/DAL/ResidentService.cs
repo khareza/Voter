@@ -68,7 +68,6 @@ namespace Voter.DAL
 
             if (user != null)
             {
-                user.UserName = formData.UserName;
                 user.Email = formData.Email;
                 user.FirstName = formData.FirstName;
                 user.LastName = formData.LastName;

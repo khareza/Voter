@@ -20,16 +20,6 @@ namespace Voter.AppSettings.Validators
 
         public EditResidentFormValidator()
         {
-            RuleFor(editForm => editForm.UserName)
-                .NotNull()
-                .WithMessage("Enter username")
-                .NotEmpty()
-                .WithMessage("Enter username")
-                .MinimumLength(4)
-                .WithMessage("Username must be at least 4 characters long")
-                .Matches(usernameRegex)
-                .WithMessage("Username cant contain special characters");
-
             RuleFor(editForm => editForm.Email)
                 .NotNull()
                 .WithMessage("Enter email")

@@ -13,7 +13,6 @@ class EditUserForm extends Component {
         this.id = this.props.match.params.user_id;
         this.state = {
             id:'',
-            userName: '',
             firstName: '',
             lastName: '',
             address: '',
@@ -39,7 +38,6 @@ class EditUserForm extends Component {
         else {
             this.setState({
                 id:user.id,
-                userName: user.userName,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 address: user.address ? user.address : '',
@@ -51,13 +49,13 @@ class EditUserForm extends Component {
     }
 
     handleSubmit = () => {
-        let {id, userName, firstName, lastName, address, email, phoneNumber } = this.state;
+        let {id, firstName, lastName, address, email, phoneNumber } = this.state;
 
         this.UserMethods.editUser(
-            { id, userName, firstName, lastName, address, email, phoneNumber }
+            { id, firstName, lastName, address, email, phoneNumber }
         ).then((res) => {
             NotificationManager.success('Edit Successful', 'Correct');
-            this.props.setEditedUser(this.id, { id, userName, firstName, lastName, address, email, phoneNumber });
+            this.props.setEditedUser(this.id, { id, firstName, lastName, address, email, phoneNumber });
             this.props.history.push('/residents')
         }).catch((err) => {
             NotificationManager.error('Unsuccessful user edit', 'Error!');
@@ -130,11 +128,6 @@ class EditUserForm extends Component {
                     </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">
-                            <div className="form-group">
-                                <label >User Name</label>
-                                <input className="form-control" type="text" name="userName" value={this.state.userName} onChange={this.handleInputChange} />
-                                {this.state.errors['UserName'] ? <Error messages={this.state.errors['UserName']} /> : null}
-                            </div>
 
                             <div className="form-group">
                                 <label>FirstName</label>
