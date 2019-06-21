@@ -84,7 +84,9 @@ namespace Voter.AppSettings.Validators
                 .NotNull()
                 .WithMessage("Enter address")
                 .NotEmpty()
-                .WithMessage("Enter address");
+                .WithMessage("Enter address")
+                .Matches(passwordDigit)
+                .WithMessage("Enter address number");
 
             RuleFor(registerForm => registerForm.BirthDate)
                 .NotNull()

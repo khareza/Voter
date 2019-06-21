@@ -18,7 +18,7 @@ class EditUserForm extends Component {
             address: '',
             email: '',
             phoneNumber: '',
-            isSubmitDisabled: true,
+            isSubmitDisabled: false,
             errors: {},
             dialogOpen: false
         };
@@ -43,7 +43,7 @@ class EditUserForm extends Component {
                 address: user.address ? user.address : '',
                 email: user.email,
                 phoneNumber: user.phoneNumber ? user.phoneNumber : '',
-                isSubmitDisabled: true,
+                isSubmitDisabled: false,
             })
         }
     }
@@ -73,17 +73,17 @@ class EditUserForm extends Component {
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-        this.checkIfFormDataIsValid();
+       // this.checkIfFormDataIsValid();
     }
 
-    checkIfFormDataIsValid = () => {
-        if (this.state.userName.length > 0 && this.state.firstName.length > 0) {
-            this.setState({ isSubmitDisabled: false });
-        }
-        else {
-            this.setState({ isSubmitDisabled: true });
-        }
-    }
+    //checkIfFormDataIsValid = () => {
+    //    if (this.state.userName.length > 0 && this.state.firstName.length > 0) {
+    //        this.setState({ isSubmitDisabled: false });
+    //    }
+    //    else {
+    //        this.setState({ isSubmitDisabled: true });
+    //    }
+    //}
 
     handleDialogOpen = (event) => {
         event.preventDefault();

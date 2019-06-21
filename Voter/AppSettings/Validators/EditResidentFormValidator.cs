@@ -12,6 +12,7 @@ namespace Voter.AppSettings.Validators
     public class EditResidentFormValidator : AbstractValidator<EditFormData>
     {
         readonly Regex usernameRegex = new Regex(@"^[a-zA-Z0-9]*$");
+        readonly Regex digit = new Regex(@"(?=.*\d)");
 
         readonly Regex nameRegex = new Regex(@"^[a-zA-Z]*$");
         readonly Regex phoneNumber = new Regex(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{3}");
@@ -56,7 +57,9 @@ namespace Voter.AppSettings.Validators
                 .NotNull()
                 .WithMessage("Enter address")
                 .NotEmpty()
-                .WithMessage("Enter address");
+                .WithMessage("Enter address")
+                .Matches(digit)
+                .WithMessage("Enter address number");
         }
     }
 }
