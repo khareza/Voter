@@ -155,6 +155,44 @@ namespace Voter.DAL
                 .ToList();
         }
 
+        public IEnumerable<ResidentVoteResolutionDTO> GetExpiredResolutionsWithUserVote(string userId)
+        {
+            var userRegisterDate = _context.Residents.FirstOrDefault(r => r.Id == userId).RegisterDate;
+            var resolutions = _context.Resolutions.Where(r=>r.CreationDate > userRegisterDate && r.ExpirationDate<DateTime.Now);
+            var votes = _context.ResidentResolution.Include(rr=>rr.Resolution).Where(rr => rr.VoterId == userId);
+
+            List<ResidentVoteResolutionDTO> resultList = new List<ResidentVoteResolutionDTO>();
+
+            foreach (var res in resolutions)
+            {
+                var residentVote = new ResidentVoteResolutionDTO();
+                residentVote.Resolution = _mapper.Map<ResolutionDTO>(res);
+                residentVote.Vote = "Unsigned";
+                resultList.Add(residentVote);
+            }
+
+
+            foreach (var resolution in votes)
+            {
+                var resolutionId = resolution.ResolutionId;
+                var userVote = resolution.Answer.ToString();
+
+                var index = resultList.FindIndex(x => x.Resolution.Id == resolutionId);
+                if (index != -1)
+                {
+                    resultList[index].Vote = userVote;
+
+                }
+                else
+                {
+                    resultList.Add(new ResidentVoteResolutionDTO { Resolution = _mapper.Map<ResolutionDTO>(resolution.Resolution), Vote = userVote });
+
+                }
+            }
+
+            return resultList;
+        }
+
         public VotingResultsDTO GetResolutionWithResults(int resolutionId)
         {
             var votes = _context.ResidentResolution.Where(rr => rr.ResolutionId == resolutionId);
@@ -174,6 +212,8 @@ namespace Voter.DAL
             votingResults.NumberOfUsers = _userManager.GetUsersInRoleAsync(UserRole.USER).Result.Count;
             return votingResults;
         }
+
+
 
         public IEnumerable<ResidentsVotesDTO> GetResidentsWithVotes(int resolutionId)
         {

@@ -156,6 +156,14 @@ namespace Voter.Controllers
         }
 
         [HttpGet]
+        [Route("GetExpiredResolutionsWithUserVote/{userId}")]
+        [Authorize]
+        public IEnumerable<ResidentVoteResolutionDTO> GetExpiredResolutionsWithUserVote(string userId)
+        {
+            return _context.GetExpiredResolutionsWithUserVote(userId);
+        }
+
+        [HttpGet]
         [Route("GetResolutionWithResults/{resolutionId}")]
         [Authorize]
         public IActionResult GetResolutionWithResults(int resolutionId)

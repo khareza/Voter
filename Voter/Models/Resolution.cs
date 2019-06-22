@@ -7,8 +7,7 @@ namespace Voter.Models
     public enum ResolutionStatus {
         Active,
         Accepted,
-        Rejected,
-        Unresolved,
+        Rejected
     }
 
     public class Resolution

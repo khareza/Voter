@@ -55,7 +55,7 @@ export class ResolutionsContentWrapper extends Component {
         this.ResMethods.deleteResolution(id)
             .then(() => {
                 var resolutionsList = this.state.resolutions;
-                resolutionsList.forEach((resolutions,index) => {
+                resolutionsList.forEach((resolutions, index) => {
                     var newArrayRow = [];
                     newArrayRow = resolutions.filter((resolution) => {
                         return resolution.id !== id;
@@ -68,6 +68,19 @@ export class ResolutionsContentWrapper extends Component {
             }).catch(err => {
                 NotificationManager.error('Unsuccessful delete', 'Error!');
             });
+    }
+
+    deleteResolutionFromList = (id) => {
+        var resolutionsList = this.state.resolutions;
+        resolutionsList.forEach((resolutions, index) => {
+            var newArrayRow = [];
+            newArrayRow = resolutions.filter((resolution) => {
+                return resolution.id !== id;
+            })
+            resolutionsList[index] = newArrayRow;
+        })
+
+        this.setState({ resolutions: resolutionsList });
     }
 
     editResolution = (id) => {
@@ -143,6 +156,7 @@ export class ResolutionsContentWrapper extends Component {
                             <Route exact path="/resolutions" render={() => (
                                 <ResolutionsGroupList
                                     deleteResolution={this.deleteResolution}
+                                    deleteResolutionFromList={this.deleteResolutionFromList}
                                     showResolutionResults={this.showResolutionResults}
                                     editResolution={this.editResolution}
                                     resolutionsGroups={this.state.resolutions}

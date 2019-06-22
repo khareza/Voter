@@ -28,6 +28,7 @@ class ResolutionsList extends Component {
             return (
                 <UserResolution key={resolution.id}
                     setDialogConfig={this.props.setDialogConfig}
+                    deleteResolutionFromList={this.props.deleteResolutionFromList}
                     resolution={resolution} />
             )
         })

@@ -24,5 +24,7 @@ namespace Voter.DAL.ServiceInterfaces
         IEnumerable<IGrouping<DateTime, Resolution>> GetActiveResolutionsGroupedByCreationDate();
         IEnumerable<IGrouping<DateTime, Resolution>> GetExpiredResolutionsGroupedByCreationDate();
         IEnumerable<IGrouping<DateTime, Resolution>> GetResolutionsWithoutUserVoteGroupedByCreationDate(string userId);
+
+        IEnumerable<ResidentVoteResolutionDTO> GetExpiredResolutionsWithUserVote(string userId);
     }
 }

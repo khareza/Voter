@@ -27,7 +27,7 @@ namespace Voter.AppSettings.Validators
                 .NotEmpty()
                 .WithMessage("Enter description");
 
-            RuleFor(formData=>formData.ExpirationDate)
+            RuleFor(formData => formData.ExpirationDate)
                 .NotNull()
                 .WithMessage("Enter date")
                 .NotEmpty()

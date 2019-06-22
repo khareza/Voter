@@ -39,6 +39,11 @@ export class ResolutionMethods {
         const userId = this.auth.getUserId();
         return axios.get(`${this.resolutionApiUrl}/GetResolutionsWithoutUserVote/${userId}`);
     }
+
+    getExpiredResolutionsWithUserVote = () => {
+        const userId = this.auth.getUserId();
+        return axios.get(`${this.resolutionApiUrl}/GetExpiredResolutionsWithUserVote/${userId}`);
+    }
     ////
 
     //GETTERS WITH GROUPING

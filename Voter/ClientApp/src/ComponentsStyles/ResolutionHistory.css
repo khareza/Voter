@@ -1,0 +1,57 @@
+﻿.resolutionHistoryHeader {
+    text-align:center;
+
+}
+.resolutionResults {
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+}
+
+    .resolutionResults div {
+        /*border:1px solid black;*/
+    }
+
+    .resolutionResults div span{
+        font-size:2rem;
+    }
+        .resolutionResults div h4 {
+            margin: 0;
+        }
+    .resolutionResult {
+        width: 100%;
+        text-align: center;
+    }
+
+.resolutionUserVote {
+    width: 100%;
+    text-align: center;
+}
+
+div.activeResolution span {
+    color: rgba(105,101,94,1);
+}
+
+div.acceptedResolution span {
+    color: rgba(0,200,81,1);
+}
+
+div.rejectedResolution span {
+    color: rgba(255,68,68,1);
+}
+
+div.forUserVote span {
+    color: rgba(0,200,81,1);
+}
+
+div.againstUserVote span {
+    color: rgba(255,68,68,1);
+}
+
+div.holdUserVote span {
+    color: rgba(255,187,51,1);
+}
+
+div.unsignedUserVote span {
+    color: rgba(105,101,94,1);
+}

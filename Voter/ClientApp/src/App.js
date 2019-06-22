@@ -24,6 +24,8 @@ import './ComponentsStyles/Charts.css';
 import './ComponentsStyles/ResidentsWithVotes.css';
 import './ComponentsStyles/LoadingSpinner.css';
 import './ComponentsStyles/ResolutionGroup.css';
+import './ComponentsStyles/ResolutionHistory.css';
+import './ComponentsStyles/UserMenu.css';
 
 
 class App extends Component {

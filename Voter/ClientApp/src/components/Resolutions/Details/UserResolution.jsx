@@ -17,7 +17,7 @@ export class UserResolution extends Component {
         this.userRequest.sendVote({ voterId, resolutionId, vote })
             .then(() => {
                 this.props.deleteResolutionFromList(resolutionId);
-                NotificationManager.success('Vote sent', 'Correct');
+                NotificationManager.success('You can check resolution state in resolution history', 'Correct');
             })
             .catch((err) => {
                 NotificationManager.error('Incorrect action', 'Error');

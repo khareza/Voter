@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import SideMenu from './SideMenu';
 import SideDrawer from './SideDrawer/SideDrawer';
 import Backdrop from './SideDrawer/Backdrop';
-import { ActiveUserDetails } from './ActiveUserProfile/ActiveUserDetails';
+import ActiveUserContentWrapper from './ActiveUserProfile/ActiveUserContentWrapper';
 import { UsersContentWrapper } from './User/UsersContentWrapper';
 import { ResolutionsContentWrapper } from './Resolutions/ResolutionsContentWrapper';
 import AuthMethods from '../Helpers/AuthMethods';
@@ -41,7 +41,7 @@ export class Main extends Component {
                 <SideMenu drawerClickHandler={this.drawerToggleClickHandler} />
                 <SideDrawer show={this.state.sideDrawerOpen}/>
                 <div className="content">
-                    <Route path="/profile" component={ActiveUserDetails} />
+                    <Route path="/profile" component={ActiveUserContentWrapper} />
                     <Route path="/resolutions" component={ResolutionsContentWrapper} />
                     {this.renderResidentsRouteIfAdmin()}
                 </div>

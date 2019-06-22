@@ -11,6 +11,7 @@ namespace Voter.Models.DTOs
         public string Title { get; set; }
         public string ResolutionNumber { get; set; }
         public string Description { get; set; }
+        public string ResolutionStatus { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public List<ResidentResolutionDTO> Residents { get; set; }

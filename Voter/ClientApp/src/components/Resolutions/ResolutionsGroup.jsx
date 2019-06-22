@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import ResolutionsList from './ResolutionsList';
 import Moment from 'react-moment';
@@ -36,16 +35,15 @@ class ResolutionsGroup extends Component {
                                 </div>
                             </div>
                         </div>
-                        <Route exact path="/resolutions" render={() => (
-                            <ResolutionsList
-                                setDialogConfig={this.props.setDialogConfig}
-                                showResolutionResults={this.props.showResolutionResults}
+                        <ResolutionsList
+                            setDialogConfig={this.props.setDialogConfig}
+                            showResolutionResults={this.props.showResolutionResults}
 
-                                resolutions={this.props.resolutions}
-                                deleteResolution={this.props.deleteResolution}
+                            resolutions={this.props.resolutions}
+                            deleteResolution={this.props.deleteResolution}
+                            deleteResolutionFromList={this.props.deleteResolutionFromList}
 
-                                editResolution={this.props.editResolution}
-                            />)} />
+                            editResolution={this.props.editResolution}/>
                     </div>
                     : null}
             </div>

@@ -50,15 +50,12 @@ namespace Voter.ApiServices
                     {
                         resolution.ResolutionStatus = ResolutionStatus.Accepted;
                     }
-                    else if (forVotes < againstVotes)
+                    else
                     {
                         resolution.ResolutionStatus = ResolutionStatus.Rejected;
 
                     }
-                    else
-                    {
-                        resolution.ResolutionStatus = ResolutionStatus.Unresolved;
-                    }
+
                 }
                 context.SaveChanges();
             }
