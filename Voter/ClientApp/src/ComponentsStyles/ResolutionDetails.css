@@ -19,6 +19,11 @@
         font-weight: 600;
     }
 
+.resolutionTitle {
+    font-weight:600;
+
+}
+
 .resolutionButtons {
     display: flex;
     align-items: center;
@@ -34,8 +39,12 @@
     font-size: 1.1rem;
 }
 
-    .resolutionCardHeader p {
+    .resolutionCardHeader * {
         margin: 0;
+    }
+
+    .resolutionCardHeader p {
+        font-size:0.9rem;
     }
 
 .button {

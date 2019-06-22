@@ -29,7 +29,7 @@ export class UserResolution extends Component {
             <div>
                 <div className="resolutionCard">
                     <div className="resolutionCardHeader">
-                        <p>{`${this.props.resolution.title}`}</p>
+                        <h4 className="resolutionTitle">{`${this.props.resolution.title}`}</h4>
                         <p>Expiration Date: <Moment format="dddd YYYY-MM-DD HH:mm">{this.props.resolution.expirationDate}</Moment></p>
                         <p>Voting ends <Moment fromNow="dddd YYYY-MM-DD HH:mm">{this.props.resolution.expirationDate}</Moment></p>
                     </div>

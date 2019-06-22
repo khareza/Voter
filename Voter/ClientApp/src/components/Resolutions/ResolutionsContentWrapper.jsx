@@ -32,7 +32,7 @@ export class ResolutionsContentWrapper extends Component {
     getResolutions = () => {
         this.setState({ isContentLoaded: false });
         if (this.Auth.isUserAdmin()) {
-            this.ResMethods.getGroupedResolutions()
+            this.ResMethods.getGroupedActiveResolutions()
                 .then(res => {
                     this.setState({
                         resolutions: res.data,
