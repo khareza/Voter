@@ -4,6 +4,18 @@
 
 .usersList {
     width: 80%;
-    margin: 0 auto;
+    margin: 20px auto;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+@media (max-width: 1200px) {
+    .usersList {
+        display: flex;
+        justify-content:center;
+        flex-wrap: wrap;
+    }
 }
