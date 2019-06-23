@@ -26,26 +26,22 @@ class ResolutionsGroup extends Component {
     render() {
         return (
             <div className="listBody">
-                {this.props.resolutions.length > 0 ?
-                    <div>
-                        <div className="resolutionGroupContainer">
-                            <div className="resolutionGroup">
-                                <div className="resolutionGroupText">
-                                    <p>Resolutions from <Moment format="DD.MM.YYYY">{this.props.resolutions[0].creationDate}</Moment></p>
-                                </div>
-                            </div>
+                <div className="resolutionGroupContainer">
+                    <div className="resolutionGroup">
+                        <div className="resolutionGroupText">
+                            <p>Resolutions from <Moment format="DD.MM.YYYY">{this.props.resolutions[0].creationDate}</Moment></p>
                         </div>
-                        <ResolutionsList
-                            setDialogConfig={this.props.setDialogConfig}
-                            showResolutionResults={this.props.showResolutionResults}
-
-                            resolutions={this.props.resolutions}
-                            deleteResolution={this.props.deleteResolution}
-                            deleteResolutionFromList={this.props.deleteResolutionFromList}
-
-                            editResolution={this.props.editResolution}/>
                     </div>
-                    : null}
+                </div>
+                <ResolutionsList
+                    setDialogConfig={this.props.setDialogConfig}
+                    showResolutionResults={this.props.showResolutionResults}
+
+                    resolutions={this.props.resolutions}
+                    deleteResolution={this.props.deleteResolution}
+                    deleteResolutionFromList={this.props.deleteResolutionFromList}
+
+                    editResolution={this.props.editResolution} />
             </div>
         );
     }

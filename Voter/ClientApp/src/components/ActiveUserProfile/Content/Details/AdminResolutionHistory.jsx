@@ -36,7 +36,7 @@ export default class AdminResolutionHistory extends Component {
                         </div>
                         <div className="resolutionResults">
                             <div className={resolutionResultStyles}>
-                                <h4>Resolution state</h4>
+                                <h4>Resolution result</h4>
                                 {this.props.resolution.resolutionStatus === "Active"
                                     ? <p>Resolution is still active</p>
                                     : <span><FontAwesomeIcon icon={resolutionResult.resultIcon}></FontAwesomeIcon></span>

@@ -43,7 +43,8 @@ class ResolutionsGroupList extends Component {
                                 resolutions={resolutions}
                                 setDialogConfig={this.props.setDialogConfig}
                                 isContentLoaded={this.props.isContentLoaded} />
-                            ))}
+                        ))}
+                        {this.props.resolutionsGroups.length ===0 ?<h3>No avaiable resolutions</h3>:null }
                     </div>
                     : <div className="spinner"></div>}
             </div>
