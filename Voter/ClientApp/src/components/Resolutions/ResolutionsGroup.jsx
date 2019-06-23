@@ -2,9 +2,13 @@
 import { withRouter } from 'react-router-dom';
 import ResolutionsList from './ResolutionsList';
 import Moment from 'react-moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPrint } from '@fortawesome/free-solid-svg-icons'
+import AuthMethods from '../../Helpers/AuthMethods';
 
 class ResolutionsGroup extends Component {
 
+    Auth = new AuthMethods();
 
     editResolution = (id) => {
         console.log(id);
@@ -23,6 +27,10 @@ class ResolutionsGroup extends Component {
         this.setState({ resolutions });
     }
 
+    handlePrint = () => {
+        this.props.history.push(`/resolutions/print/${this.props.groupIndex}`);
+    }
+
     render() {
         return (
             <div className="listBody">
@@ -31,6 +39,9 @@ class ResolutionsGroup extends Component {
                         <div className="resolutionGroupText">
                             <p>Resolutions from <Moment format="DD.MM.YYYY">{this.props.resolutions[0].creationDate}</Moment></p>
                         </div>
+                        {this.Auth.isUserAdmin()
+                            ? <button onClick={this.handlePrint} className='btn btn-primary'><FontAwesomeIcon icon={faPrint}></FontAwesomeIcon></button>
+                            : null}
                     </div>
                 </div>
                 <ResolutionsList
@@ -42,6 +53,7 @@ class ResolutionsGroup extends Component {
                     deleteResolutionFromList={this.props.deleteResolutionFromList}
 
                     editResolution={this.props.editResolution} />
+
             </div>
         );
     }

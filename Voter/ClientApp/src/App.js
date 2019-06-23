@@ -26,6 +26,7 @@ import './ComponentsStyles/LoadingSpinner.css';
 import './ComponentsStyles/ResolutionGroup.css';
 import './ComponentsStyles/ResolutionHistory.css';
 import './ComponentsStyles/UserMenu.css';
+import './ComponentsStyles/ResolutionPrint.css';
 
 
 class App extends Component {

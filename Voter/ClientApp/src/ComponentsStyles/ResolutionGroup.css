@@ -1,10 +1,11 @@
 ﻿.resolutionGroup {
+    width:100%;
     position: relative;
     border-top: solid;
     border-top-color: #3498db;
     border-top-width: 1px;
     display: flex;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
 }
 
@@ -21,9 +22,14 @@
     padding: 10px;
     font-weight:bold;
 }
+.resolutionGroup button {
+    width:80px;
+    position:absolute;
+    left:90%;
+}
 
-.resolutionGroupText p{
-    margin:0;
+.resolutionGroupText p {
+    margin: 0;
 }
 
 .resolutionGroupContainer {

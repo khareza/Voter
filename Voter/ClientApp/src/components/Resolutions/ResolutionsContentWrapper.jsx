@@ -10,6 +10,7 @@ import { NotificationManager } from 'react-notifications';
 import UserVotesList from './UserVotesList';
 import Dialog from '../DialogBoxes/DialogBox';
 import DialogBackdrop from '../DialogBoxes/DialogBackdrop';
+import ResolutionPrinter from './ResolutionPrinter'
 
 export class ResolutionsContentWrapper extends Component {
 
@@ -18,7 +19,7 @@ export class ResolutionsContentWrapper extends Component {
         this.ResMethods = new ResolutionMethods();
         this.Auth = new AuthMethods();
         this.state = {
-            resolutions: [],
+            resolutions: '',
             isContentLoaded: false,
             dialogOpen: false,
             dialogConfig: {}
@@ -173,6 +174,11 @@ export class ResolutionsContentWrapper extends Component {
                                 <EditResolution
                                     setDialogConfig={this.setDialogConfig}
                                     setEditedResolution={this.setEditedResolution} />)} />
+                            {this.Auth.isUserAdmin()
+                                ? <Route exac path="/resolutions/print/:group_id" render={() => (
+                                    <ResolutionPrinter resolutions={this.state.resolutions} />)} />
+                                : null}
+                            
                         </div>
                         : null}
                 </div>

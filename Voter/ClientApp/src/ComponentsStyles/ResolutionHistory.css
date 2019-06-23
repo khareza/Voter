@@ -55,7 +55,3 @@ div.holdUserVote span {
 div.unsignedUserVote span {
     color: rgba(105,101,94,1);
 }
-
-@media(max-width:500px) {
-
-}

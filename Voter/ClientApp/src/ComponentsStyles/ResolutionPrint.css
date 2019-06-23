@@ -1,0 +1,79 @@
+﻿.votingListContainer {
+    width:80%;
+    margin:3rem auto;
+
+}
+    .votingListContainer h2 {
+        text-align:center;
+    }
+
+.votingCard {
+    border: none;
+    width: 100%;
+    margin: 3% auto;
+    color: #37474f;
+    font-weight: 500;
+    font-family: Palatino;
+    padding: 0;
+}
+
+.votingData {
+    font-size:1.5rem;
+    text-align: justify;
+    background-color: #FFFFFF;
+}
+
+    .votingData span {
+        font-weight: bold;
+    }
+
+.votingTitle {
+    font-weight: 600;
+}
+
+.votingCardHeader {
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+    .votingCardHeader * {
+        margin: 0;
+    }
+
+    .votingCardHeader p {
+        font-size: 1.1rem;
+    }
+
+.resolutionVoteFields {
+    display:flex;
+}
+
+.resolutionVoteField {
+    width: 100%;
+    border: 1px solid black;
+}
+
+    .resolutionVoteField p {
+        font-size: 1.3rem;
+        text-align:center;
+        margin:0;
+        padding:0;
+    }
+.voteField {
+    border-top: 1px solid black;
+    height: 100px;
+}
+
+.votingPersonalData {
+    text-align:left;
+    margin-top:2rem;
+}
+
+.votingPersonalData span {
+    font-weight: bold;
+}
+.votingSignature {
+    text-align:right;
+
+}

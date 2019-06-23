@@ -36,6 +36,7 @@ class ResolutionsGroupList extends Component {
                     <div>
                         {this.props.resolutionsGroups.map((resolutions, index) => (
                             <ResolutionsGroup key={index}
+                                groupIndex={index}
                                 deleteResolution={this.props.deleteResolution}
                                 deleteResolutionFromList={this.props.deleteResolutionFromList}
                                 editResolution={this.props.editResolution}
