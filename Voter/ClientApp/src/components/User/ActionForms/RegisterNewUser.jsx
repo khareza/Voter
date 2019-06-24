@@ -11,25 +11,23 @@ class RegisterNewUser extends Component {
 
         this.UserMethods = new UserMethods();
         this.state = {
-            userName: '',
-            password: '',
             firstName: '',
             lastName: '',
             email: '',
             birthDate: new Date(),
             phoneNumber: '',
             address:'',
-            isSubmitDisabled: true,
+            isSubmitDisabled: false,
             errors: {}
         };
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let { userName, password, firstName, lastName, email, birthDate, phoneNumber, address } = this.state;
+        let { firstName, lastName, email, birthDate, phoneNumber, address } = this.state;
 
         this.UserMethods.register(
-            { userName, password, firstName, lastName, email, birthDate, phoneNumber, address}
+            { firstName, lastName, email, birthDate, phoneNumber, address}
         ).then((res) => {
             NotificationManager.success('Register Successful', 'Correct');
             this.props.addNewUser(res.data);
@@ -50,21 +48,13 @@ class RegisterNewUser extends Component {
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value});
-        this.checkIfFormDataIsValid();
     }
 
     handleDateChange = (date) => {
         this.setState({ birthDate: date });
     }
 
-    checkIfFormDataIsValid = () => {
-        if (this.state.userName.length > 0 && this.state.password.length > 0) {
-            this.setState({ isSubmitDisabled: false });
-        }
-        else {
-            this.setState({ isSubmitDisabled: true });
-        }
-    }
+
 
     render() {
         return (
@@ -75,17 +65,6 @@ class RegisterNewUser extends Component {
                     </div>
                     <div className="form-row">
                         <div className="form-gorup col-md-8 offset-md-2">
-                            <div className="form-group">
-                                <label >User Name</label>
-                                <input className="form-control" type="text" name="userName" value={this.state.userName} onChange={this.handleInputChange} required />
-                                {this.state.errors['UserName'] ? <Error messages={this.state.errors['UserName']} /> : null}
-                            </div>
-
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} required />
-                                {this.state.errors['Password'] ? <Error messages={this.state.errors['Password']} /> : null}
-                            </div>
 
                             <div className="form-group">
                                 <label>FirstName</label>

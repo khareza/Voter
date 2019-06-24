@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Voter.ApiServices.ApiServiceInterfaces;
 using Voter.Common;
 using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
@@ -16,25 +17,36 @@ namespace Voter.DAL
         private AuthenticationContext _context;
         private UserManager<Resident> _userManager;
         private readonly IMapper _mapper;
+        private readonly IEmailSender _emailSender;
+        private readonly ILoginPasswordGenerator _loginPasswordGenerator;
 
-        public ResidentService(AuthenticationContext context, UserManager<Resident> userManager, IMapper mapper)
+        public ResidentService(AuthenticationContext context,
+            UserManager<Resident> userManager,
+            IMapper mapper,
+            IEmailSender emailSender,
+            ILoginPasswordGenerator loginPasswordGenerator)
         {
             _context = context;
             _userManager = userManager;
             _mapper = mapper;
-
+            _emailSender = emailSender;
+            _loginPasswordGenerator = loginPasswordGenerator;
         }
 
         public async Task<Resident> RegisterNewUser(RegisterFormData formData)
         {
             var role = UserRole.USER;
+            var userName = _loginPasswordGenerator.GenerateLogin(formData.FirstName, formData.LastName);
+            var password = _loginPasswordGenerator.GeneratePassword();
 
             var newResident = _mapper.Map<Resident>(formData);
             newResident.RegisterDate = DateTime.Now;
+            newResident.UserName = userName;
             try
             {
-                var result = await _userManager.CreateAsync(newResident, formData.Password);
+                var result = await _userManager.CreateAsync(newResident, password);
                 await _userManager.AddToRoleAsync(newResident, role);
+                _emailSender.SendLoginAndPassword(userName, password, formData.Email);
                 return newResident;
             }
             catch (Exception)

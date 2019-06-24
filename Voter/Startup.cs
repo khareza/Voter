@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Voter.ApiServices;
+using Voter.ApiServices.ApiServiceInterfaces;
 using Voter.AppSettings;
 using Voter.AppSettings.AutoMapper;
 using Voter.AppSettings.Validators;
@@ -43,6 +44,8 @@ namespace Voter
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             services.AddTransient<IResidentService, ResidentService>();
             services.AddTransient<IResolutionService, ResolutionService>();
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ILoginPasswordGenerator, LoginPasswordGenerator>();
 
             services.AddSingleton<IValidator<EditUserFormData>, EditResidentFormValidator>();
             services.AddSingleton<IValidator<LoginFormData>, LoginFormValidator>();
