@@ -1,7 +1,9 @@
-﻿namespace Voter.ApiServices.ApiServiceInterfaces
+﻿using System.Threading.Tasks;
+
+namespace Voter.ApiServices.ApiServiceInterfaces
 {
     public interface IEmailSender
     {
-        void SendLoginAndPassword(string login, string password, string userEmail);
+        Task SendLoginAndPassword(string login, string password, string userEmail);
     }
 }

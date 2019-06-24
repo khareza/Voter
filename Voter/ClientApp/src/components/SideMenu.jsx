@@ -26,7 +26,7 @@ class SideMenu extends Component {
             <header className="header">
                 <div className="headerFlex">
                     <h1 className="logo">
-                        <a href="/profile">Your <span>Voter</span></a>
+                        <a href="/">Your <span>Voter</span></a>
                     </h1>
                     <div>
                         <DrawerToggleButton click={this.props.drawerClickHandler} />
@@ -34,7 +34,7 @@ class SideMenu extends Component {
                     <div className="nav-wrap">
                         <nav className="main-nav">
                             <ul className="unstyled list-hover-slide">
-                                <li><NavLink to="/profile">My profile</NavLink></li>
+                                <li><NavLink to="/">My profile</NavLink></li>
                                 {this.renderRegisterTabIfAdmin()}
                                 <li><NavLink to="/resolutions">Resolutions</NavLink></li>
                             </ul>

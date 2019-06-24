@@ -14,9 +14,9 @@ export default class ActiveUserContentWrapper extends Component {
                     <UserMenu />
                 </div>
                 <div className="profileContent">
-                    <Route path="/profile/userprofile" component={UserProfile} />
-                    <Route path="/profile/resolution_history" component={ResolutionsHistoryList} />
-                    <Route path="/profile/resolution_history/:resolution_id" component={ResolutionHistoryDetails} />
+                    <Route path="/profile/" component={UserProfile} />
+                    <Route path="/resolution_history" component={ResolutionsHistoryList} />
+                    <Route path="/resolution_history/:resolution_id" component={ResolutionHistoryDetails} />
                 </div>
             </div>
         );

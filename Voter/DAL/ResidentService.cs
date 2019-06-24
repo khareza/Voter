@@ -42,17 +42,17 @@ namespace Voter.DAL
             var newResident = _mapper.Map<Resident>(formData);
             newResident.RegisterDate = DateTime.Now;
             newResident.UserName = userName;
-            try
-            {
+            //try
+            //{
                 var result = await _userManager.CreateAsync(newResident, password);
                 await _userManager.AddToRoleAsync(newResident, role);
-                _emailSender.SendLoginAndPassword(userName, password, formData.Email);
+                await _emailSender.SendLoginAndPassword(userName, password, formData.Email);
                 return newResident;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
         }
 
         public async Task<IEnumerable<Resident>> GetUsers()

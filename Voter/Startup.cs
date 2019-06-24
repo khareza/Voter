@@ -42,6 +42,8 @@ namespace Voter
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
             services.AddTransient<IResidentService, ResidentService>();
             services.AddTransient<IResolutionService, ResolutionService>();
             services.AddTransient<IEmailSender, EmailSender>();

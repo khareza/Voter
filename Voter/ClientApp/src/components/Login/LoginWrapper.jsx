@@ -9,7 +9,7 @@ export class LoginWrapper extends Component {
         super(props);
         this.Auth = new AuthMethods();
         if (this.Auth.loggedIn()) {
-            this.props.history.push('/profile');
+            this.props.history.push('/');
             NotificationManager.error('Click logout to display login page', 'You are already logged in');
         }
     }
