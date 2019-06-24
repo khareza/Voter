@@ -13,7 +13,8 @@ export default class ResolutionsHistoryList extends Component {
         this.Auth = new AuthMethods();
         this.state = {
             resolutions: [],
-            isContentLoaded: false
+            isContentLoaded: false,
+            filteredList: []
         }
     }
 
@@ -28,6 +29,7 @@ export default class ResolutionsHistoryList extends Component {
                 .then(res => {
                     this.setState({
                         resolutions: res.data,
+                        filteredList: res.data,
                         isContentLoaded: true
                     });
                 });
@@ -37,33 +39,53 @@ export default class ResolutionsHistoryList extends Component {
                 .then(res => {
                     this.setState({
                         resolutions: res.data,
+                        filteredList: res.data,
                         isContentLoaded: true
                     });
                 });
         }
     }
 
-    renderAdminComponents = () => {
+    renderComponents = () => {
         return <div>
-            {this.state.resolutions.map((resolution, index) => (<AdminResolutionHistory key={index} resolution={resolution} />))}
-        </div>;
-
-    }
-    renderUserComponents = () => {
-        return <div>
-            {this.state.resolutions.map((resolution, index) => (<UserResolutionHistory key={index} resolution={resolution}/> ))}
-
+            {this.state.filteredList.map((resolution, index) => (
+                this.Auth.isUserAdmin()
+                    ? <AdminResolutionHistory key={index} resolution={resolution} />
+                    : <UserResolutionHistory key={index} resolution={resolution} />
+            ))}
         </div>;
     }
 
+    filterResolutionList = (e) => {
+        let filteredList = this.state.resolutions;
+        if (e.target.name !== 'All') {
+            if (this.Auth.isUserAdmin()) {
+                filteredList = this.state.resolutions.filter((resolution) => {
+                    return resolution.resolutionStatus === e.target.name
+                });
+            }
+            else {
+                filteredList = this.state.resolutions.filter((resolution) => {
+                    return resolution.resolution.resolutionStatus === e.target.name
 
+                });
+            }
+        }
+        this.setState({ filteredList });
+    }
 
     render() {
         return (
             <div className="profileWrapper">
-                {this.state.isContentLoaded ?
-                    <div>
-                        {this.Auth.isUserAdmin() ? this.renderAdminComponents() : this.renderUserComponents()}
+                <div className="filterButtons">
+                    <button className="btn btn-warning" onClick={this.filterResolutionList} name='All'>All</button>
+                    <button className="btn btn-primary" onClick={this.filterResolutionList} name='Active'>Active</button>
+                    <button className="btn btn-success" onClick={this.filterResolutionList} name='Accepted'>Accepted</button>
+                    <button className="btn btn-danger" onClick={this.filterResolutionList} name='Rejected'>Rejected</button>
+                </div>
+                {this.state.isContentLoaded
+                    ? <div>
+                        {this.renderComponents()}
                     </div>
                     : <div className="spinner"></div>}
             </div>

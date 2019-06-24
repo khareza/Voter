@@ -101,7 +101,7 @@ namespace Voter.Controllers
         [HttpGet]
         [Route("GetExpiredResolutions")]
         [Authorize]
-        public IEnumerable<Resolution> GetExpiredResolutions()
+        public IEnumerable<ResolutionDTO> GetExpiredResolutions()
         {
             return _context.GetExpiredResolutions();
         }

@@ -105,11 +105,11 @@ namespace Voter.DAL
                 .Where(r => r.ExpirationDate > DateTime.Now)
                 .ToList();
         }
-        public IEnumerable<Resolution> GetExpiredResolutions()
+        public IEnumerable<ResolutionDTO> GetExpiredResolutions()
         {
-            return _context.Resolutions
+            return _mapper.Map<IEnumerable<ResolutionDTO>>(_context.Resolutions
                 .Where(r => r.ExpirationDate <= DateTime.Now)
-                .ToList();
+                .ToList());
         }
         public IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId)
         {

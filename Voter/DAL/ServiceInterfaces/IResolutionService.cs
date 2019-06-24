@@ -17,7 +17,7 @@ namespace Voter.DAL.ServiceInterfaces
         Resolution GetResolutionById(int id);
         IEnumerable<Resolution> GetResolutions();
         IEnumerable<Resolution> GetActiveResolutions();
-        IEnumerable<Resolution> GetExpiredResolutions();
+        IEnumerable<ResolutionDTO> GetExpiredResolutions();
         IEnumerable<Resolution> GetResolutionsWithoutUserVote(string userId);
 
         IEnumerable<IGrouping<DateTime, Resolution>> GetResolutionsGroupedByCreationDate();

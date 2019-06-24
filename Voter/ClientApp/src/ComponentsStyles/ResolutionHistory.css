@@ -55,3 +55,15 @@ div.holdUserVote span {
 div.unsignedUserVote span {
     color: rgba(105,101,94,1);
 }
+
+.filterButtons {
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+    .filterButtons button {
+        margin:10px 20px;
+    }
+

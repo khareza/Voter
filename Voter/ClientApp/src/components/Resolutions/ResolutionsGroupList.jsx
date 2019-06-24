@@ -19,7 +19,7 @@ class ResolutionsGroupList extends Component {
     renderButton = () => {
 
         return (<div className="text-center">
-            <button className="btn btn-success"
+            <button className="btn btn-success my-3"
                 onClick={() => { this.props.history.push('/resolutions/create') }}>Add new resolution</button>
         </div>)
     }
@@ -27,10 +27,6 @@ class ResolutionsGroupList extends Component {
     render() {
         return (
             <div>
-  
-                <div className="listHeader">
-                    <h2>Resolutions</h2>
-                </div>
                 {this.Auth.isUserAdmin() ? this.renderButton() : null}
                 {this.props.isContentLoaded ?
                     <div>

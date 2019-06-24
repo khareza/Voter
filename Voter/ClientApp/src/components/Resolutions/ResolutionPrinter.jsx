@@ -41,7 +41,7 @@ class ResolutionPrinter extends Component {
         return (
             <div>
                 <ReactToPrint
-                    trigger={() => <button className="btn btn-primary">Print this out</button>}
+                    trigger={() => <button className="btn btn-primary mt-3">Print this out</button>}
                     content={() => this.componentRef}
                 />
                 <ResolutionPrintPage resolutions={resolutions} ref={el => (this.componentRef = el)} />

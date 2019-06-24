@@ -141,7 +141,6 @@ namespace Voter
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Voter API V1");
-                    c.RoutePrefix = string.Empty;
                 });
                 app.UseMvc(routes =>
                 {
