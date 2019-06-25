@@ -24,15 +24,17 @@ class RegisterNewUser extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.setState({ isSubmitDisabled:true});
         let { firstName, lastName, email, birthDate, phoneNumber, address } = this.state;
-
         this.UserMethods.register(
             { firstName, lastName, email, birthDate, phoneNumber, address}
         ).then((res) => {
             NotificationManager.success('Register Successful', 'Correct');
             this.props.addNewUser(res.data);
+            this.setState({ isSubmitDisabled: false });
             this.props.history.push('/residents');
         }).catch((err) => {
+            this.setState({ isSubmitDisabled: false });
             NotificationManager.error('Unsuccessful user register', 'Error!');
             this.handleInputErrors(err.response.data.errors);
         });
@@ -107,7 +109,7 @@ class RegisterNewUser extends Component {
                                 {this.state.errors['Email'] ? <Error messages={this.state.errors['Email']} /> : null}
                             </div>
 
-                            <input type="submit" value="Add new resident" className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
+                            <input type="submit" value={this.state.isSubmitDisabled ? "Wait for user creation..." : "Create user"} className="btn btn-large btn-block btn-primary" disabled={this.state.isSubmitDisabled} />
                             <input type="button" value="Cancel" onClick={() => { this.props.history.push('/residents') }} className="btn btn-large btn-block btn-danger" />
                         </div>
                     </div>

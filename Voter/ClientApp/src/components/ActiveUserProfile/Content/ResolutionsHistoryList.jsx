@@ -46,11 +46,15 @@ export default class ResolutionsHistoryList extends Component {
         }
     }
 
+    openDetails = (id) => {
+        this.props.history.push(`/profile/resolution_history/${id}`);
+    }
+
     renderComponents = () => {
         return <div>
             {this.state.filteredList.map((resolution, index) => (
                 this.Auth.isUserAdmin()
-                    ? <AdminResolutionHistory key={index} resolution={resolution} />
+                    ? <AdminResolutionHistory key={index} resolution={resolution} openDetails={this.openDetails} />
                     : <UserResolutionHistory key={index} resolution={resolution} />
             ))}
         </div>;
@@ -77,6 +81,9 @@ export default class ResolutionsHistoryList extends Component {
     render() {
         return (
             <div className="profileWrapper">
+                <div className="filterButtonsHeader">
+                    <h4>Filter by resolution result</h4>
+                </div>
                 <div className="filterButtons">
                     <button className="btn btn-warning" onClick={this.filterResolutionList} name='All'>All</button>
                     <button className="btn btn-primary" onClick={this.filterResolutionList} name='Active'>Active</button>

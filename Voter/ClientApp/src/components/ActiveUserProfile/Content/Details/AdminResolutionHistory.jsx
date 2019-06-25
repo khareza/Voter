@@ -19,13 +19,21 @@ export default class AdminResolutionHistory extends Component {
         return { resultIcon, resultStyle };
     }
 
+    openDeatils = () => {
+        this.props.openDetails(this.props.resolution.id);
+    }
+
     render() {
         const resolutionResult = this.setResultIconAndStyle();
         const resolutionResultStyles = `resolutionResult ${resolutionResult.resultStyle}`
 
         return (
             <div>
+
                 <div className="resolutionCard">
+                    <div onClick={this.openDeatils} className="historyBackDrop">
+                        <p>Click here for details</p>
+                    </div>
                     <div className="resolutionCardHeader">
                         <h4 className="resolutionTitle">{`${this.props.resolution.title}`}</h4>
                         <p>Voting end <Moment fromNow="dddd YYYY-MM-DD HH:mm">{this.props.resolution.expirationDate}</Moment></p>

@@ -44,16 +44,12 @@ class UserVotesList extends Component {
         })
     }
 
-    handleBackPage = () => {
-        this.props.history.push(`/resolutions/results/${this.id}`);
-    }
-
     render() {
         return (
             <div>
                 <div className="listHeader">
                     <h2>List of residents and their votes</h2>
-                    <button className="btn btn-primary" onClick={this.handleBackPage}>Come back to resolution</button>
+                    <button className="btn btn-primary" onClick={() => { this.props.handleBackPage(this.id) }}>Come back to resolution</button>
                     <div className="residentsWithVotesList">
                         
                         {this.state.isContentLoaded

@@ -55,14 +55,6 @@ export class ResolutionsContentWrapper extends Component {
     deleteResolution = (id) => {
         this.ResMethods.deleteResolution(id)
             .then((res) => {
-                //var resolutionsList = this.state.resolutions;
-                //resolutionsList.forEach((resolutions, index) => {
-                //    var newArrayRow = [];
-                //    newArrayRow = resolutions.filter((resolution) => {
-                //        return resolution.id !== id;
-                //    })
-                //    resolutionsList[index] = newArrayRow;
-                //})
                 this.getResolutions();
                 NotificationManager.success('Delete Successful', 'Correct');
             }).catch(err => {
@@ -71,18 +63,7 @@ export class ResolutionsContentWrapper extends Component {
     }
 
     deleteResolutionFromList = (id) => {
-        //var resolutionsList = this.state.resolutions;
-        //resolutionsList.forEach((resolutions, index) => {
-        //    var newArrayRow = [];
-        //    newArrayRow = resolutions.filter((resolution) => {
-        //        return resolution.id !== id;
-        //    })
-        //    resolutionsList[index] = newArrayRow;
-        //})
-
-        //this.setState({ resolutions: resolutionsList });
         this.getResolutions();
-
     }
 
     editResolution = (id) => {
@@ -141,6 +122,18 @@ export class ResolutionsContentWrapper extends Component {
         });
     }
 
+    handleShowVoters = (id) => {
+        this.props.history.push(`/resolutions/results/${id}/votes`);
+    }
+
+    handleBackPageFromVoter = (id) => {
+        this.props.history.push(`/resolutions/results/${id}`);
+    }
+
+    handleBackPage = () => {
+        this.props.history.push(`/resolutions/`);
+    }
+
     render() {
         return (
             <div className="listBody">
@@ -165,8 +158,7 @@ export class ResolutionsContentWrapper extends Component {
                                     isContentLoaded={this.state.isContentLoaded}
                                     setDialogConfig={this.setDialogConfig}
                                 />)} />
-                            <Route exact path="/resolutions/results/:resolution_id" component={ResolutionResults} />
-                            <Route exact path="/resolutions/results/:resolution_id/votes" component={UserVotesList} />
+
                             <Route exact path="/resolutions/create" render={() => (
                                 <CreateResolution
                                     addNewResolution={this.addNewResolution} />)} />
@@ -175,10 +167,20 @@ export class ResolutionsContentWrapper extends Component {
                                 <EditResolution
                                     setDialogConfig={this.setDialogConfig}
                                     setEditedResolution={this.setEditedResolution} />)} />
+
                             {this.Auth.isUserAdmin()
                                 ? <Route exac path="/resolutions/print/:group_id" render={() => (
                                     <ResolutionPrinter resolutions={this.state.resolutions} />)} />
                                 : null}
+
+                            <Route exact path="/resolutions/results/:resolution_id" render={() => (
+                                <ResolutionResults
+                                    handleShowVoters={this.handleShowVoters}
+                                    handleBackPage={this.handleBackPage} />)} />
+
+                            <Route exact path="/resolutions/results/:resolution_id/votes" render={() => (
+                                <UserVotesList
+                                    handleBackPage={this.handleBackPageFromVoter} />)} />
 
                         </div>
                         : null}

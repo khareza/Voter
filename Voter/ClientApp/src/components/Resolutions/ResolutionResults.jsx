@@ -1,15 +1,15 @@
 ﻿import React, { Component } from 'react';
 import Moment from 'react-moment';
+import { withRouter } from 'react-router-dom';
 import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
 import VotingResultsChart from '../Charts/VotingResultsChart';
 import { NotificationManager } from 'react-notifications';
 
-export default class ResolutionResults extends Component {
+class ResolutionResults extends Component {
 
     constructor(props) {
         super(props);
-
         this.resolutionRequest = new ResolutionMethods();
         this.authRequest = new AuthMethods();
         this.id = this.props.match.params.resolution_id;
@@ -48,13 +48,7 @@ export default class ResolutionResults extends Component {
             })
     }
 
-    handleShowVoters = () => {
-        this.props.history.push(`/resolutions/results/${this.id}/votes`);
-    }
 
-    handleBackPage = () => {
-        this.props.history.push(`/resolutions/`);
-    }
 
     handleChartRender = () => {
         return this.state.numberOfUsers
@@ -91,10 +85,12 @@ export default class ResolutionResults extends Component {
                     ? this.handleChartRender()
                     : <div className="spinner"></div>}
                 <div className="resolutionResultButtons">
-                    {this.state.numberOfUsers ? <button className="btn btn-primary" onClick={this.handleShowVoters}>Show voters</button> : null}  
-                    <button className="btn btn-warning" onClick={this.handleBackPage}>Come back to resolutions</button>
+                    {this.state.numberOfUsers ? <button className="btn btn-primary" onClick={() => { this.props.handleShowVoters(this.id) }}>Show voters</button> : null}  
+                    <button className="btn btn-warning" onClick={this.props.handleBackPage}>Come back to resolutions</button>
                 </div>
             </div>
         );
     }
 }
+
+export default withRouter(ResolutionResults);

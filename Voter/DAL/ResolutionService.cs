@@ -208,8 +208,12 @@ namespace Voter.DAL
             votingResults.ForVotes = votes.Where(v => v.Answer == ActAnswer.For).Count();
             votingResults.AgainstVotes = votes.Where(v => v.Answer == ActAnswer.Against).Count();
             votingResults.HoldVotes = votes.Where(v => v.Answer == ActAnswer.Hold).Count();
-            votingResults.UnsignedVotes = _userManager.GetUsersInRoleAsync(UserRole.USER).Result.Count - votes.Count();
-            votingResults.NumberOfUsers = _userManager.GetUsersInRoleAsync(UserRole.USER).Result.Count;
+            votingResults.UnsignedVotes = _userManager.GetUsersInRoleAsync(UserRole.USER)
+                .Result.Where(u=>u.RegisterDate < resolution.ExpirationDate)
+                .Count() - votes.Count();
+            votingResults.NumberOfUsers = _userManager.GetUsersInRoleAsync(UserRole.USER).Result
+                .Where(u => u.RegisterDate < resolution.ExpirationDate)
+                .Count();
             return votingResults;
         }
 
@@ -219,8 +223,10 @@ namespace Voter.DAL
         {
             List<ResidentsVotesDTO> resultList = new List<ResidentsVotesDTO>();
 
+            var resolution = _context.Resolutions.FirstOrDefault(r => r.Id == resolutionId);
             var votes = _context.ResidentResolution.Include(rr=>rr.Voter).Where(rr => rr.ResolutionId == resolutionId);
-            var allResidents = _userManager.GetUsersInRoleAsync(UserRole.USER).Result;
+            var allResidents = _userManager.GetUsersInRoleAsync(UserRole.USER).Result
+                .Where(u => u.RegisterDate < resolution.ExpirationDate);
 
             foreach (var resident in allResidents)
             {
