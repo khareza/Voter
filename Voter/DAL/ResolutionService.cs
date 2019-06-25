@@ -37,6 +37,13 @@ namespace Voter.DAL
             _context.SaveChanges();
             return newResolution;
         }
+        public void CreateResolutionGroup(List<ResolutionFormData> formData)
+        {
+            foreach (var newResolution in formData)
+            {
+                CreateResolution(newResolution);
+            }
+        }
         private string generateResolutionNumber()
         {
             var resolutionNumber = "";

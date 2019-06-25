@@ -76,4 +76,8 @@ export class ResolutionMethods {
     createResolution = (newResolutionFormData) => {
         return axios.post(`${this.resolutionApiUrl}/CreateResolution`, newResolutionFormData);
     }
+
+    createResolutionGroup = (newResolutionFormData) => {
+        return axios.post(`${this.resolutionApiUrl}/CreateResolutionGroup`, newResolutionFormData);
+    }
 }

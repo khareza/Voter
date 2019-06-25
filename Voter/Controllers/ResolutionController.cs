@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Voter.AppSettings.Validators;
 using Voter.Common;
 using Voter.DAL.ServiceInterfaces;
 using Voter.Models;
@@ -38,6 +39,23 @@ namespace Voter.Controllers
 
            var result = _context.CreateResolution(formData);
            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("CreateResolutionGroup")]
+        [Authorize(Roles = UserRole.ADMIN)]
+        public IActionResult CreateResolutionGroup(List<ResolutionFormData> formData)
+        {
+            var validator = new ResolutionFormCollectionValidator();
+            var result = validator.Validate(formData);
+
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors);
+
+            }
+           _context.CreateResolutionGroup(formData);
+           return Ok();
         }
 
         [HttpDelete]

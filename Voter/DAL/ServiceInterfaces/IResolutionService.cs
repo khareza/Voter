@@ -10,6 +10,7 @@ namespace Voter.DAL.ServiceInterfaces
     public interface IResolutionService
     {
         Resolution CreateResolution(ResolutionFormData formData);
+        void CreateResolutionGroup(List<ResolutionFormData> formData);
         Resolution DeleteResolution(int id);
         Resolution EditResolution(ResolutionFormData formData);
         IEnumerable<ResidentsVotesDTO> GetResidentsWithVotes(int resolutionId);

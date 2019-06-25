@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import CreateResolution from './ActionForms/CreateResolution';
+import CreateResolutionGroup from './ActionForms/CreateResolutionGroup';
 import EditResolution from './ActionForms/EditResolution';
 import ResolutionResults from './ResolutionResults';
 import ResolutionsGroupList from './ResolutionsGroupList';
@@ -160,7 +161,7 @@ export class ResolutionsContentWrapper extends Component {
                                 />)} />
 
                             <Route exact path="/resolutions/create" render={() => (
-                                <CreateResolution
+                                <CreateResolutionGroup
                                     addNewResolution={this.addNewResolution} />)} />
 
                             <Route exact path="/resolutions/edit/:resolution_id" render={() => (

@@ -27,6 +27,7 @@ import './ComponentsStyles/ResolutionGroup.css';
 import './ComponentsStyles/ResolutionHistory.css';
 import './ComponentsStyles/UserMenu.css';
 import './ComponentsStyles/ResolutionPrint.css';
+import './ComponentsStyles/CreateResolution.css';
 
 
 class App extends Component {

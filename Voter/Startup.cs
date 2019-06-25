@@ -53,6 +53,7 @@ namespace Voter
             services.AddSingleton<IValidator<LoginFormData>, LoginFormValidator>();
             services.AddSingleton<IValidator<RegisterFormData>, RegisterFormValidator>();
             services.AddSingleton<IValidator<ResolutionFormData>, ResolutionFormValidator>();
+            services.AddSingleton<IValidator<IEnumerable<ResolutionFormData>>, ResolutionFormCollectionValidator>();
 
             services.AddHostedService<TimedHostedService>();
             var mappingConfig = new MapperConfiguration(mc =>
