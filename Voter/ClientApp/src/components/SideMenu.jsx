@@ -34,7 +34,7 @@ class SideMenu extends Component {
                     <div className="nav-wrap">
                         <nav className="main-nav">
                             <ul className="unstyled list-hover-slide">
-                                <li><NavLink to="/">My profile</NavLink></li>
+                                <li><NavLink to="/profile">My profile</NavLink></li>
                                 {this.renderRegisterTabIfAdmin()}
                                 <li><NavLink to="/resolutions">Resolutions</NavLink></li>
                             </ul>

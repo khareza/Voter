@@ -41,7 +41,7 @@ export class Main extends Component {
                 <SideMenu drawerClickHandler={this.drawerToggleClickHandler} />
                 <SideDrawer show={this.state.sideDrawerOpen}/>
                 <div className="content">
-                    <Route path="/" component={ActiveUserContentWrapper} />
+                    <Route path="/profile" component={ActiveUserContentWrapper} />
                     <Route path="/resolutions" component={ResolutionsContentWrapper} />
                     {this.renderResidentsRouteIfAdmin()}
                 </div>

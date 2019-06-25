@@ -54,17 +54,16 @@ export class ResolutionsContentWrapper extends Component {
 
     deleteResolution = (id) => {
         this.ResMethods.deleteResolution(id)
-            .then(() => {
-                var resolutionsList = this.state.resolutions;
-                resolutionsList.forEach((resolutions, index) => {
-                    var newArrayRow = [];
-                    newArrayRow = resolutions.filter((resolution) => {
-                        return resolution.id !== id;
-                    })
-                    resolutionsList[index] = newArrayRow;
-                })
-
-                this.setState({ resolutions: resolutionsList });
+            .then((res) => {
+                //var resolutionsList = this.state.resolutions;
+                //resolutionsList.forEach((resolutions, index) => {
+                //    var newArrayRow = [];
+                //    newArrayRow = resolutions.filter((resolution) => {
+                //        return resolution.id !== id;
+                //    })
+                //    resolutionsList[index] = newArrayRow;
+                //})
+                this.getResolutions();
                 NotificationManager.success('Delete Successful', 'Correct');
             }).catch(err => {
                 NotificationManager.error('Unsuccessful delete', 'Error!');
@@ -72,16 +71,18 @@ export class ResolutionsContentWrapper extends Component {
     }
 
     deleteResolutionFromList = (id) => {
-        var resolutionsList = this.state.resolutions;
-        resolutionsList.forEach((resolutions, index) => {
-            var newArrayRow = [];
-            newArrayRow = resolutions.filter((resolution) => {
-                return resolution.id !== id;
-            })
-            resolutionsList[index] = newArrayRow;
-        })
+        //var resolutionsList = this.state.resolutions;
+        //resolutionsList.forEach((resolutions, index) => {
+        //    var newArrayRow = [];
+        //    newArrayRow = resolutions.filter((resolution) => {
+        //        return resolution.id !== id;
+        //    })
+        //    resolutionsList[index] = newArrayRow;
+        //})
 
-        this.setState({ resolutions: resolutionsList });
+        //this.setState({ resolutions: resolutionsList });
+        this.getResolutions();
+
     }
 
     editResolution = (id) => {
@@ -152,7 +153,7 @@ export class ResolutionsContentWrapper extends Component {
                 />
                 <div className="listBody">
 
-                    {this.state.resolutions ?
+                    {this.state.isContentLoaded ?
                         <div>
                             <Route exact path="/resolutions" render={() => (
                                 <ResolutionsGroupList
@@ -178,7 +179,7 @@ export class ResolutionsContentWrapper extends Component {
                                 ? <Route exac path="/resolutions/print/:group_id" render={() => (
                                     <ResolutionPrinter resolutions={this.state.resolutions} />)} />
                                 : null}
-                            
+
                         </div>
                         : null}
                 </div>
