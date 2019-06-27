@@ -71,7 +71,8 @@ class EditResolution extends Component {
     }
 
     handleDateChange = (date) => {
-        this.setState({ expirationDate: date });
+      const newDate =  new Date(date.setHours(date.getHours() + 2));
+      this.setState({ expirationDate: newDate});
     }
 
     render() {

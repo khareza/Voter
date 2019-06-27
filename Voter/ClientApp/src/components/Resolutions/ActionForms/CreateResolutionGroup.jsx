@@ -10,7 +10,6 @@ class CreateResolutionGroup extends Component {
 
     constructor(props) {
         super(props);
-
         this.ResMethods = new ResolutionMethods();
         this.state = {
             resolutions: [{
@@ -19,8 +18,9 @@ class CreateResolutionGroup extends Component {
                 expirationDate: new Date()
             }],
             isSubmitDisabled: false,
-            errors: [{ Title: [], Description: [], ExpirationDate: [] }]
+            errors: [{ Title: [''], Description: [''], ExpirationDate: [''] }]
         };
+
     }
 
     handleSubmit = (event) => {
@@ -43,23 +43,27 @@ class CreateResolutionGroup extends Component {
     }
 
     addNewResolution = () => {
+        console.log(this.state.errors);
+
         this.setState({
             resolutions: [...this.state.resolutions, {
                 title: '',
                 description: '',
                 expirationDate: new Date()
-            }], errors: [...this.state.errors, { Title: [''], Description: [''], ExpirationDate: [''] }]
+            }], errors: [...this.state.errors, [{ Title: [''], Description: [''], ExpirationDate: [''] }]]
         })
+
     }
 
     handleInputErrors = (errors) => {
-        const errorList = this.state.errors;
+        let errorList = this.state.errors.map(() => {
+            return [{ Title: [''], Description: [''], ExpirationDate: [''] }];
+        })
         errors.forEach((error) => {
             var errorData = error.propertyName.split('.');
             var propertyName = errorData[1];
             var errorMessage = error.errorMessage;
             var errorIndex = errorData[0].split('')[2];
-
             errorList[errorIndex][propertyName] = [errorMessage];
         })
         this.setState({ errors: errorList });
@@ -74,15 +78,17 @@ class CreateResolutionGroup extends Component {
 
     handleDateChange = (index, date) => {
         let resolutionList = this.state.resolutions;
-        resolutionList[index]['expirationDate'] = date;
+        resolutionList[index]['expirationDate'] = new Date(date.setHours(date.getHours() + 2));
 
         this.setState({ resolutions: resolutionList });
     }
 
     removeResolution = (index) => {
         let resolutionList = this.state.resolutions;
+        let errorList = this.state.errors;
+        errorList.splice(index, 1);
         resolutionList.splice(index, 1);
-        this.setState({ resolutions: resolutionList});
+        this.setState({ resolutions: resolutionList, errors: errorList });
     }
 
     render() {
