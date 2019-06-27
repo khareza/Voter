@@ -2,7 +2,7 @@
 
 namespace Voter.Models
 {
-    public enum ActAnswer
+    public enum ResolutionVote
     {
         For,
         Against,
@@ -17,6 +17,6 @@ namespace Voter.Models
         public int ResolutionId { get; set; }
         public Resolution Resolution { get; set; }
         public DateTime VoteDate { get; set; }
-        public ActAnswer Answer { get; set; }
+        public ResolutionVote Vote { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import { UserMethods } from '../../../Helpers/UserMethods';
-import { Error } from '../../Error';
+import UserMethods from '../../../Helpers/UserMethods';
+import Error from '../../Error';
 import Dialog from '../../DialogBoxes/DialogBox';
 import DialogBackdrop from '../../DialogBoxes/DialogBackdrop';
 

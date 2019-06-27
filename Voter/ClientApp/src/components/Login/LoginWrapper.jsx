@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react';
-import { Route} from 'react-router-dom';
-import { Login } from './LoginForm';
-import AuthMethods from '../../Helpers/AuthMethods';
+import { Route } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
+import  Login  from './LoginForm';
+import AuthMethods from '../../Helpers/AuthMethods';
 
-export class LoginWrapper extends Component {
+export default class LoginWrapper extends Component {
     constructor(props) {
         super(props);
         this.Auth = new AuthMethods();

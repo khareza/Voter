@@ -36,15 +36,15 @@ namespace Voter.Controllers
                 return BadRequest();
             }
 
-            //try
-            //{
-               var createdResident = await _context.RegisterNewUser(formData);
+            try
+            {
+                var createdResident = await _context.RegisterNewUser(formData);
                 return Ok(createdResident);
-            //}
-            //catch (Exception)
-            //{
-            //    return BadRequest();
-            //}
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet]

@@ -19,7 +19,6 @@ export default class AuthMethods {
     };
 
     loggedIn = () => {
-        // Checks if there is a saved token and it's still valid
         const token = this.getToken();
         return !!token && !this.isTokenExpired(token);
     };

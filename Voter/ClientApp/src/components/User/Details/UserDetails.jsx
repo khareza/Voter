@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit, faUserTimes } from '@fortawesome/free-solid-svg-icons'
 import Moment from 'react-moment';
 
-export class UserDetails extends Component {
+export default class UserDetails extends Component {
     editUser = () => {
         this.props.editUser(this.props.user.id);
     }

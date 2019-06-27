@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NotificationContainer} from 'react-notifications';
 import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
-import { LoginWrapper as Login} from './components/Login/LoginWrapper';
+import Login from './components/Login/LoginWrapper';
 import PrivateComponent from './components/PrivateComponent';
-import { Main } from './components/Main';
+import Main from './components/Main';
 import 'react-notifications/lib/notifications.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ComponentsStyles/DrawerToggleButton.css';

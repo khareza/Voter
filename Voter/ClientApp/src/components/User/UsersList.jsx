@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { UserDetails } from './Details/UserDetails';
-import { UserMethods } from '../../Helpers/UserMethods';
+import UserDetails from './Details/UserDetails';
+import UserMethods from '../../Helpers/UserMethods';
 import Dialog from '../DialogBoxes/DialogBox';
 import DialogBackdrop from '../DialogBoxes/DialogBackdrop';
 

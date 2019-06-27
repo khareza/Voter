@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { AdminResolution } from './Details/AdminResolution';
-import { UserResolution } from './Details/UserResolution';
+import  AdminResolution  from './Details/AdminResolution';
+import  UserResolution  from './Details/UserResolution';
 import AuthMethods from '../../Helpers/AuthMethods';
 
 class ResolutionsList extends Component {

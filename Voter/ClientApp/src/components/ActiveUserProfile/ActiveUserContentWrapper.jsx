@@ -1,5 +1,4 @@
-﻿/// <reference path="../resolutions/resolutionresults.jsx" />
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import UserProfile from './Content/UserProfile';

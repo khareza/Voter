@@ -28,20 +28,6 @@ namespace Voter.Controllers
         }
 
         [HttpPost]
-        [Route("CreateResolution")]
-        [Authorize(Roles = UserRole.ADMIN)]
-        public IActionResult CreateResolution(ResolutionFormData formData)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-           var result = _context.CreateResolution(formData);
-           return Ok(result);
-        }
-
-        [HttpPost]
         [Route("CreateResolutionGroup")]
         [Authorize(Roles = UserRole.ADMIN)]
         public IActionResult CreateResolutionGroup(List<ResolutionFormData> formData)

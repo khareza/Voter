@@ -1,7 +1,7 @@
 ﻿import axios from 'axios';
 import AuthMethods from './AuthMethods';
 
-export class ResolutionMethods {
+export default class ResolutionMethods {
     constructor() {
         this.auth = new AuthMethods();
         this.resolutionApiUrl = "/api/Resolution";
@@ -71,10 +71,6 @@ export class ResolutionMethods {
 
     getResidentsWithVotes = (resolutionId) => {
         return axios.get(`${this.resolutionApiUrl}/GetResidentsWithVotes/${resolutionId}`);
-    }
-
-    createResolution = (newResolutionFormData) => {
-        return axios.post(`${this.resolutionApiUrl}/CreateResolution`, newResolutionFormData);
     }
 
     createResolutionGroup = (newResolutionFormData) => {

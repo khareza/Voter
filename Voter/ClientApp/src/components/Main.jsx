@@ -4,11 +4,11 @@ import SideMenu from './SideMenu';
 import SideDrawer from './SideDrawer/SideDrawer';
 import Backdrop from './SideDrawer/Backdrop';
 import ActiveUserContentWrapper from './ActiveUserProfile/ActiveUserContentWrapper';
-import { UsersContentWrapper } from './User/UsersContentWrapper';
-import { ResolutionsContentWrapper } from './Resolutions/ResolutionsContentWrapper';
+import UsersContentWrapper from './User/UsersContentWrapper';
+import ResolutionsContentWrapper from './Resolutions/ResolutionsContentWrapper';
 import AuthMethods from '../Helpers/AuthMethods';
 
-export class Main extends Component {
+export default class Main extends Component {
 
     state = {
         sideDrawerOpen: false

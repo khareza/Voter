@@ -15,7 +15,7 @@ namespace Voter.AppSettings.AutoMapper
         {
             CreateMap<ResolutionFormData, Resolution>();
             CreateMap<UserVoteFormData, ResidentResolution>()
-                .ForMember(dest => dest.Answer, opt => opt.MapFrom(src =>Enum.Parse(typeof(ActAnswer), src.Vote) ));
+                .ForMember(dest => dest.Vote, opt => opt.MapFrom(src =>Enum.Parse(typeof(ResolutionVote), src.Vote) ));
 
             CreateMap<RegisterFormData, Resident>();
             CreateMap<EditUserFormData, Resident>();

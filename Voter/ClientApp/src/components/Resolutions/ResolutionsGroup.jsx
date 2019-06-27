@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import ResolutionsList from './ResolutionsList';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPrint } from '@fortawesome/free-solid-svg-icons'
+import ResolutionsList from './ResolutionsList';
 import AuthMethods from '../../Helpers/AuthMethods';
 
 class ResolutionsGroup extends Component {

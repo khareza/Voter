@@ -27,7 +27,14 @@ namespace Voter.DAL
 
         }
 
-        public Resolution CreateResolution(ResolutionFormData formData)
+        public void CreateResolutionGroup(List<ResolutionFormData> formData)
+        {
+            foreach (var newResolution in formData)
+            {
+                CreateResolution(newResolution);
+            }
+        }
+        private Resolution CreateResolution(ResolutionFormData formData)
         {
             var newResolution = _mapper.Map<Resolution>(formData);
             newResolution.CreationDate = DateTime.Now;
@@ -37,13 +44,7 @@ namespace Voter.DAL
             _context.SaveChanges();
             return newResolution;
         }
-        public void CreateResolutionGroup(List<ResolutionFormData> formData)
-        {
-            foreach (var newResolution in formData)
-            {
-                CreateResolution(newResolution);
-            }
-        }
+
         private string generateResolutionNumber()
         {
             var resolutionNumber = "";
@@ -182,7 +183,7 @@ namespace Voter.DAL
             foreach (var resolution in votes)
             {
                 var resolutionId = resolution.ResolutionId;
-                var userVote = resolution.Answer.ToString();
+                var userVote = resolution.Vote.ToString();
 
                 var index = resultList.FindIndex(x => x.Resolution.Id == resolutionId);
                 if (index != -1)
@@ -212,9 +213,9 @@ namespace Voter.DAL
 
             var votingResults = new VotingResultsDTO();
             votingResults.Resolution =_mapper.Map<ResolutionDTO>(resolution);
-            votingResults.ForVotes = votes.Where(v => v.Answer == ActAnswer.For).Count();
-            votingResults.AgainstVotes = votes.Where(v => v.Answer == ActAnswer.Against).Count();
-            votingResults.HoldVotes = votes.Where(v => v.Answer == ActAnswer.Hold).Count();
+            votingResults.ForVotes = votes.Where(v => v.Vote == ResolutionVote.For).Count();
+            votingResults.AgainstVotes = votes.Where(v => v.Vote == ResolutionVote.Against).Count();
+            votingResults.HoldVotes = votes.Where(v => v.Vote == ResolutionVote.Hold).Count();
             votingResults.UnsignedVotes = _userManager.GetUsersInRoleAsync(UserRole.USER)
                 .Result.Where(u=>u.RegisterDate < resolution.ExpirationDate)
                 .Count() - votes.Count();
@@ -247,7 +248,7 @@ namespace Voter.DAL
             {
                 ResidentsVotesDTO residentWithVote = new ResidentsVotesDTO();
                 residentWithVote.Resident = _mapper.Map<ResidentDTO>(resident.Voter);
-                residentWithVote.Vote = resident.Answer.ToString();
+                residentWithVote.Vote = resident.Vote.ToString();
 
                 var index = resultList.FindIndex(x=>x.Resident.Id == residentWithVote.Resident.Id);
                 resultList[index] = residentWithVote;

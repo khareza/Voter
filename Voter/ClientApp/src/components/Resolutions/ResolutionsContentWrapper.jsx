@@ -1,19 +1,18 @@
 ﻿import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import CreateResolution from './ActionForms/CreateResolution';
+import { NotificationManager } from 'react-notifications';
 import CreateResolutionGroup from './ActionForms/CreateResolutionGroup';
 import EditResolution from './ActionForms/EditResolution';
 import ResolutionResults from './ResolutionResults';
 import ResolutionsGroupList from './ResolutionsGroupList';
-import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
-import AuthMethods from '../../Helpers/AuthMethods';
-import { NotificationManager } from 'react-notifications';
 import UserVotesList from './UserVotesList';
-import Dialog from '../DialogBoxes/DialogBox';
+import ResolutionPrinter from './ResolutionPrinter';
 import DialogBackdrop from '../DialogBoxes/DialogBackdrop';
-import ResolutionPrinter from './ResolutionPrinter'
+import Dialog from '../DialogBoxes/DialogBox';
+import ResolutionMethods from '../../Helpers/ResolutionMethods';
+import AuthMethods from '../../Helpers/AuthMethods';
 
-export class ResolutionsContentWrapper extends Component {
+export default class ResolutionsContentWrapper extends Component {
 
     constructor(props) {
         super(props);

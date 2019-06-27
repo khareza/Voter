@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faFolderMinus, faPoll } from '@fortawesome/free-solid-svg-icons'
 
-export class AdminResolution extends Component {
+export default class AdminResolution extends Component {
 
     editResolution = () => {
         this.props.editResolution(this.props.resolution.id);

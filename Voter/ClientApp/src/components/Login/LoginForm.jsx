@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
 import AuthMethods from '../../Helpers/AuthMethods';
-import { Error } from '../Error';
+import Error from '../Error';
 
-export class Login extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
         this.Auth = new AuthMethods();

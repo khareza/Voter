@@ -1,9 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
-import { UserVoteCard } from './Details/UserVoteCard';
 import { NotificationManager } from 'react-notifications';
-
+import ResolutionMethods from '../../Helpers/ResolutionMethods';
+import UserVoteCard  from './Details/UserVoteCard';
 
 class UserVotesList extends Component {
 

@@ -1,7 +1,7 @@
 ﻿import axios from 'axios';
 import AuthMethods from './AuthMethods';
 
-export class UserMethods {
+export default class UserMethods {
     constructor() {
         this.auth = new AuthMethods();
         this.adminApiUrl = "/api/Admin";
@@ -31,12 +31,5 @@ export class UserMethods {
         return axios.post(`${this.adminApiUrl}/Register`, registerFormData);
     }
 
-    //getActiveUser = () => {
-    //    var userId = JSON.parse(window.atob(this.getToken().split(".")[1])).UserID;
-
-    //    axios.defaults.headers.common['Authorization'] =
-    //        'Bearer ' + this.getToken();
-    //   return axios.get(`${this.apiUrl}voter/GetUserData`, userId);
-    //}
 }
 

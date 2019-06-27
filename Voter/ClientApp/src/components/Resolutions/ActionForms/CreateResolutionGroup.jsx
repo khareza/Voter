@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
-import { ResolutionMethods } from '../../../Helpers/ResolutionMethods';
-import SingleNewResolution from '../Details/SingleNewResolution';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import ResolutionMethods from '../../../Helpers/ResolutionMethods';
+import SingleNewResolution from '../Details/SingleNewResolution';
 
 class CreateResolutionGroup extends Component {
 

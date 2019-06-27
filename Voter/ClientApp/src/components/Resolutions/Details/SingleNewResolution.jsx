@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import { Error } from '../../Error';
+import Error from '../../Error';
 
 export default class SingleNewResolution extends Component {
 

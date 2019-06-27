@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { NotificationManager } from 'react-notifications';
-import { ResolutionMethods} from '../../../Helpers/ResolutionMethods';
+import { withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { Error } from '../../Error';
-import { withRouter } from 'react-router-dom';
+import { ResolutionMethods } from '../../../Helpers/ResolutionMethods';
 
 class CreateResolution extends Component {
     constructor(props) {

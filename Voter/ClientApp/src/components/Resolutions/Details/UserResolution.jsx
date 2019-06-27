@@ -3,10 +3,10 @@ import Moment from 'react-moment';
 import { NotificationManager } from 'react-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faBan, faHandPaper } from '@fortawesome/free-solid-svg-icons'
-import { UserMethods } from '../../../Helpers/UserMethods';
+import UserMethods from '../../../Helpers/UserMethods';
 import AuthMethods from '../../../Helpers/AuthMethods';
 
-export class UserResolution extends Component {
+export default class UserResolution extends Component {
 
     userRequest = new UserMethods();
     authRequest = new AuthMethods();

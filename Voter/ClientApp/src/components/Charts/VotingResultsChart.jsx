@@ -1,9 +1,6 @@
 ﻿import React, { Component } from 'react';
 import Chart from 'chart.js';
 
-//series: [this.props.votes.unsignedVotes, this.props.votes.forVotes, this.props.votes.holdVotes, this.props.votes.againstVotes],
-//    labels: ["Unsigned", "For", "Hold", "Against"],
-//        colors: ['#69675E', '#00C851', '#ffbb33', '#FF4444'],
 export default class VotingResultsChart extends Component {
     render() {
 

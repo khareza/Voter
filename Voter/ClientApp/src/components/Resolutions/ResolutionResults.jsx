@@ -1,10 +1,10 @@
 ﻿import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { withRouter } from 'react-router-dom';
-import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
+import { NotificationManager } from 'react-notifications';
+import ResolutionMethods from '../../Helpers/ResolutionMethods';
 import AuthMethods from '../../Helpers/AuthMethods';
 import VotingResultsChart from '../Charts/VotingResultsChart';
-import { NotificationManager } from 'react-notifications';
 
 class ResolutionResults extends Component {
 

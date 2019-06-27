@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { ResolutionMethods } from '../../Helpers/ResolutionMethods';
+import ResolutionMethods from '../../Helpers/ResolutionMethods';
 import ResolutionsGroup from './ResolutionsGroup';
 import AuthMethods from '../../Helpers/AuthMethods';
 

@@ -44,8 +44,8 @@ namespace Voter.ApiServices
                 foreach (var resolution in expiredResolutions)
                 {
                     var votes = context.ResidentResolution.Where(rr => rr.ResolutionId == resolution.Id);
-                    var forVotes = votes.Where(v => v.Answer == ActAnswer.For).Count();
-                    var againstVotes = votes.Where(v => v.Answer == ActAnswer.Against).Count();
+                    var forVotes = votes.Where(v => v.Vote == ResolutionVote.For).Count();
+                    var againstVotes = votes.Where(v => v.Vote == ResolutionVote.Against).Count();
                     if (forVotes > againstVotes)
                     {
                         resolution.ResolutionStatus = ResolutionStatus.Accepted;

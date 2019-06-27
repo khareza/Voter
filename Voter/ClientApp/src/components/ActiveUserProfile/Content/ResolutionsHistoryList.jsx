@@ -1,9 +1,8 @@
 ﻿import React, { Component } from 'react';
-import { ResolutionMethods } from '../../../Helpers/ResolutionMethods';
+import ResolutionMethods from '../../../Helpers/ResolutionMethods';
 import AuthMethods from '../../../Helpers/AuthMethods';
 import UserResolutionHistory from './Details/UserResolutionHistory';
 import AdminResolutionHistory from './Details/AdminResolutionHistory';
-
 
 export default class ResolutionsHistoryList extends Component {
 

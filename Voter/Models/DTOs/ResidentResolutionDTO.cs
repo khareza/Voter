@@ -10,6 +10,6 @@ namespace Voter.Models.DTOs
         public string VoterId { get; set; }
         public ResidentDTO Voter { get; set; }
         public DateTime VoteDate { get; set; }
-        public ActAnswer Answer { get; set; }
+        public ResolutionVote Vote { get; set; }
     }
 }

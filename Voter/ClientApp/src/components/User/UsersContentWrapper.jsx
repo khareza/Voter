@@ -1,12 +1,12 @@
 ﻿import React, { Component } from 'react';
-import { Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { NotificationManager } from 'react-notifications';
 import RegisterNewUser from './ActionForms/RegisterNewUser';
 import UsersList from './UsersList';
 import EditUserForm from './ActionForms/EditUserForm';
-import { NotificationManager } from 'react-notifications';
-import { UserMethods } from '../../Helpers/UserMethods';
+import UserMethods from '../../Helpers/UserMethods';
 
-export class UsersContentWrapper extends Component {
+export default class UsersContentWrapper extends Component {
 
     constructor(props) {
         super(props);

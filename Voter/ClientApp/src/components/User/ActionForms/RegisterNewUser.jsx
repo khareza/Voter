@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import { UserMethods} from '../../../Helpers/UserMethods';
 import DatePicker from 'react-datepicker';
-import { Error } from '../../Error';
+import UserMethods from '../../../Helpers/UserMethods';
+import Error from '../../Error';
 
 class RegisterNewUser extends Component {
     constructor(props) {
