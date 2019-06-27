@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Voter.DAL;
 using Voter.Models;
 using Voter.Models.FormsData;
 
@@ -16,16 +17,21 @@ namespace Voter.AppSettings.Validators
         readonly Regex phoneNumber = new Regex(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{3}");
         readonly Regex emailRegex =
            new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+        AuthenticationContext _context;
 
-        public RegisterFormValidator()
+        public RegisterFormValidator(AuthenticationContext context)
         {
+            _context = context;
+
             RuleFor(registerForm => registerForm.Email)
                 .NotNull()
                 .WithMessage("Enter email")
                 .NotEmpty()
                 .WithMessage("Enter email")
                 .Matches(emailRegex)
-                .WithMessage("Enter valid email");
+                .WithMessage("Enter valid email")
+                .Must(x=>!_context.Residents.Any(r=>r.Email==x))
+                .WithMessage("This email is already in use");
 
             RuleFor(registerForm => registerForm.FirstName)
                 .NotNull()

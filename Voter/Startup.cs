@@ -51,7 +51,7 @@ namespace Voter
 
             services.AddSingleton<IValidator<EditUserFormData>, EditResidentFormValidator>();
             services.AddSingleton<IValidator<LoginFormData>, LoginFormValidator>();
-            services.AddSingleton<IValidator<RegisterFormData>, RegisterFormValidator>();
+            services.AddTransient<IValidator<RegisterFormData>, RegisterFormValidator>();
             services.AddSingleton<IValidator<ResolutionFormData>, ResolutionFormValidator>();
             services.AddSingleton<IValidator<IEnumerable<ResolutionFormData>>, ResolutionFormCollectionValidator>();
 
