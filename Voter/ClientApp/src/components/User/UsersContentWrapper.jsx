@@ -34,7 +34,6 @@ export default class UsersContentWrapper extends Component {
     }
 
     deleteUser = (id) => {
-        console.log(id);
         this.UserMethods.deleteUser(id)
             .then(() => {
         var users = this.state.users.filter((user) => (user.id !== id));

@@ -33,16 +33,23 @@ namespace Voter.ApiServices
         public string GenerateLogin(string firstName, string lastName)
         {
             int amountOfNumbers = 4;
-            StringBuilder res = new StringBuilder();
             Random rnd = new Random();
-
-            res.Append(firstName.Substring(0, 3));
-            res.Append(lastName.Substring(0, 3));
-
-            while (0 < amountOfNumbers--)
+            StringBuilder res;
+            do
             {
-                res.Append(rnd.Next(0, 9));
-            }
+                res = new StringBuilder();
+
+
+                res.Append(firstName.Substring(0, 3));
+                res.Append(lastName.Substring(0, 3));
+
+                while (0 < amountOfNumbers--)
+                {
+                    res.Append(rnd.Next(0, 9));
+                }
+
+            } while (_context.Residents.Any(r => r.UserName == res.ToString()));
+
             return res.ToString();
         }
 
